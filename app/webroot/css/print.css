@@ -1,0 +1,490 @@
+#areaImprimir{
+    padding-left: 100px;
+}
+table.mi-tabla-header{
+    border: 0px;
+    width: 762px;
+}
+table.mi-tabla-header tr td.logo1{
+    border: 0px;
+    width: 224px;
+    padding-left: 25px;
+}
+table.mi-tabla-header tr td.titulo1{
+    border: 0px;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 20px;
+    /*width: 251px;*/
+}
+table.mi-tabla-header tr td span{
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 17px;
+    margin-left: 29px;
+    
+    /*width: 251px;*/
+}
+table.mi-tabla-header tr td span.resolucion{
+    text-align: left;
+    font-size: 10px; 
+    margin-left: 0px;
+    padding: 10px 100px 5px 100px;
+    text-transform: lowercase;
+}
+.logo-pedigri{
+    width: 503px;
+    height: 181px;
+    padding-left: 120px;
+}
+table.mi-tabla{
+    border: solid #000 1px;
+    width: 762px;
+    border-collapse: collapse;
+}
+table.mi-tabla tr td{
+    border: solid #000 1px;
+    padding: 3px 3px 0 5px;
+}
+
+table.mi-tabla tr td.etiqueta{
+    border: solid #000 1px;
+    text-align: left;
+    font-weight: bold;
+    font-size: 10px;
+    width: 102px;
+}
+table.mi-tabla tr td.etiqueta2{
+    text-align: left;
+    font-weight: bold;
+    font-size: 10px;
+    width: 176px;
+    
+}
+table.mi-tabla tr td.etiqueta3{
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+   /* width: 176px;*/
+    
+}
+table.mi-tabla tr td.negrilla{
+    border: solid #000 1px;
+    text-align: left;
+    font-weight: bold;
+    font-size: 10px;
+}
+table.mi-tabla tr td.nombre{
+    width: 54px;
+    text-align: left;
+    font-weight: bold;
+    font-size: 10px;
+    
+}
+table.mi-tabla tr td.cuadrito{
+    width: 54px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    
+}
+table.mi-tabla tr td.dato{
+    width: 54px;
+    text-align: center;
+    /*font-weight: bold;*/
+    font-size: 16px;
+    
+}
+.content-compromiso{
+    background: url(../img/compromiso_denuncia_servicio.png) no-repeat;
+    float: left;
+    width: 762px;
+    height: 202px;
+}
+.imagen-compromiso-monta{
+    background: url(../img/compromiso_monta.png) no-repeat;
+    float: left;
+    width: 758px;
+    height: 42px;
+}
+.nota-criadores-monta{
+    background: url(../img/nota_criadores_monta.png) no-repeat;
+    float: left;
+    width: 764px;
+    height: 91px;
+}
+.content-compromiso-nacimiento{
+    background: url(../img/compromiso_denuncia_nacimiento.png) no-repeat;
+    float: left;
+    width: 765px;
+    height: 67px;
+}
+.content-compromiso span.numcachorros{
+    position: relative;
+    width: 10px;
+    height: 15px;
+    top:112px;
+    left: 387px;
+}
+.content-compromiso span.bs{
+    position: relative;
+    width: 10px;
+    height: 15px;
+    top:112px;
+    left: 479px;
+}
+.content-compromiso span.otros{
+    position: relative;
+    width: 10px;
+    height: 15px;
+    top:112px;
+    left: 596px;
+}
+.content-nota{
+    background: url(../img/nota_inspeccion_camada.png) no-repeat;
+    float: left;
+    width: 761px;
+    height: 109px;
+}
+.content-compromiso span.fechacompromiso{
+    position: relative;
+    width: 10px;
+    height: 15px;
+    top:129px;
+    left: 171px;
+}
+.firmas{
+    float: left;
+    width: 762px;
+    height: 145px;
+}
+.firmas span.lugar{
+    position: relative;
+    top: 33px;
+    left: 4px;
+}
+.firmas .caja1{
+    width: 125px;
+    height: 40px;
+    border: #000 2px solid;
+    position: relative;
+    top: 5px;
+    left: 51px;
+}
+.firmas span.fecha{
+    position: relative;
+    top: -23px;
+    left: 150px;
+}
+.firmas .caja2{
+    width: 125px;
+    height: 40px;
+    border: #000 2px solid;
+    position: relative;
+    top: -54px;
+    left: 231px;
+}
+.firmas span.recibo{
+    position: relative;
+    top: -23px;
+    left: 6px;
+}
+.firmas .caja3{
+    width: 125px;
+    height: 40px;
+    border: #000 2px solid;
+    position: relative;
+    top: -53px;
+    left: 51px;
+}
+.firmas .caja1 .contenido{
+    padding: 10px 0 0 15px;
+}
+.firmas .caja2 .contenido{
+    padding: 10px 0 0 15px;
+}
+.firmas .caja3 .contenido{
+    padding: 10px 0 0 15px;
+}
+.firmas .socio{
+    position: relative;
+    top: -97px;
+    left: 231px;
+    border: #000 2px solid;
+    width: 125px;
+    height: 40px;
+}
+.firmas .socio .contenido{
+    padding: 11px 0 0 41px;
+}
+.firmas .espacio-firmas1{
+    position: relative;
+    top: -204px;
+    left: 374px;
+}
+.firmas .espacio-firmas2{
+    background: url(../img/firmas_servicio_imprimir.png) no-repeat;
+    width: 484px;
+    height: 115px;
+    position: relative;
+    top: -204px;
+    left: 374px;
+}
+h3.center{
+    text-align: center;
+    padding-left: 83px;
+}
+#cajita{
+    font-weight: bold;
+    text-align: center;
+    font-size: 14px;
+    border: #000 solid 1px;
+}
+
+/* css vista pedigri*/
+
+table.titulos{
+    position: relative;
+    top: 239px;
+    margin: 10px 0 0 0;
+}
+.area-frontal{
+    position: relative;
+    width: 50%;
+    top: 500px;
+    left: 65%;
+}
+.principal{
+    margin: -15px 0 0 150px;
+    font-size: 26px;
+    text-transform: uppercase;
+    color: #060606;
+}
+.codigos{
+    position: relative;
+    top:10px;
+    left: 20px;
+    font-weight: 600;
+    font-size: 20px;
+}
+.cod{
+    margin: 10px 20px 10px 20px;
+    width: 100px;
+    float: left;
+    text-align: center;
+}
+.senas{
+    position: relative;
+    top:26px;
+    left: 10px;
+    width: 283px;
+    
+}
+.color{
+    text-transform: uppercase;
+    font-weight: bold;
+    margin: 0 0 0 61px;
+    font-size: 14px;
+}
+.cajainterna{
+    float: left;
+    margin: 30px 5px 5px 30px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+.hermanos{
+    position: relative;
+    top: -42px;
+    left: 283px;
+    width: 190px;
+}
+.hermanos em{
+    font-size: 10px;
+    text-align: center;
+}
+.consanguinidad{
+    position: relative;
+    top:-97px;
+    left: 284px;
+}
+.criadero{
+    position: relative;
+    top:25px;
+    left: 10px;
+    width: 257px;
+}
+.criadero .etiqueta1{
+    position: relative;
+    top:10px;
+    left: 0px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 14px;
+    color:#000000 ;
+    width: 128px;
+    margin: 5px 10px 5px 10px;
+}
+.criadero .etiqueta2{
+    position: relative;
+    top:-11px;
+    left: 155px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 14px;
+    color:#000000 ;
+    width: 128px;
+    margin: 5px 10px -10px 10px;
+}
+.criadero p.estilo{
+    margin: 3px 5px 0px 78px;
+}
+.propietario{
+    position: relative;
+    top:-82px;
+    left: 295px;
+    width: 230px;
+}
+.propietario p.estilo{
+    margin: 3px 5px 0px 78px;
+}
+
+.pie{
+    position: relative;
+    top:-43px;
+    left: 375px;
+    width: 230px;
+}
+.fecha{
+    margin: 9px 0 0 34px;
+}
+.firmas .firmas-comision{
+    position: relative;
+    top: -204px;
+    left: 374px;
+}
+.nota-comision{
+    background: url(../img/nota_inspeccion_camada.png) no-repeat;
+    float: left;
+    width: 761px;
+    height: 109px;
+}
+/* datos para impresion mapa de camada*/
+#areaImprimir{
+    margin: 0 auto;
+    width: 100%;
+}
+.cabecera{
+    width: 90%;
+    height: 121px;
+}
+.logo1{
+    background: url(../img/logo_kennel.png) no-repeat;
+    width: 224px;
+    height:101px;
+    float: left;
+}
+.logo2{
+    float: right;
+}
+.titulo1{
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: bold;
+    position: relative;
+    left: 100px;
+}
+.titulo2{
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: bold;
+    position: relative;
+    left: 60px;
+    top: 10px;
+}
+.subtitulo{
+    font-size: 14px;
+    font-weight: bold;
+    position: relative;
+    left: 100px;
+    top: 20px;
+}
+.subtitulo h3{
+    float: left;
+    font-size: 14px;
+    font-weight: bold;
+}
+.subtitulo label{
+    float: left;
+    font-size: 14px;
+    margin: 12px 0 2px 5px;
+    padding-right: 10px;
+}
+.contenido-mapa{
+    width: 928px;
+}
+.cabecera-contenido{
+    width: 100%;
+    height: 52px;
+}
+table.cabecera-mapa1{
+    width: 200px;
+    background: #FFBB77;
+    font: .6em Arial;
+    border: 2px #000 solid;
+    border-collapse: collapse;
+    float: left;
+    height: 54px;
+    margin-left: 2px;
+}
+table.cabecera-mapa1 tr td{
+    border-bottom: 2px #000 solid;
+    padding-top: 5px;  
+}
+.etiqueta-mapa{
+    padding: 5px 2px 2px 3px;
+}
+table.cabecera-mapa2 { border-collapse: collapse; float: left; width: 349px; height: 54px;margin-left: 2px;font: .6em Arial;}
+table.cabecera-mapa2 td, table.cabecera-mapa2 th { border: 2px solid black; padding: 5px; }
+.negrilla{
+    font-weight: bold;
+}
+table.cabecera-mapa3 { border-collapse: collapse; float: left; font: .6em Arial;width: 280px; height: 54px;margin-left: 2px;}
+table.cabecera-mapa3 td, table.cabecera-mapa2 th { border: 2px solid black; padding: 5px; }
+
+table.cabecera-mapa4 { border-collapse: collapse; float: left; width: 91px; height: 54px;margin-left: 2px;}
+table.cabecera-mapa4 th{font: 10px bold; border: 2px solid black;}
+table.cabecera-mapa4 td { border: 2px solid black; padding: 5px; font-size: 20px;}
+
+table.mapa-camada { border-collapse: collapse; font: 12px Arial; margin-left: 2px; float: left; width: 926px; border: 1px #000 solid; text-align: center;}
+table.mapa-camada td, table.cabecera-mapa2 th {padding: 5px; border: 1px #000 solid;}
+
+table.mapa-camada td.nombre_ejemplar{
+    text-transform: uppercase;
+    text-align: left;
+    padding: 10px 5px 10px 20px;
+}
+table.mapa-camada td.colorcolumna{
+    background: #F89E74;
+}
+
+table.mapa-datos-pie { border-collapse: collapse; font: 10px Arial; margin-left: 2px;  width: 462px; height: 78px; border: 1px #000 solid;float: left;}
+table.mapa-datos-pie td, table.cabecera-mapa2 th {padding: 2px; border: 1px #000 solid;}
+.mapa-pie{
+    float: left;
+    background: url('../img/pie-mapacamada.png') no-repeat;
+    width:927px;
+    height:287px;
+}
+.mapa-pie .mapa-fecha{
+   position: relative;
+   top: 192px;
+   left: 695px;
+   width: 100px; 
+}
+.mapa-pie .mapa-fecha-impresion{
+   position: relative;
+   top: 176px;
+   left: 828px;
+   width: 100px; 
+}

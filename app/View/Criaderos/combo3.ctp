@@ -1,0 +1,2 @@
+<a href="#modalsel" data-toggle="modal" class="btn btn-block btn-primary" onclick="$('#modalsele').load('<?php echo $this->Html->url(array('controller' => 'Criaderos','action' => 'combo1',$campoform,$div));?>');"> <?php echo $criadero['Criadero']['nombre'];?> </a>
+<?php echo $this->Form->hidden($campoform,array('value' => $criadero['Criadero']['id']));?>
