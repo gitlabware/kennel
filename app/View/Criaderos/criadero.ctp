@@ -10,7 +10,7 @@
 			<div class="widget-body">
             <div class="row-fluid">
             <div class="span12">
-            <h5>Propietario</h5>
+            <h5>Propietario (prueba)</h5>
             <?php //echo $this->Form->select('propietario_id',$propietarios,array('class' => 'span12','required'));?>
             <div id="divselectpropajax">
             <a href="#modalsel" data-toggle="modal" class="btn btn-block btn-primary" onclick="$('#modalsele').load('<?php echo $this->Html->url(array('controller' => 'Propietarios','action' => 'combo1','Criadero.propietario_id','divselectpropajax'));?>');"><?php echo $this->request->data['Propietario']['nombre']?> </a>
