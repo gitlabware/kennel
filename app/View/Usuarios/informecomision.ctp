@@ -168,45 +168,8 @@ $observacionesinf = new Observacionesinformecomcria();
                 </div>
                 </div>
                 </div>
-                <h4 align="center">Visado por regional</h4>
-                <div class="row-fluid">
-                <div class="span12">
-                <div class="span4">
-                <h5>Lugar</h5>
-                <?php echo $this->Form->select('departamento_id2', $departamentos,array('class' => 'span12','required'))?>
-                </div>
-                <div class="span4">
-                <h5>Fecha (A&ntilde;o-mes-dia)</h5>
-                <?php echo $this->Form->text('fecha', array('id'=>'idfecha','class' => 'span12','required'))?>
-                <script>
-                $(function(){
-                    $("#idfecha").inputmask("y-m-d", {autoUnmask: true});
-                });
-                </script>
-                </div>
-                <div class="span4">
-                <h5>Recibo</h5>
-                <?php echo $this->Form->text('recibo',array('class' => 'span12','disabled'))?>
-                </div>
-                </div>
-                </div>
-                <h4 align="center">Firmas y sellos</h4>
-                <div class="row-fluid">
-                <div class="span12">
-                <div class="span4">
-                <h5>Sellor regional</h5>
-                <?php echo $this->Form->checkbox('sello_regional',array('class' => 'span12'))?>
-                </div>
-                <div class="span4">
-                <h5>Firmas Propietario</h5>
-                <?php echo $this->Form->checkbox('firma_propietario',array('class' => 'span12'))?>
-                </div>
-                <div class="span4">
-                <h5>Firma Recetor REGIONAL</h5>
-                <?php echo $this->Form->checkbox('firma_regional',array('class' => 'span12'))?>
-                </div>
-                </div>
-                </div>
+                
+                
                 </div>
     </div>
     <div class="widget row-fluid widget-heading-simple widget-body-gray" data-toggle="collapse-widget">

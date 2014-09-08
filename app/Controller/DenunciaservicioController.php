@@ -15,7 +15,8 @@ class DenunciaservicioController extends AppController{
         'Denuncianacimiento',
         'Observacionesinformecomcria',
         'Monta', 'Departamento', 'Mascotaspropietario');
-    public $components = array('Lechigada');
+    public $components = array('Lechigada','RequestHandler');
+    
     public function index()
     {
         $denuncias = $this->Servicio->find('all', array('recursive' => 2,'order' => 'Servicio.id DESC'));
@@ -61,7 +62,13 @@ class DenunciaservicioController extends AppController{
                 $this->Servicio->save($this->request->data);
                 $this->Session->setFlash("Denuncia" . $this->Servicio->id .
                         " registrado!",'msgbueno');
-                $this->redirect(array('action' => 'index'));
+                if($this->request->data['Servicio']['activa'])
+                {
+                    $this->redirect($this->referer());
+                }
+                else{
+                    $this->redirect(array('action' => 'index'));
+                }
             } else
             {
                 $this->Session->setFlash("Error al guardar!",'msgerror');
@@ -100,6 +107,7 @@ class DenunciaservicioController extends AppController{
     {
         if (!empty($this->data))
         {
+            //debug($this->request->data);exit;
             $this->request->data['Servicio']['lugar_denuncia'] = $this->Lechigada->obtenerNombre($this->data['Servicio']['departamento_id']);
             
             if (isset($this->data['Servicio']['departamento_id2']))
@@ -118,11 +126,17 @@ class DenunciaservicioController extends AppController{
             if ($this->Servicio->save($this->data))
             {
                 $this->Session->setFlash("Denuncia de servicio " . $this->Servicio->id . " guardado exitosamente!",'msgbueno');
-                $this->redirect(array('action' => 'index'));
+                if($this->request->data['Servicio']['activa'])
+                {
+                    $this->redirect($this->referer());
+                }
+                else{
+                    $this->redirect(array('action' => 'index'));
+                }
             } else
             {
                 $this->Session->setFlash("Error al guardar!",'msgerror');
-                $this->redirect(array('action' => 'index'));
+                $this->redirect($this->referer());
             }
         } else
         {
@@ -155,7 +169,14 @@ class DenunciaservicioController extends AppController{
          
             if($this->Denuncianacimiento->save($this->data)){
                $this->Session->setFlash("Denuncia de servicio ".$this->Denuncianacimiento->id." guardado exitosamente!",'msgbueno');
-               $this->redirect(array('action'=>'index', 'controller'=>'denunciaservicio'));
+               
+                if($this->request->data['Servicio']['activa'])
+                {
+                    $this->redirect($this->referer());
+                }
+                else{
+                    $this->redirect(array('action' => 'index'));
+                }
             }else{
                $this->Session->setFlash("Error al guardar!",'msgerror');
                $this->redirect(array('action'=>'index', 'controller'=>'denunciaservicio'));
@@ -168,10 +189,21 @@ class DenunciaservicioController extends AppController{
         $criaderos = $this->Criadero->find('list', array(
         'fields'=>array('Criadero.id', 'Criadero.nombre'),'order' => 'Criadero.nombre ASC'
         ));
+        $idPropietario = $this->propietario_servicio($id);
         $departamentos = $this->Departamento->find('list', array('fields'=>array('Departamento.id', 'Departamento.nombre')));
-        $this->set(compact('criaderos', 'departamentos'));
+        $this->set(compact('criaderos', 'departamentos','idPropietario'));
     }//fin funcion denuncia de nacimientos nueva
-    
+    public function propietario_servicio($idServicio = null)
+    {
+        $servicio = $this->Servicio->find('first',array('recursive' => -1,'conditions' => array('Servicio.id' => $idServicio)));
+        if(!empty($servicio))
+        {
+            return $servicio['Servicio']['propietarioreproductor_id'];
+        }
+        else{
+            return NULL;
+        }
+    }
     public function registrarcamada($id_servicio = null, $id_nacimiento = null,$idCamada = null)
     {
         if (!empty($this->data))
@@ -390,7 +422,13 @@ class DenunciaservicioController extends AppController{
     {
         $departamento = $this->Departamento->find('first',array('conditions' => array('Departamento.id' => $idDepartamento)));
         //debug($departamento['Departamento']['nombre']);exit;
-        return $departamento['Departamento']['nombre'];
+        if(!empty($departamento))
+        {
+            return $departamento['Departamento']['nombre'];
+        }
+        else{
+            return NULL;
+        }
     }
     
     public function mapacamada($id = null)
@@ -478,5 +516,18 @@ class DenunciaservicioController extends AppController{
             $this->Session->setFlash("Error al tratar de eliminar tramite de camada nro " . $id,'msgerror');
             $this->redirect($this->referer());
         }
+    }
+    function respond($message = null, $json = false)
+    {
+        if ($message != null)
+        {
+            if ($json == true)
+            {
+                $this->RequestHandler->setContent('json', 'application/json');
+                $message = json_encode($message);
+            }
+            $this->set('message', $message);
+        }
+        $this->render('message');
     }
 }

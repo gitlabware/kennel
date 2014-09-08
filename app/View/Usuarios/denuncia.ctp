@@ -64,61 +64,17 @@
         </div>
     </div>
     
-    <div class="widget row-fluid widget-heading-simple widget-body-gray" data-toggle="collapse-widget">
-	
-				<div class="widget-head">
-					<h4 class="heading">Datos para corrobar KCB</h4>
-				</div>
-				<div class="widget-body">
-                <div class="row-fluid">
-                <div class="span12">
-                <div class="span4">
-                <h5>Lugar</h5>
-                <?php echo $this->Form->select('departamento_id', $departamentos,array('class' => 'span12','required')); ?>
-                </div>
-                <div class="span4">
-                <h5>Fecha (A&ntilde;o-mes-dia)</h5>
-                <?php echo $this->Form->text('fecha_registro', array('id' => 'idfecha_registro','class' => 'span12','required')); ?>
-                <script>
-                $(function(){
-                    $("#idfecha_registro").inputmask("y-m-d", {autoUnmask: true});
-                });
-                </script>
-                </div>
-                
-                <div class="span4">
-                <h5>Recibo</h5>
-                <?php echo $this->Form->text('recibo',array('class' => 'span12','disabled'));?>
-                </div>
-                
-                </div>
-                </div>
-                <div class="row-fluid">
-                <div class="span12">
-                <div class="span4">
-                <h5>Sello Regional</h5>
-                <?php echo $this->Form->checkbox('sello_regional',array('class' => 'span12')) ?>
-                </div>
-                <div class="span4">
-                <h5>Firma Prop. Hembra(Aclaraci&oacute;n de Firma)</h5>
-                <?php echo $this->Form->checkbox('firma_prop_hembra',array('class' => 'span12')) ?>
-                </div>
-                <div class="span4">
-                <h5>Firma Recetor REGIONAL(Aclaraci&oacute;n de Firma)</h5>
-                <?php echo $this->Form->checkbox('firma_recetor_regional',array('class' => 'span12')) ?>
-                </div>
-                </div>
-                </div>
-                </div>
-    </div>
+   
     <div class="widget row-fluid widget-heading-simple widget-body-gray" data-toggle="collapse-widget">
                 <div class="widget-body">
                 <div class="row-fluid">
                 <div class="span12">
                 <div class="span6">
-                 <?php //echo $this->Form->submit('Atras',array('controller'=>'Denunciaservicio','action'=>'index','class' => 'btn btn-block btn-success'));?>
+                <h5>Lugar</h5>
+                <?php echo $this->Form->select('departamento_id', $departamentos,array('class' => 'span12','required')); ?>
                 </div>
                 <div class="span6">
+                    <h5>&nbsp;</h5>
                 <?php echo $this->Form->submit('Enviar',array('class' => 'btn btn-block btn-success'));?>
                 </div>
                 </div>

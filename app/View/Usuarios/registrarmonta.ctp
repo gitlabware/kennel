@@ -35,9 +35,8 @@
         <div class="span6">
         <h5>Seleccione el macho</h5>
         <div id="divselectmacho">
-        <a href="#modalsel" data-toggle="modal" class="btn btn-block btn-primary" onclick="$('#modalsele').load('<?php echo $this->Html->url(array('controller' => 'Mascotas','action' => 'combomascotas1','Servicio.reproductor_id','divselectmacho'));?>');"> <?php if(!empty($this->request->data['Reproductor']['nombre_completo'])){echo $this->request->data['Reproductor']['nombre_completo'];}else{echo 'SELECCIONE EL EJEMPLAR';}?> </a>
+        <?php echo $this->Form->select('Servicio.reproductor_id',$mismachos,array('class' => 'selectpicker span12', 'data-style' => 'btn-success'));?>
         </div>
-        
         <?php //echo $this->Form->select('Servicio.reproductor_id', $mascotas,array('class' => 'span12','required')); ?>
         </div>
         <div class="span6">
@@ -121,83 +120,17 @@
                 </div>
 				</div>
 	</div>
-    
-    <div class="widget row-fluid widget-heading-simple widget-body-gray" data-toggle="collapse-widget">
-	
-				<!-- Widget heading -->
-				<div class="widget-head">
-					<h4 align="center">Datos para verificar con documento fisico</h4>
-				</div>
-				<!-- // Widget heading END -->
-				
-				<div class="widget-body">
-                <div class="row-fluid">
-                <div class="span12">
-                <div class="span4">
-                <h5>Lugar</h5>
-                
-                <?php echo $this->Form->select('departamento_id2',$departamentos,array('class' =>'span12','required')); ?>
-                </div>
-                <div class="span4">
-                    <h5><span style="color: red;">*</span>Fecha (A&ntilde;o-mes-dia)</h5>
-                <?php echo $this->Form->text('fecha', array('id' => 'fecha', 'class'=>'span12','required','id' => 'idfecha')); ?>
-                <script>
-                $(function(){
-                    $("#idfecha").inputmask("y-m-d", {autoUnmask: true});
-                });
-                </script>
-                </div>
-                <div class="span4">
-                <h5>Recibo</h5>
-                <?php echo $this->Form->text('recibo',array('class' => 'span12','disabled'));?>
-                </div>
-                
-                </div>
-                </div>
-				
-				</div>
-                
-                
-	</div>
-    
-    <div class="widget row-fluid widget-heading-simple widget-body-gray" data-toggle="collapse-widget">
-	
-				<!-- Widget heading -->
-				<div class="widget-head">
-					<h4 class="heading">Datos para verificar con documento fisico</h4>
-				</div>
-				<!-- // Widget heading END -->
-				
-				<div class="widget-body">
-                <div class="row-fluid">
-                <div class="span12">
-                <div class="span4">
-                <h5>Firma propietario hembra (Aclaraci&oacute;n de Firma)</h5>
-                <?php echo $this->Form->checkbox('firma_propietario_hembra',array('class' =>'span12')); ?>
-                </div>
-                <div class="span4">
-                <h5>Firma propietario macho (Aclaraci&oacute;n de Firma)</h5>
-                <?php echo $this->Form->checkbox('firma_propietario_macho',array('class' =>'span12')); ?>
-                </div>
-                <div class="span4">
-                <h5>Firma Recetor REGIONAL    (Aclaraci&oacute;n de Firma)</h5>
-                <?php echo $this->Form->checkbox('firma_sello_recetor_regional',array('class' =>'span12')); ?>
-                </div>
-                </div>
-                </div>
-				</div>
-                
-                
-	</div>
-    
+
     <div class="widget row-fluid widget-heading-simple widget-body-gray" data-toggle="collapse-widget">
                 <div class="widget-body">
                 <div class="row-fluid">
                 <div class="span12">
                 <div class="span6">
-                <?php //echo $this->Form->submit('Atras',array('controller'=>'Denunciaservicio','action'=>'index','class' => 'btn btn-block btn-success'));?>
+                
                 </div>
+                
                 <div class="span6">
+                    <h5>&nbsp;</h5>
                 <?php echo $this->Form->submit('Enviar',array('class' => 'btn btn-block btn-success'));?>
                 </div>
                 </div>

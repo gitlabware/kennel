@@ -2,6 +2,7 @@
 class CuentasController extends AppController{
     public $layout = 'kennel';
     public $uses = array('Ingreso','Tipo','Propietario','Cuentasbancaria', 'Banco', 'Caja', 'Tramite','Tarifa','Examene','Sucursale','Departamento');
+    public $components = array('RequestHandler');
     public function index()
     {
         $cuentas =$this->Cuentasbancaria->find('list',array('fields' => 'Cuentasbancaria.cuenta'));
@@ -57,6 +58,67 @@ class CuentasController extends AppController{
                 $this->redirect(array('action' => 'index'));
             }
         }
+    }
+    public function guardaingresoservicio()
+    {
+        $this->layout = 'ajax';
+        if(!empty($this->request->data))
+        {
+            $this->Ingreso->create();
+            
+            $tramite = $this->request->data['Ingreso']['tramite_id'];
+            $idPropietario = $this->request->data['Ingreso']['propietario_id'];
+            $propietario = $this->Propietario->findByid($idPropietario,null,null,null,null,-1);
+            $idSucursal = $this->request->data['Ingreso']['sucursale_id'];
+            if(!empty($propietario['Propietario']['tipo_id']) && !empty($this->request->data['Ingreso']['sucursale_id']))
+            {
+                $idSucursal = $this->request->data['Ingreso']['sucursale_id'];
+                $tarifa = $this->Tarifa->find('first',array('recursive' => -1,'conditions' => array('Tarifa.tipo_id' => $propietario['Propietario']['tipo_id'],'Tarifa.sucursale_id' => $idSucursal,'Tarifa.tramite_id' => $tramite)));
+            }
+            else{
+                $this->Session->setFlash('Es obligatorio elegir al propietario y la sucursal','msgbueno');
+                $this->redirect(array('action' => 'index'));
+            }
+            if(!empty($tarifa))
+            {
+                $this->request->data['Ingreso']['monto'] = $tarifa['Tarifa']['regional'];
+                //$this->request->data['Ingreso']['monto_total'] = $tarifa['Tarifa']['monto_total'];
+                $this->request->data['Ingreso']['nacional'] = $tarifa['Tarifa']['nacional'];
+                if($this->request->data['Ingreso']['monto_total'] != $tarifa['Tarifa']['monto_total'])
+                {
+                    $montototal = $this->request->data['Ingreso']['monto_total'];
+                    $pornacional = ($tarifa['Tarifa']['nacional']/$tarifa['Tarifa']['monto_total']);
+                    $porregional = ($tarifa['Tarifa']['regional']/$tarifa['Tarifa']['monto_total']);
+                    $this->request->data['Ingreso']['nacional'] = $pornacional*$montototal;
+                    $this->request->data['Ingreso']['monto'] = $porregional*$montototal;
+                }
+            }
+            else{
+                //$this->Session->setFlash('No se encontro una tarifa para su registro!!!!','msginfo');
+                //$this->redirect(array('action' => 'index'));
+            }
+            if($this->Ingreso->save($this->request->data))
+            {
+                //$this->Session->setFlash('Se Registro el pago correspondiente Correctamente!!!!','msgbueno');
+                //$this->redirect(array('action' => 'index'));
+                if(!empty($this->request->data['Ingreso']['id']))
+                {
+                    $array['ingreso_id'] = $this->request->data['Ingreso']['id'];
+                }
+                else{
+                    $array['ingreso_id'] = $this->Ingreso->getLastInsertID();
+                }
+            }
+            else{
+                //$this->Session->setFlash('No se pudo registrar!!!!','msgerror');
+                //$this->redirect(array('action' => 'index'));
+            }
+        }
+        if(empty($array))
+        {
+            $array['ingreso_id'] = NULL;
+        }
+        $this->respond($array, true);
     }
     public function get_tarifa($idSucursal = null,$tipo = null,$tramite = null)
     {
@@ -127,15 +189,27 @@ class CuentasController extends AppController{
         $sucursales = $this->Sucursale->find('list',array('fields' => 'Sucursale.nombre'));
         $this->set(compact('cuentas','tramites','sucursales','tipos'));
     }
-    public function ajaxpagoprop($idPropietario = null)
+    public function ajaxpagoprop($idPropietario = null,$idTramite = null)
     {
         $this->layout = 'ajax';
         //debug($idPropietario);exit;
         $propietario = $this->Propietario->find('first',array('conditions' => array('Propietario.id' => $idPropietario),'fields' => 'Propietario.nombre'));
         $tramites = $this->Tramite->find('list',array('fields' => 'Tramite.nombre'));
         $sucursales = $this->Sucursale->find('list',array('fields' => 'Sucursale.nombre'));
-        $this->set(compact('tramites','sucursales','idPropietario','propietario'));
+        $this->set(compact('tramites','sucursales','idPropietario','propietario','idTramite'));
     }
+    public function ajaxpagoservicio($idIngreso = null,$idPropietario = null,$idTramite = null)
+    {
+        $this->layout = 'ajax';
+        //debug($idIngreso);exit;
+        $this->Ingreso->id = $idIngreso;
+        $this->request->data = $this->Ingreso->read();
+        $propietario = $this->Propietario->find('first',array('conditions' => array('Propietario.id' => $idPropietario),'fields' => 'Propietario.nombre'));
+        $tramites = $this->Tramite->find('list',array('fields' => 'Tramite.nombre'));
+        $sucursales = $this->Sucursale->find('list',array('fields' => 'Sucursale.nombre'));
+        $this->set(compact('tramites','sucursales','idPropietario','propietario','idTramite'));
+    }
+    
     public function elimina($idIngreso = null)
     {
         if($this->Ingreso->delete($idIngreso))
@@ -273,6 +347,19 @@ class CuentasController extends AppController{
     {
         return $this->Ingreso->find('count',array('conditions' => array('Ingreso.estado' => 0)));
        
+    }
+    function respond($message = null, $json = false)
+    {
+        if ($message != null)
+        {
+            if ($json == true)
+            {
+                $this->RequestHandler->setContent('json', 'application/json');
+                $message = json_encode($message);
+            }
+            $this->set('message', $message);
+        }
+        $this->render('message');
     }
 }
 ?>

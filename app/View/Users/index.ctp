@@ -1,4 +1,4 @@
-<h3>Listado de Usuarios Para el sistemas</h3>
+<h3>Listado de Usuarios</h3>
 <div class="innerLR">
     <div class="widget widget-heading-simple widget-body-gray">
         <div class="widget-body">

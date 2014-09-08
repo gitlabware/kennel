@@ -156,7 +156,7 @@ $(document).ready(function() {
                 <h4><strong>Primera inspecci&oacute;n</strong></h4>
                 <div class="row-fluid">
                 <div class="span12">
-                <div class="span3">
+                <div class="span4">
                 <h5>fecha 1ra inspecci&oacute;n (A&ntilde;o-mes-dia)</h5>
                 <?php echo $this->Form->text('fechainspeccion1', array('id'=>'idfechainspeccion1','class' => 'span12'));?>
                 <script>
@@ -165,24 +165,21 @@ $(document).ready(function() {
                 });
                 </script>
                 </div>
-                <div class="span3">
+                <div class="span4">
                 <h5>D&iacute;as de nacidos</h5>
                 <?php echo $this->Form->text('diasdenacidos1',array('class' => 'span12'));?>
                 </div>
-                <div class="span3">
+                <div class="span4">
                 <h5>Observaciones grales. 1ra inspecci&oacute;n(Comisi&oacute;n cr&iacute;)</h5>
                 <?php echo $this->Form->textarea('obs_inspeccion1',array('class' => 'span12'))?>
                 </div>
-                <div class="span3">
-                <h5>Firma y aclaraci&oacute;n de la firma (Insp.Sub-comisi&oacute;n)</h5>
-                <?php echo $this->Form->checkbox('firma_inspector_subcomision_1',array('class' => 'span12'))?>
-                </div>
+                
                 </div>
                 </div>
                 <h4><strong>Segunda inspecci&oacute;n</strong></h4>
                 <div class="row-fluid">
                 <div class="span12">
-                <div class="span3">
+                <div class="span4">
                 <h5>fecha 2da inspecci&oacute;n (A&ntilde;o-mes-dia)</h5>
                 <?php echo $this->Form->text('fechainspeccion2', array('id'=>'idfechainspeccion2','class' => 'span12'));?>
                 <script>
@@ -191,63 +188,18 @@ $(document).ready(function() {
                 });
                 </script>
                 </div>
-                <div class="span3">
+                <div class="span4">
                 <h5>D&iacute;as de nacidos</h5>
                 <?php echo $this->Form->text('diasdenacidos2',array('class' => 'span12'));?>
                 </div>
-                <div class="span3">
+                <div class="span4">
                 <h5>Observaciones grales. 2da inspecci&oacute;n(Comisi&oacute;n cr&iacute;)</h5>
                 <?php echo $this->Form->textarea('obs_inspeccion2',array('class' => 'span12'))?>
                 </div>
-                <div class="span3">
-                <h5>Firma y aclaraci&oacute;n de la firma (Insp.Sub-comisi&oacute;n)</h5>
-                <?php echo $this->Form->checkbox('firma_inspector_subcomision_2',array('class' => 'span12'))?>
-                </div>
-                </div>
-                </div>
-                <h5>Firma y aclaraci&oacute;n de la firma Prop. criadero</h5>
-                <?php echo $this->Form->checkbox('firma_propietario_criadero',array('class' => 'span6'))?>
-                <h4 align="center">Visado por Regional</h4>
-                <div class="row-fluid">
-                <div class="span12">
-                <div class="span4">
-                <h5>Lugar</h5>
-                <?php echo $this->Form->select('departamento_id', $departamentos,array('class' => 'span12','required'));?>
-                </div>
-                <div class="span4">
-                <h5>Fecha (A&ntilde;o-mes-dia)</h5>
-                <?php echo $this->Form->text('fecha', array('id'=>'idfecha','class' =>  'span12'));?>
-                <script>
-                $(function(){
-                    $("#idfecha").inputmask("y-m-d", {autoUnmask: true});
-                });
-                </script>
-                </div>
-                
-                <div class="span4">
-                <h5>Recibo</h5>
-                <?php echo $this->Form->text('recibo',array('class' => 'span12','disabled'));?>
-                </div>
-                
                 
                 </div>
                 </div>
-                <div class="row-fluid">
-                <div class="span12">
-                <div class="span4">
-                <h5>Sello regional</h5>
-                <?php echo $this->Form->checkbox('sello_regional',array('class' => 'span12'))?>
-                </div>
-                <div class="span4">
-                <h5>Firma sub.com.cria</h5>
-                <?php echo $this->Form->checkbox('firma_subcomisioncriaultimo',array('class' => 'span12'))?>
-                </div>
-                <div class="span4">
-                <h5>Firma recetor regional</h5>
-                 <?php echo $this->Form->checkbox('firma_recetor_regional',array('class' => 'span12'))?>
-                </div>
-                </div>
-                </div>
+                
                 </div>
     </div>
     <div class="widget row-fluid widget-heading-simple widget-body-gray" data-toggle="collapse-widget">

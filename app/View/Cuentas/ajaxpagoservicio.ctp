@@ -1,6 +1,6 @@
 
 
-<?php echo $this->Form->create('Cuenta',array('action' => 'guardaingreso','id' => 'formupago'));?>
+<?php echo $this->Form->create('Cuenta',array('action' => 'guardaingresoservicio','id' => 'formupago'));?>
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
     <h3>Pago</h3>
@@ -39,7 +39,7 @@
         </div>
         <div class="span6">
         <h5>Nro Comprobante</h5>
-        <?php echo $this->Form->text('Ingreso.comprobante',array('class' => 'span12'));?>
+        <?php echo $this->Form->text('Ingreso.comprobante',array('class' => 'span12','id' => 'idcomprobante'));?>
         </div>
         </div>
         </div>
@@ -97,6 +97,31 @@
     </div>
   </div>
   <div class="modal-footer">
+    <?php ?>
     <?php echo $this->Form->submit('Registrar',array('class' => 'btn btn-primary'));?>
     <?php echo $this->Form->end()?>
   </div>
+
+<script>
+    $('#formupago').submit(function(e){
+        var postData = $(this).serializeArray();
+        var formUrl = $(this).attr('action');
+        $.ajax({
+            url: formUrl,
+            type: 'POST',
+            data: postData,
+            success: function(data)
+            {
+                $('#idingreso_id').val($.parseJSON(data).ingreso_id);
+                $('#idrecibo').val($('#idcomprobante').val());
+                $('#idactiva').val(1);
+                //$('#idrecibo').val($('#idcomprobante').val());
+            },
+            complete: function(data)
+            {
+                $('#registroservicio').submit();
+            }
+        });
+        e.preventDefault();
+    });
+</script>

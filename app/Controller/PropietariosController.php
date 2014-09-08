@@ -30,17 +30,17 @@ class PropietariosController extends AppController {
         $this->Auth->allow(array('combo1','combo2','combo3'));
     }
 	public function index() {
-            $linkpago = '<a href="#myModal" data-toggle="modal" class="btn-action glyphicons usd btn-primary" onclick="paga('."', ".''."Propietario.id".''." ,'".')"><i></i></a>';
-            $linklistapago = '<a href="javascript:" class="btn-action glyphicons coins btn-inverse" onclick="listapaga('."', ".''."Propietario.id".''." ,'".')"><i></i></a>';
-            $linkusuario = '<a  href="#myModal" data-toggle="modal"  href="javascript:" class="btn-action glyphicons user btn-primary" onclick="usuario('."', ".''."Propietario.id".''." ,'".')"><i></i></a>';
+            $linkpago = '<a href="#myModal" data-toggle="modal" class="btn-action glyphicons usd btn-primary" onclick="paga('."', ".''."Propietario.id".''." ,'".')" title="Crear Pago"><i></i></a>';
+            $linklistapago = '<a href="javascript:" class="btn-action glyphicons coins btn-inverse" onclick="listapaga('."', ".''."Propietario.id".''." ,'".')" title="Lista de Pagos"><i></i></a>';
+            $linkusuario = '<a  href="#myModal" data-toggle="modal"  href="javascript:" class="btn-action glyphicons user btn-primary" onclick="usuario('."', ".''."Propietario.id".''." ,'".')" title="Usuario"><i></i></a>';
             if($this->RequestHandler->responseType() == 'json') {
                  $this->Propietario->virtualFields = array(
-                     'together' => "CONCAT('".'<a href="#myModal" data-toggle="modal" class="btn-action glyphicons pencil btn-success" id="'."',Propietario.id,'".'"'.' onclick="cargadatos('."', ".''."Propietario.id".''." ,'".')"><i class="icon-pencil"></i></a> <a class="btn btn-danger btn-xs" href="javascript:"'.' onclick="elimina('."', ".''."Propietario.id".''." ,'".')"><i class="icon-trash"></i></a> '.$linkpago.' '.$linklistapago.' '.$linkusuario."')"
+                     'together' => "CONCAT('".'<a href="#myModal" data-toggle="modal" class="btn-action glyphicons pencil btn-success" id="'."',Propietario.id,'".'"'.' onclick="cargadatos('."', ".''."Propietario.id".''." ,'".')" title="Editar"><i class="icon-pencil"></i></a> <a class="btn btn-danger btn-xs" href="javascript:"'.' onclick="elimina('."', ".''."Propietario.id".''." ,'".')" title="Eliminar"><i class="icon-trash"></i></a> '.$linkpago.' '.$linklistapago.' '.$linkusuario."')"
                      ,'estadoes' => "SELECT if (estado='1','HABILITADO','DESHABILITADO') FROM propietarios WHERE id=Propietario.id"
                  );
                  $this->paginate = array(
                      'fields' => array('Propietario.id', 'Propietario.nombre', 'Propietario.direccion','Propietario.telefono1','Propietario.estadoes','Propietario.together','Tipo.nombre'),
-                     'conditions' => array('Propietario.solicitud !=' => 1),'recursive' => 0,
+                        'conditions' => array('Propietario.solicitud !=' => 1),'recursive' => 0,
                      'order' => 'Propietario.id ASC'
                  );
                  $this->DataTable->fields = array('Propietario.id', 'Propietario.nombre', 'Propietario.direccion','Propietario.telefono1','Tipo.nombre','Propietario.estadoes','Propietario.together');
