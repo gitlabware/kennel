@@ -5,7 +5,7 @@ $observacionesinf = new Observacionesinformecomcria();
 <h3 align="center">Informe de Comision</h3>
 <div class="innerLR">
 	<!-- Widget -->
-      <?php echo $this->Form->create('Informecomcria'); ?>
+      <?php echo $this->Form->create('Informecomcria',array('id' => 'registroservicio')); ?>
       <?php echo $this->Form->hidden('id');?>
 	<div class="widget widget-heading-simple widget-body-gray">
 		<div class="widget-body">
@@ -176,7 +176,9 @@ $observacionesinf = new Observacionesinformecomcria();
                 </div>
                 <div class="span4">
                 <h5>Recibo</h5>
-                <?php echo $this->Form->text('recibo',array('class' => 'span12','required'))?>
+                <a href="#myModal" data-toggle="modal" onclick="paga(<?php echo $idPropietario;?>)">
+                    <?php echo $this->Form->text('recibo', array('class' =>"span12",'required','id' => 'idrecibo')); ?>
+                </a>
                 </div>
                 </div>
                 </div>
@@ -207,6 +209,8 @@ $observacionesinf = new Observacionesinformecomcria();
                 <?php echo $this->Html->link('Atras',array('controller'=>'Denunciaservicio','action'=>'index'),array('class' => 'btn btn-block btn-success'));?>
                 </div>
                 <div class="span6">
+                <?php echo $this->Form->hidden('Aux.activa',array('id' => 'idactiva','value' => 0));?>
+                <?php echo $this->Form->hidden('ingreso_id',array('id' => 'idingreso_id'));?>
                 <?php echo $this->Form->submit('Guardar',array('class' => 'btn btn-block btn-success'));?>
                 </div>
                 </div>
@@ -214,3 +218,22 @@ $observacionesinf = new Observacionesinformecomcria();
                 </div>
     </div>
 </div>
+
+<?php 
+if(empty($this->request->data['Informecomcria']['ingreso_id']))
+{
+    $idIngreso = 0;
+}
+else{
+    $idIngreso = $this->request->data['Informecomcria']['ingreso_id'];
+}
+?>
+<script src="<?php echo $this->webroot;?>js/jquery-1.10.1.min.js"></script>
+<script>
+    
+    function paga(aux)
+    {
+        $('#imgcargando').toggle();$('#mimodal').toggle();$('#mimodal').load('<?php echo $this->Html->url(array('controller' => 'Cuentas','action' => 'ajaxpagoservicio',$idIngreso));?>/'+aux+'/0',function(){$('#imgcargando').toggle(100);$('#mimodal').toggle();});
+    }
+    
+</script>

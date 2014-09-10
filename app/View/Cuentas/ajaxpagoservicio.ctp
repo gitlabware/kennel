@@ -1,6 +1,6 @@
 
 
-<?php echo $this->Form->create('Cuenta',array('action' => 'guardaingreso','id' => 'formupago'));?>
+<?php echo $this->Form->create('Cuenta',array('action' => 'guardaingresoservicio','id' => 'formupago'));?>
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
     <h3>Pago</h3>
@@ -15,13 +15,18 @@
                 
         <div class="row-fluid">
         <div class="span12">
+         <?php if(!empty($idPropietario)):?>
             <h4>Propietario: <b><?php echo $propietario['Propietario']['nombre'];?></b></h4>
-        <!--
-        <div id="divselectpropajax">
-        <a href="#modalsel" data-toggle="modal" class="btn btn-block btn-primary" onclick="$('#modalsele').load('<?php //echo $this->Html->url(array('controller' => 'Propietarios','action' => 'combo1','Ingreso.propietario_id','divselectpropajax'));?>');"><?php //if(!empty($this->request->data['Propietario']['nombre'])){echo $this->request->data['Propietario']['nombre'];}else{echo 'SELECCIONE PROPIETARIO';}?> </a>
         
-        </div>-->
         <?php echo $this->Form->hidden('Ingreso.propietario_id',array('value' => $idPropietario));?>
+         <?php else:?>
+         
+        <div id="divselectpropajax">
+        <a href="#modalsel" data-toggle="modal" class="btn btn-block btn-primary" onclick="$('#modalsele').load('<?php echo $this->Html->url(array('controller' => 'Propietarios','action' => 'combo1','Ingreso.propietario_id','divselectpropajax'));?>');"><?php if(!empty($this->request->data['Propietario']['nombre'])){echo $this->request->data['Propietario']['nombre'];}else{echo 'SELECCIONE PROPIETARIO';}?> </a>
+        
+        </div>-
+         <?php endif;?>
+            
         <?php echo $this->Form->hidden('Ingreso.id');?>
         </div>
         </div>
@@ -35,11 +40,11 @@
         <div class="span12">
         <div class="span6">
         <h5>Pago de</h5>
-        <?php echo $this->Form->select('Ingreso.tramite_id',$tramites,array('class'=> 'span12','required','id' => 'selecttramite','value' => $idTramite));?>
+        <?php echo $this->Form->select('Ingreso.tramite_id',$tramites,array('class'=> 'span12','required','id' => 'selecttramite'));?>
         </div>
         <div class="span6">
         <h5>Nro Comprobante</h5>
-        <?php echo $this->Form->text('Ingreso.comprobante',array('class' => 'span12'));?>
+        <?php echo $this->Form->text('Ingreso.comprobante',array('class' => 'span12','id' => 'idcomprobante'));?>
         </div>
         </div>
         </div>
@@ -51,6 +56,7 @@
         </div>
         </div>
         </div>
+        <?php if(!empty($idPropietario)):?>
         <script>
             $(document).ready(function () {
                 $.ajax({
@@ -58,16 +64,26 @@
                                 $("#montoestimado").html(data);
                                 }, type:"POST", url:"<?php echo $this->Html->url(array('controller' => 'Usuarios','action' => 'ajaxmontototal'));?>"
                             });
-                $("#selecttramite").bind("change", 
-                function (event) {
-                    $.ajax({
+         
+                });
+            </script>
+        <?php endif;?>
+            <script>
+                function actualiza_monto()
+         {
+             $.ajax({
                         async:true, data:$("#formupago").serialize(), dataType:"html", success:function (data, textStatus) {
                                 $("#montoestimado").html(data);
                                 }, type:"POST", url:"<?php echo $this->Html->url(array('controller' => 'Usuarios','action' => 'ajaxmontototal'));?>"
                             });
-            return false;});});
-            </script>
-            <script>
+         }
+         $('#idcomprobante').click(function(){
+         actualiza_monto();
+         });
+         $("#selecttramite").bind("change", 
+                function (event) {
+                    actualiza_monto();
+            return false;});
             $(document).ready(function () {
                 $("#selectcuenta").bind("change", 
                 function (event) {
@@ -97,6 +113,31 @@
     </div>
   </div>
   <div class="modal-footer">
+    <?php ?>
     <?php echo $this->Form->submit('Registrar',array('class' => 'btn btn-primary'));?>
     <?php echo $this->Form->end()?>
   </div>
+
+<script>
+    $('#formupago').submit(function(e){
+        var postData = $(this).serializeArray();
+        var formUrl = $(this).attr('action');
+        $.ajax({
+            url: formUrl,
+            type: 'POST',
+            data: postData,
+            success: function(data)
+            {
+                $('#idingreso_id').val($.parseJSON(data).ingreso_id);
+                $('#idrecibo').val($('#idcomprobante').val());
+                $('#idactiva').val(1);
+                //$('#idrecibo').val($('#idcomprobante').val());
+            },
+            complete: function(data)
+            {
+                $('#registroservicio').submit();
+            }
+        });
+        e.preventDefault();
+    });
+</script>

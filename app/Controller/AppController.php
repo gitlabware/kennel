@@ -46,10 +46,7 @@ class AppController extends Controller {
                 $errores = $this->$modelo->invalidFields();
                 if(!empty($errores))
                 {
-                    if(!empty(current(current($errores))))
-                    {
                         $devuelve = current(current($errores));
-                    }
                 }
             }
             else{

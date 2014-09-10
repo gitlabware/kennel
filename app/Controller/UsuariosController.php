@@ -318,14 +318,19 @@ class UsuariosController extends AppController {
     {
         $this->layout = 'ajax';
         //debug($this->request->data);exit;
-        $tramite = $this->request->data['Ingreso']['tramite_id'];
-        $idPropietario = $this->request->data['Ingreso']['propietario_id'];
+        
+            
+        if(!empty($this->request->data['Ingreso']['tramite_id']) && !empty($this->request->data['Ingreso']['propietario_id']))
+        {
+            $tramite = $this->request->data['Ingreso']['tramite_id'];
+            $idPropietario = $this->request->data['Ingreso']['propietario_id'];
+        }
         if(!empty($idPropietario))
         {
             $propietario = $this->Propietario->find('first',array('recursive' => -1,'conditions' => array('Propietario.id' => $idPropietario)));
             $tipo = $propietario['Propietario']['tipo_id'];
         }
-        else{
+        elseif(!empty($this->request->data['Ingreso']['tipo_id'])){
             $tipo = $this->request->data['Ingreso']['tipo_id'];
         }
         $idSucursal = $this->request->data['Ingreso']['sucursale_id'];
@@ -463,7 +468,8 @@ class UsuariosController extends AppController {
                 {
                     $idServicio = $this->Servicio->getLastInsertID();
                 }
-                $mensajeb = 'SE ENVIO CORRECTAMENTE LA SOLICITUD USTED DEBE DE CANCELAR EL MONTO CORRESPONDIENTE AL TARIFARIO ,PARA LUEGO PASAR POR LA SUCURSAL CON SU COMPROBANTE DE PAGO Y PEDIR LA DENUNCIA CON EL CODIGO: '.$idServicio;
+                $mensajeb = 'SE ENVIO CORRECTAMENTE LA SOLICITUD DE SERVICIO EL CODIGO DEL SERVICIO ES EL '.$idServicio;
+                //$mensajeb = 'SE ENVIO CORRECTAMENTE LA SOLICITUD USTED DEBE DE CANCELAR EL MONTO CORRESPONDIENTE AL TARIFARIO ,PARA LUEGO PASAR POR LA SUCURSAL CON SU COMPROBANTE DE PAGO Y PEDIR LA DENUNCIA CON EL CODIGO: '.$idServicio;
                 $this->Session->setFlash($mensajeb,'notabuena');
                 
                 //$this->Session->setFlash("Denuncia de servicio " . $this->Servicio->id . " guardado exitosamente!",'msgbueno');
@@ -484,7 +490,11 @@ class UsuariosController extends AppController {
                     'Propietario.nombre')));
             $departamentos = $this->Departamento->find('list', array('fields' => array('Departamento.id', 'Departamento.nombre')));
             $sucursales = $this->Sucursale->find('list',array('fields' => 'Sucursale.nombre'));
-           $this->set(compact('mascotas', 'propietarios', 'departamentos','sucursales'));
+            $idPropietario = $this->Session->read('Auth.User.propietario_id');
+            $mismachos = $this->Mascota->find('list',array(
+                'fields' => 'Mascota.nombre_completo'
+                ,'conditions' => array('Mascota.propietarioactual_id' => $idPropietario,'Mascota.sexo' => 'macho','Mascota.solicitud !=' => 1))); 
+           $this->set(compact('mascotas', 'propietarios', 'departamentos','sucursales','mismachos'));
         }
     }
     public function generapago($veces = null)
@@ -604,7 +614,8 @@ class UsuariosController extends AppController {
                 {
                     $idServicio = $this->Servicio->getLastInsertID();
                 }
-                $mensajeb = 'SE ENVIO CORRECTAMENTE LA SOLICITUD USTED DEBE DE CANCELAR EL MONTO CORRESPONDIENTE AL TARIFARIO ,PARA LUEGO PASAR POR LA SUCURSAL CON SU COMPROBANTE DE PAGO Y PEDIR LA DENUNCIA CON EL CODIGO: '.$idServicio;
+                $mensajeb = 'SE ENCIO CORRECTAMENTE LA SOLICITUD DE SERVICIO, EL CODIGO DE SERVICIO ES: '.$idServicio;
+                //$mensajeb = 'SE ENVIO CORRECTAMENTE LA SOLICITUD USTED DEBE DE CANCELAR EL MONTO CORRESPONDIENTE AL TARIFARIO ,PARA LUEGO PASAR POR LA SUCURSAL CON SU COMPROBANTE DE PAGO Y PEDIR LA DENUNCIA CON EL CODIGO: '.$idServicio;
                 $this->Session->setFlash($mensajeb,'notabuena');
                 $this->redirect(array('action' => 'listadenuncias'));
             } else
@@ -627,8 +638,13 @@ class UsuariosController extends AppController {
                     'Propietario.nombre')));
             $departamentos = $this->Departamento->find('list', array('fields' => array('Departamento.id', 'Departamento.nombre')));
             //$cuentasbancarias = $this->Cuentasbancaria->find('list',array('fields' => 'Cuentasbancaria.cuenta'));
+            $idPropietario = $this->Session->read('Auth.User.propietario_id');
+            $mismachos = $this->Mascota->find('list',array(
+                'fields' => 'Mascota.nombre_completo'
+                ,'conditions' => array('Mascota.propietarioactual_id' => $idPropietario,'Mascota.sexo' => 'macho','Mascota.solicitud !=' => 1))); 
+            //debug($mismachos);exit;
             $sucursales = $this->Sucursale->find('list',array('fields' => 'Sucursale.nombre'));
-            $this->set(compact('sucursales','mascotas', 'kcbs', 'propietarios', 'perfil', 'departamentos'));
+            $this->set(compact('sucursales','mascotas', 'kcbs', 'propietarios', 'perfil', 'departamentos','mismachos'));
         }
     }
      public function get_propietario_actual($idMascota = null)
@@ -663,8 +679,8 @@ class UsuariosController extends AppController {
                 
                 //$idIngreso = $this->request->data['Aux']['ingreso_id'];
                 
-                
-                $mensajeb = 'SE ENVIO CORRECTAMENTE LA SOLICITUD USTED DEBE DE CANCELAR EL MONTO CORRESPONDIENTE AL TARIFARIO ,PARA LUEGO PASAR POR LA SUCURSAL CON SU COMPROBANTE DE PAGO Y PEDIR LA DENUNCIA CON EL CODIGO: '.$id;
+                $mensajeb = 'SE ENVIO CORRECTAMENTE LA SOLICITUD EL CODIGO DEL SERVICIO ES '.$id;
+                //$mensajeb = 'SE ENVIO CORRECTAMENTE LA SOLICITUD USTED DEBE DE CANCELAR EL MONTO CORRESPONDIENTE AL TARIFARIO ,PARA LUEGO PASAR POR LA SUCURSAL CON SU COMPROBANTE DE PAGO Y PEDIR LA DENUNCIA CON EL CODIGO: '.$id;
                 $this->Session->setFlash($mensajeb,'notabuena');
                 
                //$this->Session->setFlash("Denuncia de servicio ".$this->Denuncianacimiento->id." guardado exitosamente!",'msgbueno');
@@ -689,10 +705,7 @@ class UsuariosController extends AppController {
     {
         if (!empty($this->data))
         {
-            if ($this->data['Camada']['departamento_id'] != null)
-            {
-                $this->request->data['Camada']['lugar'] = $this->Lechigada->obtenerNombre($this->data['Camada']['departamento_id']);
-            }
+            
             $nacimiento = $this->Servicio->find('first', array('conditions' => array('Servicio.id' => $id_servicio), 'recursive' => 0));
             //debug($nacimiento);exit;
             $madre = $nacimiento['Servicio']['reproductora_id'];
@@ -701,6 +714,10 @@ class UsuariosController extends AppController {
             $fecha_nacimiento = $nacimiento['Denuncianacimiento']['fecha_denuncia'];
             $departamento = $nacimiento['Denuncianacimiento']['departamento_id'];
             $variedad = $this->data['Camada']['variedad'];
+            if (!empty($departamento))
+            {
+                $this->request->data['Camada']['lugar'] = $this->Lechigada->obtenerNombre($departamento);
+            }
             if(!empty($this->data['Mascota']))
             {
                 $mascotas = $this->data['Mascota'];
@@ -715,8 +732,9 @@ class UsuariosController extends AppController {
                     $this->request->data['Mascota'][$i]['fecha_nacimiento'] = $fecha_nacimiento;
                     $this->request->data['Mascota'][$i]['variedad'] = $variedad;
                     $this->request->data['Mascota'][$i]['origen'] = $this->data['Camada']['lugar'];
-                    $this->request->data['Mascota'][$i]['departamento_id'] = $this->data['Camada']['departamento_id'];
+                    $this->request->data['Mascota'][$i]['departamento_id'] = $departamento;
                     $this->request->data['Mascota'][$i]['criadero_id'] = $nacimiento['Denuncianacimiento']['criadero_id'];
+                    $this->request->data['Mascota'][$i]['estado'] = 0;
                     if ($mascota['sexo'] == 1)
                         $this->request->data['Mascota'][$i]['sexo'] = "macho";
                     else
@@ -751,6 +769,7 @@ class UsuariosController extends AppController {
                 {
                     $id_camada = $idCamada;
                 }
+                
                 //$id_camada = $this->Camada->id;
                 //debug($id_camada);exit;
                 //$lechigada = $this->Lechigada->obtenerLechigada($this->data['Camada']['departamento_id'], $this->Camada->id);
@@ -770,7 +789,8 @@ class UsuariosController extends AppController {
                 $data = array('id'=>$id_camada, 'lechigada'=>$lechigada);
                 
                 $this->Camada->save($data);
-                $mensajeb = 'SE ENVIO CORRECTAMENTE LA SOLICITUD USTED DEBE DE CANCELAR EL MONTO CORRESPONDIENTE AL TARIFARIO ,PARA LUEGO PASAR POR LA SUCURSAL CON SU COMPROBANTE DE PAGO Y PEDIR LA DENUNCIA CON EL CODIGO: '.$id_servicio;
+                $mensajeb = 'SE ENVIO CORRECTAMENTE LA SOLICITUD DE SERVICIO EL CODIGO DEL SERVICIO ES: '.$id_servicio ;
+                //$mensajeb = 'SE ENVIO CORRECTAMENTE LA SOLICITUD USTED DEBE DE CANCELAR EL MONTO CORRESPONDIENTE AL TARIFARIO ,PARA LUEGO PASAR POR LA SUCURSAL CON SU COMPROBANTE DE PAGO Y PEDIR LA DENUNCIA CON EL CODIGO: '.$id_servicio;
                 $this->Session->setFlash($mensajeb,'notabuena');
                 
                 $this->redirect(array('action' => 'listadenuncias'));
@@ -831,7 +851,8 @@ class UsuariosController extends AppController {
                 }
                 if($this->Observacionesinformecomcria->saveAll($this->request->data['Observacionesinformecomcria']))
                 {
-                    $mensajeb = 'SE ENVIO CORRECTAMENTE LA SOLICITUD USTED DEBE DE CANCELAR EL MONTO CORRESPONDIENTE AL TARIFARIO ,PARA LUEGO PASAR POR LA SUCURSAL CON SU COMPROBANTE DE PAGO Y PEDIR LA DENUNCIA CON EL CODIGO: '.$camada['Camada']['servicio_id'];
+                    $mensajeb = 'SE ENVIO CORRECTAMENTE LA SOLICITUD DE SERVICIO EL CODIGO DE SERVICIO ES: '.$camada['Camada']['servicio_id'];
+                    //$mensajeb = 'SE ENVIO CORRECTAMENTE LA SOLICITUD USTED DEBE DE CANCELAR EL MONTO CORRESPONDIENTE AL TARIFARIO ,PARA LUEGO PASAR POR LA SUCURSAL CON SU COMPROBANTE DE PAGO Y PEDIR LA DENUNCIA CON EL CODIGO: '.$camada['Camada']['servicio_id'];
                     $this->Session->setFlash($mensajeb,'notabuena');
                     //$this->Session->setFlash("Registro de informe creado",'msgbueno');
                 }
@@ -960,10 +981,8 @@ class UsuariosController extends AppController {
                 //debug($errors);exit;
                 if(!empty($errors2))
                 {
-                    if(!empty(current(current($errors2))))
-                    {
+                    
                         $this->Session->setFlash(current(current($errors2)),'msgerror');
-                    }
                 }
                 $this->Sucursale->create();
                 $this->Sucursale->save($this->request->data);
@@ -1001,7 +1020,6 @@ class UsuariosController extends AppController {
         $categorias = $this->Categoriaspista->find('list',array('fields' => 'Categoriaspista.nombre'));
         //debug($categorias);exit;
         $evento = $this->Evento->find('first',array('recursive' => -1,'conditions' => array('Evento.id' => $idEvento)));
-        
         $this->set(compact('razas','categorias','idEvento','evento'));
     }
     public function verifica_kcb()

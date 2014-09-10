@@ -18,7 +18,7 @@ $(document).ready(function() {
 <h3 align="center">Registro de Camada de Denuncia Nacimiento</h3>
 <div class="innerLR">
 	<!-- Widget -->
-      <?php echo $this->Form->create('Camada'); ?>
+      <?php echo $this->Form->create('Camada',array('id' => 'registroservicio')); ?>
       <?php echo $this->Form->hidden('id');?>
       <?php 
       echo $this->Form->hidden('fecha', array('value'=>date('Y-m-d')));
@@ -210,7 +210,9 @@ $(document).ready(function() {
                 </div>
                 <div class="span4">
                 <h5>Recibo</h5>
-                <?php echo $this->Form->text('recibo',array('class' => 'span12','required'));?>
+                <a href="#myModal" data-toggle="modal" onclick="paga(<?php echo $idPropietario;?>)">
+                    <?php echo $this->Form->text('recibo', array('class' =>"span12",'required','id' => 'idrecibo')); ?>
+                </a>
                 </div>
                 
                 </div>
@@ -241,6 +243,9 @@ $(document).ready(function() {
                 <?php echo $this->Html->link('Atras',array('controller'=>'Denunciaservicio','action'=>'index'),array('class' => 'btn btn-block btn-success'));?>
                 </div>
                 <div class="span6">
+                    
+                <?php echo $this->Form->hidden('Aux.activa',array('id' => 'idactiva','value' => 0));?>
+                <?php echo $this->Form->hidden('ingreso_id',array('id' => 'idingreso_id'));?>
                 <?php echo $this->Form->submit('Guardar',array('class' => 'btn btn-block btn-success'));?>
                 </div>
                 </div>
@@ -248,3 +253,23 @@ $(document).ready(function() {
                 </div>
     </div>
 </div>
+
+<?php
+
+if(empty($this->request->data['Camada']['ingreso_id']))
+{
+    $idIngreso = 0;
+}
+else{
+    $idIngreso = $this->request->data['Camada']['ingreso_id'];
+}
+?>
+<script src="<?php echo $this->webroot;?>js/jquery-1.10.1.min.js"></script>
+<script>
+    
+    function paga(aux)
+    {
+        $('#imgcargando').toggle();$('#mimodal').toggle();$('#mimodal').load('<?php echo $this->Html->url(array('controller' => 'Cuentas','action' => 'ajaxpagoservicio',$idIngreso));?>/'+aux+'/0',function(){$('#imgcargando').toggle(100);$('#mimodal').toggle();});
+    }
+    
+</script>
