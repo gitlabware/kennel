@@ -76,8 +76,8 @@ class CuentasController extends AppController{
                 $tarifa = $this->Tarifa->find('first',array('recursive' => -1,'conditions' => array('Tarifa.tipo_id' => $propietario['Propietario']['tipo_id'],'Tarifa.sucursale_id' => $idSucursal,'Tarifa.tramite_id' => $tramite)));
             }
             else{
-                $this->Session->setFlash('Es obligatorio elegir al propietario y la sucursal','msgbueno');
-                $this->redirect(array('action' => 'index'));
+                $array['mensaje'] = 'Es obligatorio elegir al propietario y la sucursal';
+                
             }
             if(!empty($tarifa))
             {
@@ -92,32 +92,38 @@ class CuentasController extends AppController{
                     $this->request->data['Ingreso']['nacional'] = $pornacional*$montototal;
                     $this->request->data['Ingreso']['monto'] = $porregional*$montototal;
                 }
+                
+                if($this->Ingreso->save($this->request->data))
+                {
+                    //$this->Session->setFlash('Se Registro el pago correspondiente Correctamente!!!!','msgbueno');
+                    //$this->redirect(array('action' => 'index'));
+                    if(!empty($this->request->data['Ingreso']['id']))
+                    {
+                        $array['ingreso_id'] = $this->request->data['Ingreso']['id'];
+                    }
+                    else{
+                        $array['ingreso_id'] = $this->Ingreso->getLastInsertID();
+                    }
+                }
+                else{
+                    //$this->Session->setFlash('No se pudo registrar!!!!','msgerror');
+                    //$this->redirect(array('action' => 'index'));
+                    $array['mensaje'] = 'No se pudo registrar!!!!';
+                }
+                
             }
             else{
+                $array['mensaje'] = 'No se encontro una tarifa para su registro!!!!';
                 //$this->Session->setFlash('No se encontro una tarifa para su registro!!!!','msginfo');
                 //$this->redirect(array('action' => 'index'));
             }
-            if($this->Ingreso->save($this->request->data))
-            {
-                //$this->Session->setFlash('Se Registro el pago correspondiente Correctamente!!!!','msgbueno');
-                //$this->redirect(array('action' => 'index'));
-                if(!empty($this->request->data['Ingreso']['id']))
-                {
-                    $array['ingreso_id'] = $this->request->data['Ingreso']['id'];
-                }
-                else{
-                    $array['ingreso_id'] = $this->Ingreso->getLastInsertID();
-                }
-            }
-            else{
-                //$this->Session->setFlash('No se pudo registrar!!!!','msgerror');
-                //$this->redirect(array('action' => 'index'));
-            }
+            
         }
         if(empty($array))
         {
             $array['ingreso_id'] = NULL;
         }
+        //debug($array);
         $this->respond($array, true);
     }
     public function get_tarifa($idSucursal = null,$tipo = null,$tramite = null)

@@ -200,23 +200,32 @@ class PropietariosController extends AppController {
     }
     public function guardapropietario()
     {
+        //debug();exit;
         if(!empty($this->request->data))
         {
-            
-            $this->Propietario->create();
-            //debug($this->request->data['Propietario']);exit;
-            if($this->Propietario->save($this->request->data['Propietario']))
+            $valida = $this->validar('Propietario');
+            //debug($valida);exit;
+            if(empty($valida))
             {
-                $this->Session->setFlash('Se guardo correctamente!!','msgbueno');
-                $this->redirect($this->referer());
+                $this->Propietario->create();
+                //debug($this->request->data['Propietario']);exit;
+                if($this->Propietario->save($this->request->data['Propietario']))
+                {
+                    $this->Session->setFlash('Se guardo correctamente!!','msgbueno');
+                    $this->redirect($this->referer());
+                }
+                else{
+                    $this->Session->setFlash('No se guardo!!!','msgerror');
+                    $this->redirect($this->referer());
+                }
             }
             else{
-                $this->Session->setFlash('No se guardo!!!','msgerror');
-                $this->redirect($this->referer());
+                $this->Session->setFlash($valida,'msgerror');
+                    $this->redirect($this->referer());
             }
         }
         else{
-            $this->Session->setFlash('No se guardo!!!','msgerror');
+            $this->Session->setFlash('No puede estar vacio!!!','msgerror');
             $this->redirect($this->referer());
         }
     }

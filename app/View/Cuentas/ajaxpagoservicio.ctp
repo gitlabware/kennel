@@ -128,15 +128,23 @@
             data: postData,
             success: function(data)
             {
-                $('#idingreso_id').val($.parseJSON(data).ingreso_id);
-                $('#idrecibo').val($('#idcomprobante').val());
-                $('#idactiva').val(1);
+                if($.parseJSON(data).ingreso_id == null)
+                {
+                    alert($.parseJSON(data).mensaje);
+                }
+                else{
+                    $('#idingreso_id').val($.parseJSON(data).ingreso_id);
+                    $('#idrecibo').val($('#idcomprobante').val());
+                }
+                
+                $('#idactiva').val(0);
                 //$('#idrecibo').val($('#idcomprobante').val());
             },
             complete: function(data)
             {
                 $('#registroservicio').submit();
             }
+            
         });
         e.preventDefault();
     });
