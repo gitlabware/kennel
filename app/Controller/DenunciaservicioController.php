@@ -131,7 +131,7 @@ class DenunciaservicioController extends AppController{
             if ($this->Servicio->save($this->data))
             {
                 $this->Session->setFlash("Denuncia de servicio " . $this->Servicio->id . " guardado exitosamente!",'msgbueno');
-                if($this->request->data['Servicio']['activa'])
+                if(!$this->request->data['Servicio']['activa'])
                 {
                     $this->redirect(array('action' => 'insertarservicio',$this->Servicio->id));
                 }
