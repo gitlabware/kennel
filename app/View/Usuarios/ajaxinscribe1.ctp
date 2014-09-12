@@ -1,6 +1,6 @@
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-    <h3>Inscripcion</h3>
+    <h3>Inscripcion a <?php echo $evento['Evento']['nombre']?></h3>
   </div>
   
   <div class="modal-body">

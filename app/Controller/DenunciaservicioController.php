@@ -336,7 +336,6 @@ class DenunciaservicioController extends AppController{
                 $id), 'recursive' => 2));
         if (!empty($this->data))
         {
-
             if ($this->data['Informecomcria']['departamento_id'] != null)
             {
                 $this->request->data['Informecomcria']['lugar'] = $this->Lechigada->obtenerNombre($this->data['Informecomcria']['departamento_id']);

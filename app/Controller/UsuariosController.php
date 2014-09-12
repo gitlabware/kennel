@@ -933,8 +933,9 @@ class UsuariosController extends AppController {
     {
         $this->layout = 'ajax';
         $idPropietario = $this->Session->read('Auth.User.propietario_id');
-        $mascotas = $this->Mascota->findAllBypropietario_id($idPropietario,null,null,null,null,0);
-        $this->set(compact('mascotas','idEvento'));
+        $mascotas = $this->Mascota->findAllBypropietarioactual_id($idPropietario,null,null,null,null,0);
+        $evento = $this->Evento->find('first',array('conditions' => array('Evento.id' => $idEvento)));
+        $this->set(compact('mascotas','idEvento','evento'));
     }
     public function ajaxinscribe2($idMascota = null,$idEvento = null)
     {
@@ -1023,6 +1024,7 @@ class UsuariosController extends AppController {
         if(empty($idEvento))
         {
             $evento = $this->Evento->find('first',array('recursive' => -1,'order' => 'Evento.id DESC','conditions' => array('Evento.estado' => 1)));
+            
         }
         else{
             $evento = $this->Evento->find('first',array('recursive' => -1,'conditions' => array('Evento.id' => $idEvento)));
@@ -1030,6 +1032,9 @@ class UsuariosController extends AppController {
         if(empty($evento))
         {
             $this->Session->setFlash('Ahora no hay eventos disponibles!!!','msginfo');
+        }
+        else{
+            $idEvento = $evento['Evento']['id'];
         }
         $this->set(compact('razas','categorias','idEvento','evento'));
     }
