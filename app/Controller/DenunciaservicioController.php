@@ -179,7 +179,7 @@ class DenunciaservicioController extends AppController{
             if($this->Denuncianacimiento->save($this->data)){
                $this->Session->setFlash("Denuncia de servicio ".$this->Denuncianacimiento->id." guardado exitosamente!",'msgbueno');
                $idDenuncia = $this->Denuncianacimiento->getLastInsertID();
-                if($this->request->data['Servicio']['activa'])
+                if(!$this->request->data['Servicio']['activa'])
                 {
                     if(!empty($idDenuncia))
                     {
@@ -296,7 +296,7 @@ class DenunciaservicioController extends AppController{
                 $data = array('id'=>$id_camada, 'lechigada'=>$lechigada);
                 $this->Camada->save($data);
                 $this->Session->setFlash("Registro de cachorros exitoso",'msgbueno');
-                if($activa)
+                if(!$activa)
                 {
                     $this->redirect(array('action' => 'registrarcamada',$id_servicio,$id_nacimiento,$id_camada));
                 }
@@ -363,7 +363,7 @@ class DenunciaservicioController extends AppController{
                 {
                     $this->Session->setFlash("Registro de informe creado",'msgbueno');
                 }
-                if($activa)
+                if(!$activa)
                 {
                     $this->redirect(array('action' => 'informecomision',$id,$id_informe));
                 }

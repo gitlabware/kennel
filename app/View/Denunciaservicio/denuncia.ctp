@@ -78,10 +78,12 @@
                 <?php echo $this->Form->date('fecha_registro', array('id' => 'date2','class' => 'span12','required')); ?>
                 </div>
                 <div class="span4">
+                    <?php if(!empty($idPropietario)):?>
                 <h5>Recibo</h5>
                 <a href="#myModal" data-toggle="modal" onclick="paga(<?php echo $idPropietario;?>)">
-                    <?php echo $this->Form->text('recibo', array('class' =>"span12",'required','id' => 'idrecibo')); ?>
+                    <?php echo $this->Form->text('recibo', array('class' =>"span12",'id' => 'idrecibo')); ?>
                 </a>
+                <?php endif;?>
                 </div>
                 </div>
                 </div>
@@ -107,11 +109,14 @@
                 <div class="widget-body">
                 <div class="row-fluid">
                 <div class="span12">
-                <div class="span6">
-                 <?php echo $this->Html->link('Atras',array('controller'=>'Denunciaservicio','action'=>'index'),array('class' => 'btn btn-block btn-success'));?>
+                <div class="span3 text-right text-info">
+                    SALIR AL GUARDAR
                 </div>
+                    <div class="span3">
+                            <?php echo $this->Form->checkbox('Servicio.activa',array('checked','class' => 'span12','id' => 'idactiva'))?>
+                    </div>
                 <div class="span6">
-                    <?php echo $this->Form->hidden('Servicio.activa',array('id' => 'idactiva','value' => 0));?>
+                    <?php //echo $this->Form->hidden('Servicio.activa',array('id' => 'idactiva','value' => 0));?>
                     <?php echo $this->Form->hidden('ingreso_id',array('id' => 'idingreso_id'));?>
                 <?php echo $this->Form->submit('Guardar',array('class' => 'btn btn-block btn-success'));?>
                 </div>
