@@ -1027,6 +1027,10 @@ class UsuariosController extends AppController {
         else{
             $evento = $this->Evento->find('first',array('recursive' => -1,'conditions' => array('Evento.id' => $idEvento)));
         }
+        if(empty($evento))
+        {
+            $this->Session->setFlash('Ahora no hay eventos disponibles!!!','msginfo');
+        }
         $this->set(compact('razas','categorias','idEvento','evento'));
     }
     public function verifica_kcb()
