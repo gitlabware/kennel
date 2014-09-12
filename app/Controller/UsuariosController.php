@@ -1016,10 +1016,17 @@ class UsuariosController extends AppController {
     }
     public function inscripcion($idEvento = null)
     {
+        
         $razas = $this->Raza->find('list',array('fields' => 'Raza.nombre_completo','order' => 'Raza.nombre_completo ASC'));
         $categorias = $this->Categoriaspista->find('list',array('fields' => 'Categoriaspista.nombre'));
         //debug($categorias);exit;
-        $evento = $this->Evento->find('first',array('recursive' => -1,'conditions' => array('Evento.id' => $idEvento)));
+        if(empty($idEvento))
+        {
+            $evento = $this->Evento->find('first',array('recursive' => -1,'order' => 'Evento.id DESC','conditions' => array('Evento.estado' => 1)));
+        }
+        else{
+            $evento = $this->Evento->find('first',array('recursive' => -1,'conditions' => array('Evento.id' => $idEvento)));
+        }
         $this->set(compact('razas','categorias','idEvento','evento'));
     }
     public function verifica_kcb()
