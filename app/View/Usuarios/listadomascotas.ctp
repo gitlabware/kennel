@@ -1,3 +1,4 @@
+<script src="<?php echo $this->webroot;?>js/jquery-1.10.1.min.js"></script>
 <div class="innerLR">
 <h3>Listado de Ejemplares</h3>
 <div class="widget widget-heading-simple widget-body-gray">

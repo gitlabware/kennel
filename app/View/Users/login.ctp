@@ -31,6 +31,10 @@
         <br />
         <br />
         <a href="<?php echo $this->Html->url(array('controller' => 'Usuarios','action' => 'listadomascotas'));?>"  class="btn btn-icon-stacked btn-block btn-primary glyphicons list"><i></i><span>Ingresar al listado de ejemplares</span><span class="strong">VER EJEMPLARES</span></a>
+        <br>
+        <br>
+        
+        <a class="btn btn-block btn-danger btn-icon glyphicons home" href="<?php echo $this->Html->url(array('controller' => 'Usuarios','action' => 'inscripcion'));?>"><i></i>Inscripcion a Eventos</a>
         </div>
         </div>
             </div>

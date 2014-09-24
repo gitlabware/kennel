@@ -29,7 +29,7 @@ class EventosController extends AppController
         'Session');
     public function beforeFilter(){
         parent::beforeFilter();
-        $this->Auth->allow('meses');
+        $this->Auth->allow('meses','catalogo_inicial');
     }
     public function index()
     {

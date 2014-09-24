@@ -6,7 +6,8 @@
             <?php if(!empty($evento)):?>
             <?php if($evento['Evento']['estado']):?>
             <?php echo $this->Form->create('Usuarios',array('action' => 'solicitud_inscripcion','id' => 'formuinscripcion'));?>
-            <h3 class=" text-center">FORMULARIO DE INSCRIPCION</h3>
+            <a class="label label-success" href="<?php echo $this->Html->url(array('controller' => 'Eventos','action' => 'catalogo_inicial',$evento['Evento']['id']));?>">VER CATALOGO INICIAL</a>
+            <h3 class=" text-center">FORMULARIO DE INSCRIPCION (<?php echo $evento['Evento']['nombre']?>)</h3>
             <div class="row-fluid">
                 <div class="span12">
                     <div class="span4">
@@ -36,10 +37,10 @@
                 <div class="span12">
                     <div class="span6">
                         <h5>Fecha de Nacimiento (A&ntilde;o-mes-dia)</h5>
-                        <?php echo $this->Form->text('Temporalmascota.fecha_nacimiento',array('class' => 'span12','placeholder' => '____-__-__','id' => 'fechanac','required','id' => 'idfecha_nacimiento'));?>
+                        <?php echo $this->Form->text('Temporalmascota.fecha_nacimiento',array('class' => 'span12','placeholder' => '____-__-__','id' => 'fechanac','required'));?>
                         <script>
                         $(function(){
-                            $("#fechanac").inputmask("y-m-d", {});
+                            $("#fechanac").inputmask("y-m-d", {autoUnmask: true});
                         });
                         </script>
                     </div>
