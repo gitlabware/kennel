@@ -5,7 +5,7 @@
         <div class="widget-body">
             <?php if(!empty($evento)):?>
             <?php if($evento['Evento']['estado']):?>
-            <?php echo $this->Form->create('Usuarios',array('action' => 'solicitud_inscripcion','id' => 'formuinscripcion'));?>
+            <?php echo $this->Form->create('Usuarios',array('id' => 'formuinscripcion'));?>
             <a class="label label-success" href="<?php echo $this->Html->url(array('controller' => 'Eventos','action' => 'catalogo_inicial',$evento['Evento']['id']));?>">VER CATALOGO INICIAL</a>
             <h3 class=" text-center">FORMULARIO DE INSCRIPCION (<?php echo $evento['Evento']['nombre']?>)</h3>
             <div class="row-fluid">
@@ -25,7 +25,7 @@
                 <div class="span12">
                     <div class="span6">
                         <h5>Nombre Ejemplar</h5>
-                        <?php echo $this->Form->text('Temporalmascota.nombre_completo',array('class' => 'span12','placeholder' => 'Nombre del ejemplar a inscribir','id' => 'idnombre_completo'));?>
+                        <?php echo $this->Form->text('Temporalmascota.nombre',array('class' => 'span12','placeholder' => 'Nombre del ejemplar a inscribir','id' => 'idnombre_completo'));?>
                     </div>
                     <div class="span6">
                         <h5>color</h5>

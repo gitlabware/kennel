@@ -22,28 +22,9 @@
 					</ul>
 				</li>-->
                 
-                <li class="search open hidden-phone hidden-tablet">
-                    
-					<div class="dropdown dd-1">
-						<select data-style="btn-primary" name="data[Mascota][tipomascota]" id="tipomasselect">
-							<option value="nombre_completo">Nombre</option>
-							<option value="kcb">KCB</option>
-							<option value="num_tatuaje">Num Tatuaje</option>
-                            <option value="chip">Num Chip</option>
-						</select> 
-					</div>
-				</li>
                 
-				<li class="search open hidden-phone hidden-tablet">
-					<form autocomplete="off" class="dropdown dd-1" id="CommentSaveForm">
-                        <?php //echo $this->Form->text('campo',array('placeholder' => 'Buscador de Mascotas','id' => 'campomascotatext'));?>
-                        <input name="data[Mascota][campomascota]" id="campomascotatext" placeholder="Buscador de Mascotas"/>
-						<button type="button" class="glyphicons search"><i></i></button>
-					</form>
-				</li>
                 <li>
                 <?php echo $this->Html->link('<i></i>REGRESAR',$this->request->referer(),array('class' => 'btn-icon glyphicons unshare','escape' => false));?>
-                
                 </li>
                 
 			</ul>
@@ -75,7 +56,10 @@
 			<ul class="topnav pull-right hidden-phone hidden-tablet hidden-desktop-1">
 			
 				<!-- Profile / Logout menu -->
-				
+				<li class="account dropdown dd-1">
+                                    <a href="<?php echo $this->Html->url(array('controller' => 'Users','action' => 'login'));?>" class="glyphicons logout lock"><span class="hidden-tablet hidden-phone hidden-desktop-1">INGRESAR</span><i></i></a>
+					
+                                </li>
 				<!-- // Profile / Logout menu END -->
 				
 			</ul>

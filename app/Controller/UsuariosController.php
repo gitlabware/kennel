@@ -1017,7 +1017,11 @@ class UsuariosController extends AppController {
     }
     public function inscripcion($idEvento = null)
     {
-        
+        //debug($this->request->data);exit;
+        if(!empty($this->request->data))
+        {
+            $this->solicitud_inscripcion();
+        }
         $razas = $this->Raza->find('list',array('fields' => 'Raza.nombre_completo','order' => 'Raza.nombre_completo ASC'));
         $categorias = $this->Categoriaspista->find('list',array('fields' => 'Categoriaspista.nombre'));
         //debug($categorias);exit;
@@ -1075,6 +1079,7 @@ class UsuariosController extends AppController {
                 $this->Temporalmascota->create();
                 $this->Temporalmascota->save($this->request->data['Temporalmascota']);
                 $this->Session->setFlash('Su solicitud fue enviada correctamente!!!','msgbueno');
+                $this->request->data = array();
             }
             else{
                 $this->Session->setFlash('El ejemplar tiene '.$meses.' meses, no puede estar en categoria '.$categoria['Categoriaspista']['nombre'],'msgerror');
@@ -1084,7 +1089,8 @@ class UsuariosController extends AppController {
         else{
             $this->Session->setFlash('Es necesario llenar los datos!!!','msgerror');
         }
-        $this->redirect($this->referer());
+        //debug($this->request->data);exit;
+        //$this->redirect($this->referer());
     }
  }
  

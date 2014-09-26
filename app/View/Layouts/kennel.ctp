@@ -508,7 +508,7 @@ html.top-full .navbar.main .topnav > li.search form input:-ms-input-placeholder 
                 echo $this->element('menu/propietario');
                 break;
             case '':
-                //echo $this->element('menu/externo');
+                echo $this->element('menu/externo');
                 break;
         }
         ?>	
