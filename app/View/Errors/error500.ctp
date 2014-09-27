@@ -16,11 +16,38 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 ?>
-<h2><?php echo $name; ?></h2>
-<p class="error">
-	<strong><?php echo __d('cake', 'Error'); ?>: </strong>
-	<?php echo __d('cake', 'An Internal Error Has Occurred.'); ?>
-</p>
+<?php $this->layout = 'errores';?>
+<h1 class="padding-none"><?php echo $name; ?> <span><?php echo __d('cake', 'Error'); ?>: </span></h1>
+<hr class="separator" />
+		<!-- Row -->
+		<div class="row-fluid">
+		
+			<!-- Column -->
+			<div class="span6">
+				<div class="center">
+					<p>
+                                            <?php echo __d('cake', 'An Internal Error Has Occurred.'); ?>
+                                    </p>
+				</div>
+			</div>
+			<!-- // Column END -->
+			
+			<!-- Column -->
+			<div class="span6">
+				<div class="center">
+					<p>Es esto un error grave? <a href="faq.html?lang=en&amp;layout_type=fluid&amp;menu_position=menu-left&amp;style=style-flat&amp;sidebar-sticky=false&amp;top_style=full&amp;sidebar_style=full"></a></p>
+					<div class="row-fluid">
+						<div class="span12">
+                                                    <a href="<?php echo $this->Html->url($this->request->referer());?>" class="btn btn-icon-stacked btn-block btn-success glyphicons user_add"><i></i><span>Volver atras</span><span class="strong">Pagina de Inicio del administrador</span></a>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+			<!-- // Column END -->
+			
+		</div>
+
 <?php
 if (Configure::read('debug') > 0):
 	echo $this->element('exception_stack_trace');
