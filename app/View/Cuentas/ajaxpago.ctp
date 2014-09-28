@@ -77,7 +77,7 @@
         </div>
         <div class="span6">
         <h5>Estado</h5>
-        <?php echo $this->Form->select('Ingreso.estado',array(0 => 'Negado',1 => 'Confirmado'),array('class' => 'span12','required'));?>
+        <?php echo $this->Form->select('Ingreso.estado',array(0 => 'Pendiente',1 => 'Confirmado'),array('class' => 'span12','required'));?>
         </div>
         </div>
         </div>
