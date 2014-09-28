@@ -98,7 +98,7 @@
         <div class="span12">
         <div class="span6">
         <h5>&nbsp;</h5>
-        <span class="btn btn-block btn-default btn-icon glyphicons user" onclick="$('#formulario').toggle(400);$('#ingreso').toggle(400);"><i></i>Ingresar</span>
+        <span class="btn btn-block btn-default btn-icon glyphicons user" onclick="$('#formulario').toggle(400);$('#ingreso').toggle(400);"><i></i>Atras</span>
         </div>
         <div class="span6">
         <h5>&nbsp;</h5>
