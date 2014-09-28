@@ -163,7 +163,7 @@
                 </div>
                 <div class="span6">
                 <h5>Codigo o Registro</h5>
-                <?php echo $this->Form->text('Mascota.codigo', array('placeholder' => 'Codigo del extranjero','class' => 'span12')); ?>
+                <?php echo $this->Form->text('Mascota.codigo', array('placeholder' => 'Codigo del extranjero','class' => 'span12','required' => false)); ?>
                 </div>
                 </div>
                 

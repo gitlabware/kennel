@@ -234,7 +234,7 @@ class UsuariosController extends AppController {
     }
     public function pagos()
     {
-        $pagos = $this->Ingreso->find('all',array('order' => 'Ingreso.id DESC','conditions' => array('Ingreso.user_id' => $this->Session->read('Auth.User.id'))));
+        $pagos = $this->Ingreso->find('all',array('order' => 'Ingreso.id DESC','conditions' => array('Ingreso.propietario_id' => $this->Session->read('Auth.User.propietario_id'))));
         //$pagos = $this->Ingreso->findAllByuser_id($this->Session->read('Auth.User.id'),null,null,null,null,0);
         
         $this->set(compact('pagos'));
