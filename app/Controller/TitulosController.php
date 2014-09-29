@@ -131,6 +131,7 @@ class TitulosController extends AppController {
     {
         if(!empty($this->request->data))
         {
+            //debug($this->request->data);exit;
             $this->Titulo->create();
             $this->Titulo->save($this->request->data);
             $this->Session->setFlash('Se guardo correctamente!!!','msgbueno');

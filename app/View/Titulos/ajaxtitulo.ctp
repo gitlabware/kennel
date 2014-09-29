@@ -12,7 +12,9 @@
 				<div class="widget-body">
                 <?php echo $this->Form->hidden('id');?>
                 <h5>Nombre del Titulo</h5>
-                <?php echo $this->Form->text('nombre',array('class' => 'span12','required'));?>
+                <?php echo $this->Form->text('nombre',array('class' => 'span12','required','placeholder' => 'Nombre'));?>
+                <h5>Descripcion</h5>
+                <?php echo $this->Form->text('descripcion',array('class' => 'span12','placeholder' => 'Descripcion'));?>
                 </div>
     </div>
     </div>
