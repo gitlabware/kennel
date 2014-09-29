@@ -36,8 +36,10 @@
   <?php echo $this->Form->select('sucursale_id',$sucursales,array('class' => 'span12','required'));?>
   </div>
   <div class="span6">
+  <?php if($this->Session->read('Auth.User.role') == 'administrador'):?>
   <h5>Tipo de Usuario</h5>
-  <?php echo $this->Form->select('role',array('administrador' => 'Administrador'),array('class' => 'span12','required'));?>
+  <?php echo $this->Form->select('role',array('administrador' => 'Administrador','regional' => 'Regional'),array('class' => 'span12','required'));?>
+  <?php endif;?>
   </div>
   </div>
   </div>

@@ -10,7 +10,7 @@ class UsersController extends AppController
     }
     public function index()
     {
-        $usuarios = $this->User->find('all',array('order' => 'User.id DESC','conditions' => array('User.role' => 'administrador')));
+        $usuarios = $this->User->find('all',array('order' => 'User.id DESC','conditions' => array('User.role' => array('administrador','regional'))));
         $this->set(compact('usuarios'));
     }
     public function usuario($idUsuario = null)
@@ -67,6 +67,9 @@ class UsersController extends AppController
                 switch($role)
                 {
                     case 'administrador':
+                        $this->redirect(array('controller' => 'Reportes','action' => 'panel'));
+                        break;
+                    case 'regional':
                         $this->redirect(array('controller' => 'Reportes','action' => 'panel'));
                         break;
                     case 'propietario':

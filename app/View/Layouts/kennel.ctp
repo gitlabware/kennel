@@ -482,6 +482,9 @@ html.top-full .navbar.main .topnav > li.search form input:-ms-input-placeholder 
             case 'administrador':
                 echo $this->element('sidebar/administrador');
                 break;
+            case 'regional':
+                echo $this->element('sidebar/regional');
+                break;
             case 'propietario':
                 echo $this->element('sidebar/propietario');
                 break;
@@ -502,6 +505,9 @@ html.top-full .navbar.main .topnav > li.search form input:-ms-input-placeholder 
         switch($role)
         {
             case 'administrador':
+                echo $this->element('menu/administrador');
+                break;
+            case 'regional':
                 echo $this->element('menu/administrador');
                 break;
             case 'propietario':
