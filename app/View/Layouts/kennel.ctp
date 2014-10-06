@@ -722,7 +722,6 @@ html.top-full .navbar.main .topnav > li.search form input:-ms-input-placeholder 
         
         <?php echo $this->fetch('scriptChart');?>
         <?php echo $this->fetch('scriptQR');?>
-        
         <script>
 /* ==========================================================
  * QuickAdmin v1.3.3

@@ -1,5 +1,6 @@
 <?php 
 App::uses('AppController', 'Controller');
+App::uses('CakeEmail', 'Network/Email');
 class UsersController extends AppController
 {
     public $layout = 'kennel';
@@ -125,7 +126,8 @@ class UsersController extends AppController
                     if ($this->Auth->login())
                     {
                         $notificar = 1;
-                        $this->Session->setFlash('Se registro correctamente','msgbueno');
+                        $this->Session->setFlash('Se registro correctamente y se envio un correo sobre la informacion de su usuario!!!','msgbueno');
+                        $this->enviaEmailBienvenida();
                         $this->redirect(array('controller' => 'Usuarios','action' => 'index',1));
                     }
                     else{
@@ -158,6 +160,27 @@ class UsersController extends AppController
     public function get_usuarios_admin()
     {
         return $this->User->find('count',array('conditions' => array('role' => 'administrador')));
+    }
+    public function enviaEmailBienvenida()
+    {
+        //envio de mail
+        $Email = new CakeEmail('smtp');
+        $emailPropietario = $this->request->data['Propietario']['email1'];
+        $Email->emailFormat('html')
+        ->template('cotizador')
+        ->viewVars(array(
+            'email_propietario' => $emailPropietario,
+            'nombre_propietario' => $this->request->data['Propietario']['nombre'],
+            'password_propietario' => $this->request->data['Propietario']['ci']
+        ))
+        ->to("$emailPropietario")
+        ->subject('Usuario Kennel Club Boliviano')
+        ->from('eynar@labware.com.bo', 'KCB')
+        ->send();
+        //if($Email->send())
+        //$this->set(compact('detallePedido', 'itemsPedido', 'parametros'));
+        //fin envio mail
+        //$this->redirect(array('controller'=>'Pedidos', 'action'=>'listado'));  
     }
 }
 ?>

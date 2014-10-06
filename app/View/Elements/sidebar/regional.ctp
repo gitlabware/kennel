@@ -18,14 +18,7 @@
 				<!-- Full Sidebar Style -->
 								<li><a href="<?php echo $this->Html->url(array('controller' => 'Reportes','action' => 'panel'));?>" class="glyphicons dashboard"><i></i>Pannel Kennel</a></li>
 				
-                <li class="dropdown dd-1">
-					<a href="" data-toggle="dropdown" class="glyphicons notes"><i></i>Razas<span class="icon-chevron-right"></span></a>
-					<ul class="dropdown-menu pull-left">
-						<li><a href="<?php echo $this->Html->url(array('controller' => 'Razas','action' => 'index'));?>" class="glyphicons calendar"><i></i>Listado de Razas</a></li>
-						<li><a href="#myModal" data-toggle="modal" class="glyphicons credit_card" onclick="$('#imgcargando').toggle();$('#mimodal').toggle();$('#mimodal').load('<?php echo $this->Html->url(array('controller' => 'Razas','action' => 'ajaxraza'));?>',function(){$('#imgcargando').toggle(100);$('#mimodal').toggle();});"><i></i>Nueva Raza</a></li>
-                        
-					</ul>
-				</li>
+                
                 <li class="dropdown dd-1">
 					<a href="" data-toggle="dropdown" class="glyphicons notes"><i></i>Eventos <span class="icon-chevron-right"></span></a>
 					<ul class="dropdown-menu pull-left">
@@ -70,6 +63,10 @@
                 
 				<li class="dropdown dd-1">
                                     <a href="<?php echo $this->Html->url(array('controller' => 'Reportes','action' => 'index'));?>"  class="glyphicons notes"><i></i>Reportes</a>
+					
+				</li>
+                                <li class="dropdown dd-1">
+                                    <a href="<?php echo $this->Html->url(array('controller' => 'Tutoriales','action' => 'index'));?>"  class="glyphicons notes"><i></i>Tutoriales</a>
 					
 				</li>
 			</ul>	

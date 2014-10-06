@@ -9,7 +9,8 @@
 /dist
 /tags
 /nkennel
-/app/webroot/tutoriales
+/app/webroot/tutoriales/
+app/webroot/img/fotos/
 
 # OS generated files #
 ######################
