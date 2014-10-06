@@ -167,7 +167,7 @@ class UsersController extends AppController
         $Email = new CakeEmail('smtp');
         $emailPropietario = $this->request->data['Propietario']['email1'];
         $Email->emailFormat('html')
-        ->template('cotizador')
+        ->template('bienvenida')
         ->viewVars(array(
             'email_propietario' => $emailPropietario,
             'nombre_propietario' => $this->request->data['Propietario']['nombre'],
@@ -178,6 +178,34 @@ class UsersController extends AppController
         ->from('sistema@kcb.org.bo', 'KCB')
         ->send();
         //if($Email->send())
+        //$this->set(compact('detallePedido', 'itemsPedido', 'parametros'));
+        //fin envio mail
+        //$this->redirect(array('controller'=>'Pedidos', 'action'=>'listado'));  
+    }
+    public function enviaEmailBienvenidaprueba()
+    {
+        //debug('ssss');exit;
+        //envio de mail
+        $Email = new CakeEmail('smtp');
+        $emailPropietario = 'eynarfrio@gmail.com';
+        $Email->emailFormat('html')
+        ->template('bienvenida')
+        ->viewVars(array(
+            'email_propietario' => 'eynarfrio@gmail.com',
+            'nombre_propietario' => 'EYNAR TORREZ',
+            'password_propietario' => '6847560'
+        ))
+        ->to("$emailPropietario")
+        ->subject('Usuario Kennel Club Boliviano')
+        ->from('sistema@kcb.org.bo', 'KCB');
+        //->send();
+        if($Email->send())
+        {
+            debug('envio');exit;
+        }
+        else{
+            debug('nada');exit;
+        }
         //$this->set(compact('detallePedido', 'itemsPedido', 'parametros'));
         //fin envio mail
         //$this->redirect(array('controller'=>'Pedidos', 'action'=>'listado'));  

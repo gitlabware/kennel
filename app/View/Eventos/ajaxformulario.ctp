@@ -20,9 +20,9 @@
             <h4>Sexo: <?php echo $mas['Mascota']['sexo']?></h4>
             <h5>Seleccione la Categoria</h5>
                 
-                <?php echo $this->Form->select('EventosMascota.categoriaspista_id',$catepistas,array('required','placeholder' => 'Ingrese Nombre de la Raza','class' => 'span12'));?>
+                <?php echo $this->Form->select('EventosMascota.categoriaspista_id',$catepistas,array('required','class' => 'span12'));?>
 				<h5>Nro de Comprobante</h5>
-                <?php echo $this->Form->text('Ingreso.comprobante',array('required','placeholder' => 'Ingrese Nombre de la Raza','class' => 'span12'));?>
+                <?php echo $this->Form->text('Ingreso.comprobante',array('required','class' => 'span12'));?>
             </div>
 				<!-- Widget heading -->
 				

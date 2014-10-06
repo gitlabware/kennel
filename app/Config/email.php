@@ -48,12 +48,12 @@ class EmailConfig {
 
 	public $smtp = array(
 		'transport' => 'Smtp',
-		'from' => array('sistema@kcb.org.bo' => 'KCB'),
-		'host' => 'kcb.org.bo',
+		'from' => array('sistema@kcb.org.bo' => 'kcb'),
+		'host' => 'mail.kcb.org.bo',
 		'port' => 26,
 		'timeout' => 30,
 		'username' => 'sistema@kcb.org.bo',
-		'password' => 'secret',
+		'password' => '123sistema456',
 		'client' => null,
 		'log' => false,
 		//'charset' => 'utf-8',

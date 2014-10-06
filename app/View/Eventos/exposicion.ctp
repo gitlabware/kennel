@@ -104,7 +104,7 @@ $grupos2 = $grupos->find('all');
                                                     <div class="row-fluid">
                                                         <div class="span6">
                                                         <h5 >Nro de Pista</h5>
-                                    				<?php echo $this->Form->text('EventosPista.numero',array('required','class' => 'span12')); ?>
+                                    				<?php echo $this->Form->text('EventosPista.numero',array('required','class' => 'span12','type' => 'number')); ?>
                                                     <?php echo $this->Form->hidden('EventosPista.evento_id',array('value' => $idEvento)); ?>
                                                         </div>
                                                         <div class="span6">
@@ -244,7 +244,7 @@ $grupos2 = $grupos->find('all');
                                         else{
                                             $nombre1 = 'EXPOSICION KCB GESTION '.$gestion;
                                         }
-                                        echo $nombre1;?></h4>
+                                        echo $nombre1;?> <a href="#myModal" data-toggle="modal" class="label label-info" onclick="$('#imgcargando').toggle();$('#mimodal').toggle();$('#mimodal').load('<?php echo $this->Html->url(array('controller' => 'Eventos','action' => 'ajaxeditapista',$p['EventosPista']['id']));?>',function(){$('#imgcargando').toggle(100);$('#mimodal').toggle();});">Editar</a></h4>
             </div>
                                         
                                         <h4><?php echo $p['EventosPista']['numero']?>&#176 EXPOSICION <?php echo $p['Pista']['nombre']?>

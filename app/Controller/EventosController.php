@@ -162,10 +162,10 @@ class EventosController extends AppController
             $idEvento = $this->request->data['EventosPista']['evento_id'];
             if($this->EventosPista->save($this->data)){
                 
-                //$this->Session->setFlash("Raza".$this->Raza->id." guardada");
+                $this->Session->setFlash("Se guardo correctamente!!", 'msgbueno');
                 $this->redirect(array('controller' => 'Eventos', 'action' => 'exposicion', $idEvento));
             }else{
-                //$this->Session->setFlash("No se pudo guardar");
+                $this->Session->setFlash("No se pudo guardar!!!", 'msgerror');
                 $this->redirect(array('controller' => 'Eventos', 'action' => 'exposicion', $idEvento));
             }
         }
@@ -1273,6 +1273,25 @@ class EventosController extends AppController
         $evento = $this->Evento->find('first',array('recursive' => -1,'conditions' => array('Evento.id' => $idEvento)));
         $grupos = $this->Grupo->find('all');
         $this->set(compact('grupos','evento','idEvento'));
+    }
+    public function ajaxeditapista($idPista = null)
+    {
+        $this->layout = 'ajax';
+        $this->EventosPista->id = $idPista;
+        $this->request->data = $this->EventosPista->read();
+        $idEvento = $this->request->data['EventosPista']['evento_id'];
+        $selecpistas = $this->Pista->find('list',array('fields' => 'Pista.nombre'));
+        $this->set(compact('idEvento','selecpistas'));
+    }
+    public function eliminapista($idPista = null)
+    {
+        if(!empty($idPista))
+        {
+            $this->EventosMascotasPuntaje->deleteAll(array('EventosMascotasPuntaje.eventospista_id' => $idPista));
+            $this->EventosPista->delete($idPista);
+            $this->Session->setFlash('Se elimino correctamente!!!','msgerror');
+        }
+        $this->redirect($this->referer());
     }
 }
 ?>
