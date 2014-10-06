@@ -175,7 +175,7 @@ class UsersController extends AppController
         ))
         ->to("$emailPropietario")
         ->subject('Usuario Kennel Club Boliviano')
-        ->from('eynar@labware.com.bo', 'KCB')
+        ->from('sistema@kcb.org.bo', 'KCB')
         ->send();
         //if($Email->send())
         //$this->set(compact('detallePedido', 'itemsPedido', 'parametros'));

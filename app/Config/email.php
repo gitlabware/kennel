@@ -48,11 +48,11 @@ class EmailConfig {
 
 	public $smtp = array(
 		'transport' => 'Smtp',
-		'from' => array('site@localhost' => 'My Site'),
-		'host' => 'localhost',
-		'port' => 25,
+		'from' => array('sistema@kcb.org.bo' => 'KCB'),
+		'host' => 'kcb.org.bo',
+		'port' => 26,
 		'timeout' => 30,
-		'username' => 'user',
+		'username' => 'sistema@kcb.org.bo',
 		'password' => 'secret',
 		'client' => null,
 		'log' => false,
