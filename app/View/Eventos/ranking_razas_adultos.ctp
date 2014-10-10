@@ -32,10 +32,20 @@ $evenmaspun = new EventosMascotasPuntaje();
             $ranking = array();
             if(!empty($ano))
             {
-                $ranking = $evenmaspun->find('all',array('recursive' => 2,'order' => 'EventosMascotasPuntaje.puntos ASC','conditions' => array('EventosMascotasPuntaje.raza_id' => $ra['Raza']['id'],'Year(Evento.fecha_inicio)' => $ano,'EventosMascotasPuntaje.categoriaspista_id' => array(5,6,7,8,9,10))));
+                $ranking = $evenmaspun->find('all',array('recursive' => 2
+                    ,'conditions' => array('EventosMascotasPuntaje.raza_id' => $ra['Raza']['id'],'Year(Evento.fecha_inicio)' => $ano,'EventosMascotasPuntaje.categoriaspista_id' => array(5,6,7,8,9,10))
+                    , 'group' => array('EventosMascotasPuntaje.mascota_id')
+                                , 'fields' => array('Mascota.nombre_completo', 'SUM(EventosMascotasPuntaje.puntos) puntos', 'Mascota.propietarioactual_id','EventosMascota.catalogo')
+                                , 'order' => 'SUM(EventosMascotasPuntaje.puntos) DESC'
+                    ));
             }
             else{
-                $ranking = $evenmaspun->find('all',array('recursive' => 2,'order' => 'EventosMascotasPuntaje.puntos ASC','conditions' => array('EventosMascotasPuntaje.raza_id' => $ra['Raza']['id'],'EventosMascotasPuntaje.evento_id' => $idEvento,'EventosMascotasPuntaje.categoriaspista_id' => array(5,6,7,8,9,10))));
+                $ranking = $evenmaspun->find('all',array('recursive' => 2
+                    ,'conditions' => array('EventosMascotasPuntaje.raza_id' => $ra['Raza']['id'],'EventosMascotasPuntaje.evento_id' => $idEvento,'EventosMascotasPuntaje.categoriaspista_id' => array(5,6,7,8,9,10))
+                    , 'group' => array('EventosMascotasPuntaje.mascota_id')
+                                , 'fields' => array('Mascota.nombre_completo', 'SUM(EventosMascotasPuntaje.puntos) puntos', 'Mascota.propietarioactual_id','EventosMascota.catalogo')
+                                , 'order' => 'SUM(EventosMascotasPuntaje.puntos) DESC'
+                    ));
             }
             
             ?>
@@ -50,8 +60,8 @@ $evenmaspun = new EventosMascotasPuntaje();
             <tr>
             <td><?php echo $ran['EventosMascota']['catalogo']?></td>
             <td><?php echo $ran['Mascota']['nombre_completo'];?></td>
-            <td><?php echo $ran['Mascota']['Propietarioactual']['nombre'];?></td>
-            <td><?php echo $ran['EventosMascotasPuntaje']['puntos']?></td>
+            <td><?php echo $this->requestAction(array('action' => 'get_propietario',$ran['Mascota']['propietarioactual_id']))?></td>
+                                    <td><?php echo $ran[0]['puntos']?></td>
             </tr>
             <?php endforeach;?>
             <?php endif;?>

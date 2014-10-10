@@ -641,7 +641,7 @@ class MascotasController extends AppController{
         }
         if(!empty($this->request->data['Mascota']['propietario_id']))
         {
-            $condiones['Mascota.propietario_id'] = $this->request->data['Mascota']['propietario_id'];
+            $condiones['Mascota.propietarioactual_id'] = $this->request->data['Mascota']['propietario_id'];
         }
         if($condiones != null)
         {

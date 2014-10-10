@@ -1,4 +1,3 @@
-
 <html>
 <head>
 <style type="text/css" media="print">
@@ -25,7 +24,6 @@
 </style>
 <script src="<?php echo $this->webroot;?>js/jquery-1.10.1.min.js"></script>
 <script src="<?php echo $this->webroot;?>js/jquery-migrate-1.2.1.min.js"></script>
-
 </head>
 <body>
     <?php echo $this->fetch('content'); ?>

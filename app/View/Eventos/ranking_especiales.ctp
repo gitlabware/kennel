@@ -30,8 +30,8 @@
             <tr>
             <td><?php if($i <= 10){echo $i;}?></td>
             <td><?php echo $ran['Mascota']['nombre_completo'];?></td>
-            <td><?php echo $ran['Mascota']['Propietarioactual']['nombre'];?></td>
-            <td><?php echo $ran['EventosMascotasPuntaje']['puntos']?></td>
+            <td><?php echo $this->requestAction(array('action' => 'get_propietario',$ran['Mascota']['propietarioactual_id']))?></td>
+            <td><?php echo $ran[0]['puntos']?></td>
             </tr>
             <?php endforeach;?>
             </tr>
