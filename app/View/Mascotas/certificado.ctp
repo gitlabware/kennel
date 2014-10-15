@@ -13,7 +13,7 @@ td{
     padding: 0px;
   }
 </style>
-<div style="margin-top: -10px; margin-left: -8px; width: 1135px; height: 735px;background-repeat: no-repeat; background-size: 1137px 742px; background-image: url('<?php echo $this->Html->webroot('img/PEDIGREE KENNEL CLUB FINALES-02.jpg')?>'); border-top: 1px solid blue; border-bottom: 1px solid blue; border-left: 1px solid blue; border-right: 1px solid blue;">
+<div style="margin-top: -10px; margin-left: -8px; width: 1135px; height: 735px;background-repeat: no-repeat; background-size: 1137px 742px; background-image: url('<?php echo $this->Html->webroot('img/PEDIGREE KENNEL CLUB FINALES-02.jpg')?>'); border-top: 1px solid blue; border-bottom: 1px solid blue; border-left: 1px solid blue; border-right: 1px solid blue; font-family: Arial;">
     <div id="certificado" style="padding-top: 46px;">
         <div style="width: 1100px; height: 113px;  margin-left: 30px; padding-top: 1px;">
         <table style=" border-spacing: 0px;">
@@ -122,7 +122,7 @@ td{
             <td style="width: 301px;">
                 <div id="divtelefonos" style="width: 299px; height: 16px;">
                     <span id="spantelefonos">
-                    <?php if(!empty($mascota['Propietario']['telefono1'])){echo $mascota['Propietario']['telefono1'];}if(!empty($mascota['Propietario']['telefono2'])){echo '/'.$mascota['Propietario']['telefono2'];}?>
+                    <?php if(!empty($mascota['Propietario']['telefono1'])){echo $mascota['Propietario']['telefono1'];}if(!empty($mascota['Propietario']['telefono2'])){echo ' '.$mascota['Propietario']['telefono2'];}if(!empty($mascota['Propietario']['celular'])){echo ' '.$mascota['Propietario']['celular'];}?>
                     </span>
                 </div>
             </td>
@@ -162,7 +162,7 @@ td{
             <td style="width: 252px;">
                 <div id="divcorreo" style="width: 250px; height: 15px;">
                     <span id="spancorreo">
-                        <?php if(!empty($mascota['Propietario']['email1'])){echo $mascota['Propietario']['email1'];}if(!empty($mascota['Propietario']['email2'])){echo '/'.$mascota['Propietario']['email2'];}?>
+                        <?php if(!empty($mascota['Propietario']['email1'])){echo $mascota['Propietario']['email1'];}if(!empty($mascota['Propietario']['email2'])){if(!empty($mascota['Propietario']['email1'])){echo ' ';}echo ''.$mascota['Propietario']['email2'];}?>
                     </span>
                 </div>
             </td>
