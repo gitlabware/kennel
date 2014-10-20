@@ -717,7 +717,7 @@ class MascotasController extends AppController{
         
         $mascota = $this->Mascota->find('first' ,array(
         'conditions' => array('Mascota.id' => $idMascota)
-        ,'fields' => array('Mascota.nombre_completo','Criadero.nombre','Propietario.nombre','Raza.nombre','Mascota.color','Mascota.senas','Propietario.direccion','Propietario.telefono1','Propietario.telefono2','Mascota.kcb','Mascota.num_tatuaje','Mascota.chip','Propietario.email1','Propietario.email2','Mascota.hermano','Mascota.sexo','Mascota.fecha_nacimiento','Mascota.consanguinidad','Mascota.lechigada')
+        ,'fields' => array('Mascota.nombre_completo','Criadero.nombre','Propietario.nombre','Raza.nombre','Mascota.color','Mascota.senas','Propietario.direccion','Propietario.telefono1','Propietario.celular','Propietario.telefono2','Mascota.kcb','Mascota.num_tatuaje','Mascota.chip','Propietario.email1','Propietario.email2','Mascota.hermano','Mascota.sexo','Mascota.fecha_nacimiento','Mascota.consanguinidad','Mascota.lechigada')
         ));
         //debug($mascota);exit;
         $titulos = $this->Mascotastitulo->find('all',array(
@@ -787,7 +787,7 @@ class MascotasController extends AppController{
                     {
                         foreach($titulos as $ti)
                         {
-                            $var_titulos = $var_titulos.''.$ti['Titulo']['nombre'];
+                            $var_titulos = $var_titulos.' '.$ti['Titulo']['nombre'];
                         }
                     }
                     $padre[$i]['titulos'] = $var_titulos;
@@ -824,7 +824,7 @@ class MascotasController extends AppController{
                     {
                         foreach($titulos as $ti)
                         {
-                            $var_titulos = $var_titulos.''.$ti['Titulo']['nombre'];
+                            $var_titulos = $var_titulos.' '.$ti['Titulo']['nombre'];
                         }
                     }
                     $padre[$i]['titulos'] = $var_titulos;
