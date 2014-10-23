@@ -527,9 +527,11 @@ class MascotasController extends AppController{
     public function ver($idMascota = null)
     {
         $mascota = $this->Mascota->findByid($idMascota);
+        
         $examenes = $this->Examenesmascota->findAllBymascota_id($idMascota);
         $transferencias = $this->Mascotaspropietario->findAllBymascota_id($idMascota,null,null,null,null,0);
         $titulos = $this->Mascotastitulo->findAllBymascota_id($idMascota);
+        //debug(trim($mascota['Mascota']['nombre_completo']));exit;
         //debug($mascota);exit;
         if(empty($mascota['Mascota']['imagen']))
         {
@@ -559,7 +561,8 @@ class MascotasController extends AppController{
                 }
             }
         }
-        //debug($padre);exit;
+        //$prueba = $mascota['Mascota']['nombre_completo'];
+        
         $eventos = $this->EventosMascotasPuntaje->findAllBymascota_id($idMascota,null,array('EventosMascotasPuntaje.id' => 'desc'),null,null,0);
         //debug($eventos);exit;
         $this->set(compact('mascota','examenes','transferencias','titulos','imagen','padre','eventos'));

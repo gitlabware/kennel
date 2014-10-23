@@ -216,8 +216,8 @@ td{
             <table style="width: 1080px; height: 216px; padding: 0px; border-spacing: 0px; color: #124996; font-size: 9px; font-weight: bold;">
                 
                   <tr style="">
-                    <td rowspan="8" style="width: 246px; height: 216px;">
-                    <div id="divuno" style="width: 220px; height: 180px; margin-left: 20px;">
+                    <td rowspan="8" style="width: 246px; height: 216px; ">
+                    <div id="divuno" style="width: 220px; height: 170px; margin-left: 20px;">
                     <span id="spanuno">
                     <?php if(!empty($padre[1])):?>
                     <span style="color: red;">
@@ -491,7 +491,7 @@ td{
             <table style="width: 1080px; height: 216px; padding: 0px; border-spacing: 0px; color: #124996; font-weight: bold; font-size: 9px; margin-top: 0px;">
             <tr>
                     <td rowspan="8" style="width: 246px; height: 216px; ">
-                    <div id="divdos" style="width: 220px; height: 180px; margin-left: 20px;">
+                    <div id="divdos" style="width: 220px; height: 170px; margin-left: 20px;">
                     <span id="spandos">
                     <?php if(!empty($padre[2])):?>
                     <span style="color: red;">
@@ -800,8 +800,8 @@ $(document).ready(function() {
     autosize("spanhermanos","divhermanos");
     autosize("spanadn","divadn");
     autosize("spanfecha","divfecha");
-    autosize("spanuno","divuno",15);
-    autosize("spandos","divdos",15);
+    autosize("spanuno","divuno",16);
+    autosize("spandos","divdos",16);
     autosize("spantres","divtres",14);
     autosize("spancuatro","divcuatro",14);
     autosize("spancinco","divcinco",14);
@@ -908,7 +908,7 @@ $(document).ready(function() {
 </script>
 
 <script>
-        var textoqr = '<?php echo 'KCB: '.$mascota['Mascota']['kcb'].'\nNombre: '.$mascota['Mascota']['nombre_completo'].'\nRaza: '.$mascota['Raza']['nombre'].'\nN. Tatuaje: '.$mascota['Mascota']['num_tatuaje'].'\nChip: '.$mascota['Mascota']['chip'].'\nSexo: '.$mascota['Mascota']['sexo'].'\nF.nacimiento: '.$mascota['Mascota']['fecha_nacimiento'];?>';
+        var textoqr = "<?php echo 'KCB: '.  trim($mascota['Mascota']['kcb']).'\nNombre: '.  trim($mascota['Mascota']['nombre_completo']).'\nRaza: '.  trim($mascota['Raza']['nombre']).'\nN. Tatuaje: '.  trim($mascota['Mascota']['num_tatuaje']).'\nChip: '.  trim($mascota['Mascota']['chip']).'\nSexo: '.  trim($mascota['Mascota']['sexo']).'\nF.nacimiento: '.$mascota['Mascota']['fecha_nacimiento'];?>";
         
         var opcionesQRejmeplar = {
                 render: 'image'

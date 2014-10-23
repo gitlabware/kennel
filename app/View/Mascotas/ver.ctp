@@ -489,7 +489,8 @@ $mpista = new Pista();
     </div>
 </div>
     <script>
-        var textoqr = '<?php echo 'KCB: '.$mascota['Mascota']['kcb'].'\nNombre: '.$mascota['Mascota']['nombre_completo'].'\nRaza: '.$mascota['Raza']['nombre'].'\nN. Tatuaje: '.$mascota['Mascota']['num_tatuaje'].'\nChip: '.$mascota['Mascota']['chip'].'\nSexo: '.$mascota['Mascota']['sexo'].'\nF.nacimiento: '.$mascota['Mascota']['fecha_nacimiento'];?>';
+        
+        var textoqr = "<?php echo 'KCB: '.  trim($mascota['Mascota']['kcb']).'\nNombre: '.  trim($mascota['Mascota']['nombre_completo']).'\nRaza: '.  trim($mascota['Raza']['nombre']).'\nN. Tatuaje: '.  trim($mascota['Mascota']['num_tatuaje']).'\nChip: '.  trim($mascota['Mascota']['chip']).'\nSexo: '.  trim($mascota['Mascota']['sexo']).'\nF.nacimiento: '.$mascota['Mascota']['fecha_nacimiento'];?>";
         
         var opcionesQRejmeplar = {
                 render: 'image'
