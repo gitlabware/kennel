@@ -23,8 +23,8 @@ class TitulosController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->Titulo->recursive = 0;
-		$this->set('titulos', $this->Paginator->paginate());
+		$titulos  = $this->Titulo->find('all');
+                $this->set(compact('titulos'));
 	}
 
 /**

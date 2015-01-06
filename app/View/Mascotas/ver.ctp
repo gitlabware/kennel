@@ -25,7 +25,11 @@ $mpista = new Pista();
 <div class="innerLR">
     <div class="widget widget-heading-simple widget-body-gray">
         <div class="widget-body">
-            <h3 class="center">Informacion de <?php echo $mascota['Mascota']['nombre_completo']?></h3>
+            <h3 class="center">Informacion de <?php echo $mascota['Mascota']['nombre_completo']?>
+             <?php if(!empty($fallecido)):?>
+                <span class="label label-important">Fallecido</span>
+                <?php endif;?>
+            </h3>
             <div class="row-fluid">
             <div class="span12">
                 <div class="span4 center blanco" >

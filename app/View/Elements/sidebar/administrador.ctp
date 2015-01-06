@@ -75,10 +75,10 @@
 					</ul>
 				</li>
                 <li class="dropdown dd-1">
-					<a href="" data-toggle="dropdown" class="glyphicons notes"><i></i>Mascotas <span class="icon-chevron-right"></span></a>
+					<a href="" data-toggle="dropdown" class="glyphicons notes"><i></i>Ejemplares <span class="icon-chevron-right"></span></a>
 					<ul class="dropdown-menu pull-left">
-						<li><a href="<?php echo $this->Html->url(array('controller' => 'Mascotas','action' => 'index'));?>" class="glyphicons calendar"><i></i>Listado de Mascotas</a></li>
-						<li><a href="#myModal" data-toggle="modal" class="glyphicons credit_card" onclick="$('#imgcargando').toggle();$('#mimodal').toggle();$('#mimodal').load('<?php echo $this->Html->url(array('controller' => 'Mascotas','action' => 'ajaxmascota'));?>',function(){$('#imgcargando').toggle(100);$('#mimodal').toggle();});"><i></i>Nueva Mascota</a></li>
+						<li><a href="<?php echo $this->Html->url(array('controller' => 'Mascotas','action' => 'index'));?>" class="glyphicons calendar"><i></i>Listado de Ejemplares</a></li>
+						<li><a href="#myModal" data-toggle="modal" class="glyphicons credit_card" onclick="$('#imgcargando').toggle();$('#mimodal').toggle();$('#mimodal').load('<?php echo $this->Html->url(array('controller' => 'Mascotas','action' => 'ajaxmascota'));?>',function(){$('#imgcargando').toggle(100);$('#mimodal').toggle();});"><i></i>Nuevo Ejemplar</a></li>
 					</ul>
 				</li>
                 <li class="dropdown dd-1">

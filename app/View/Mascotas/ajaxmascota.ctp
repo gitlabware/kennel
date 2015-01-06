@@ -3,7 +3,7 @@
 
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-    <h3>Formulario Mascota</h3>
+    <h3>Formulario Ejemplar</h3>
   </div>
   
   <div class="modal-body">
@@ -21,11 +21,11 @@
 				<!-- // Widget heading END -->
 				<div class="widget-body">
 				<?php echo $this->Form->create('Mascota',array('action' => 'guardamascota'));?>		
-                <h5>Nombre de la Mascota</h5>
+                <h5>Nombre del Ejemplar</h5>
                 <?php 
                 echo $this->Form->hidden('id');
                 ?>
-                <?php echo $this->Form->text('nombre', array('placeholder' => 'Nombre de la Mascota', 'required','class' => 'span12')); ?>
+                <?php echo $this->Form->text('nombre', array('placeholder' => 'Nombre del ejemplar', 'required','class' => 'span12')); ?>
                 <div class="row-fluid">
                 <div class="span12">
                 <div class="span6">

@@ -25,13 +25,13 @@ td{
             <td style="width: 80px;"></td>
             <td style="width: 535px;">
             <div id="divnombre" style="width: 535px; height: 21px;">
-            <span id="spannombre"><?php echo $mascota['Mascota']['nombre_completo'];?></span>
+            <span id="spannombre"><?php echo strtoupper($mascota['Mascota']['nombre_completo']);?></span>
             </div>
             </td>
             <td style="width: 65px; "></td>
             <td style="width: 300px;">
             <div id="divafijo" style='width: 295px; height: 21px;'>
-                <span id="spanafijo"><?php echo $mascota['Criadero']['nombre']?></span>
+                <span id="spanafijo"><?php echo strtoupper($mascota['Criadero']['nombre'])?></span>
             </div>
             </td>
             </tr>
@@ -48,7 +48,7 @@ td{
             <td style="width: 300px">
             <div id="divcriador" style="width: 295px; height: 21px; ">
                 <span id="spancriador">
-                <?php echo $mascota['Propietario']['nombre'];?>
+                <?php echo strtoupper($mascota['Propietario']['nombre']);?>
                 </span>
             </div>
             </td>
@@ -61,7 +61,7 @@ td{
             <td style="width: 335px;">
                 <div id="divraza" style="width: 335px; height: 23px;">
                     <span id="spanraza">
-                   <?php echo $mascota['Raza']['nombre'];?>
+                   <?php echo strtoupper($mascota['Raza']['nombre']);?>
                     </span>
                 </div>
             </td>
@@ -69,7 +69,7 @@ td{
             <td style="width: 128px; ">
             <div id="divcolor" style="width: 128px; height: 23px;">
                 <span id="spancolor">
-                <?php if(!empty($mascota['Mascota']['color'])){echo $mascota['Mascota']['color'];}
+                <?php if(!empty($mascota['Mascota']['color'])){echo strtoupper($mascota['Mascota']['color']);}
                 if(!empty($mascota['Mascota']['senas'])){echo '/'.$mascota['Mascota']['senas'];}
                 ?>
                 </span>
@@ -79,7 +79,7 @@ td{
             <td style="width: 299px;  ">
             <div id="divdireccion" style="width: 295px;height: 23px;">
             <span id="spandireccion">
-             <?php echo $mascota['Propietario']['direccion'];?>
+             <?php echo $mascota['Criadero']['direccion']." ".$this->requestAction(array('action' => 'get_departamento',$mascota['Criadero']['departamento_id']));?>
             </span>
             </div>
             </td>
@@ -223,8 +223,8 @@ td{
                     <span style="color: red;">
                     <?php if(!empty($padre[1]['titulos'])){echo strtoupper($padre[1]['titulos']).'<br/>';}?>
                     </span>
-                    <?php echo $padre[1]['Mascota']['nombre_completo'];?><br />
-                    <?php if(!empty($padre[1]['Mascota']['codigo'])){echo ''.$padre[1]['Mascota']['codigo'].'<br />';}?>
+                    <?php echo $padre[1][0]['nombre_completo'];?><br />
+                    <?php if(!empty($padre[1][0]['codigo'])){echo ''.$padre[1][0]['codigo'].'<br />';}?>
                    <?php if(!empty($padre[1]['Mascota']['kcb']) && $padre[1]['Mascota']['kcb'] != 'nulo'){echo 'K.C.B. '.$padre[1]['Mascota']['kcb'].'<br />';}?>
                    <?php if(!empty($padre[1]['Mascota']['num_tatuaje'])){echo 'No. x Raza '.$padre[1]['Mascota']['num_tatuaje'].'<br />';}?>                   
                     <?php if(!empty($padre[1]['Mascota']['chip'])){echo 'Chip '.$padre[1]['Mascota']['chip'].'<br />';}?>
@@ -242,8 +242,8 @@ td{
                     <span style="color: red;">
                     <?php if(!empty($padre[3]['titulos'])){echo strtoupper($padre[3]['titulos']).'<br/>';}?>
                     </span>
-                    <?php echo $padre[3]['Mascota']['nombre_completo'];?><br />
-                    <?php if(!empty($padre[3]['Mascota']['codigo'])){echo ''.$padre[3]['Mascota']['codigo'].'<br />';}?>
+                    <?php echo $padre[3][0]['nombre_completo'];?><br />
+                    <?php if(!empty($padre[3][0]['codigo'])){echo ''.$padre[3][0]['codigo'].'<br />';}?>
                    <?php if(!empty($padre[3]['Mascota']['kcb']) && $padre[3]['Mascota']['kcb'] != 'nulo'){echo 'K.C.B. '.$padre[3]['Mascota']['kcb'].'<br />';}?>
                    <?php //if(!empty($padre[3]['Mascota']['num_tatuaje'])){echo 'No. x Raza '.$padre[3]['Mascota']['num_tatuaje'].'<br />';}?>                   
                     <?php //if(!empty($padre[3]['Mascota']['chip'])){echo 'Chip '.$padre[3]['Mascota']['chip'].'<br />';}?>
@@ -262,8 +262,8 @@ td{
                     <span style="color: red;">
                     <?php if(!empty($padre[7]['titulos'])){echo strtoupper($padre[7]['titulos']).'<br class="brtitulos"/>';}?>
                     </span>
-                    <?php echo $padre[7]['Mascota']['nombre_completo'];?> <br class="brnombre"/>
-                    <?php if(!empty($padre[7]['Mascota']['codigo'])){echo ''.$padre[7]['Mascota']['codigo'].'';}?>
+                    <?php echo $padre[7][0]['nombre_completo'];?> <br class="brnombre"/>
+                    <?php if(!empty($padre[7][0]['codigo'])){echo ''.$padre[7][0]['codigo'].'';}?>
                    <?php if(!empty($padre[7]['Mascota']['kcb']) && $padre[7]['Mascota']['kcb'] != 'nulo'){echo 'K.C.B. '.$padre[7]['Mascota']['kcb'].'<br />';}?>
                    <?php if(!empty($padre[7]['apto_reproduccion'])){echo 'Apto de Reproduccion '.$padre[7]['apto_reproduccion']['Examenesmascota']['resultado'].' ('.$padre[7]['apto_reproduccion']['Examenesmascota']['observacion'].') ';}?>
                     <?php if(!empty($padre[7]['Mascota']['color'])){echo ' '.$padre[7]['Mascota']['color'].'';}?>
@@ -279,8 +279,8 @@ td{
                     <span style="color: red;">
                     <?php if(!empty($padre[15]['titulos'])){echo strtoupper($padre[15]['titulos']).'<br class="brtitulos"/>';}?>
                     </span>
-                    <?php echo $padre[15]['Mascota']['nombre_completo'];?> 
-                    <?php if(!empty($padre[15]['Mascota']['codigo'])){echo ''.$padre[15]['Mascota']['codigo'].' ';}?>
+                    <?php echo $padre[15][0]['nombre_completo'];?> 
+                    <?php if(!empty($padre[15][0]['codigo'])){echo ''.$padre[15][0]['codigo'].' ';}?>
                    <?php if(!empty($padre[15]['Mascota']['kcb']) && $padre[15]['Mascota']['kcb'] != 'nulo'){echo 'K.C.B. '.$padre[15]['Mascota']['kcb'].' ';}?>
                    <?php if(!empty($padre[15]['apto_reproduccion'])){echo ''.$padre[15]['apto_reproduccion']['Examenesmascota']['resultado'].' ('.$padre[15]['apto_reproduccion']['Examenesmascota']['observacion'].') ';}?>
                     <?php if(!empty($padre[15]['Mascota']['color'])){echo ' '.$padre[15]['Mascota']['color'].'';}?>
@@ -298,8 +298,8 @@ td{
                     <span style="color: red;">
                     <?php if(!empty($padre[16]['titulos'])){echo strtoupper($padre[16]['titulos']).'<br class="brtitulos"/>';}?>
                     </span>
-                    <?php echo $padre[16]['Mascota']['nombre_completo'];?> 
-                    <?php if(!empty($padre[16]['Mascota']['codigo'])){echo ''.$padre[16]['Mascota']['codigo'].' ';}?>
+                    <?php echo $padre[16][0]['nombre_completo'];?> 
+                    <?php if(!empty($padre[16][0]['codigo'])){echo ''.$padre[16][0]['codigo'].' ';}?>
                    <?php if(!empty($padre[16]['Mascota']['kcb']) && $padre[16]['Mascota']['kcb'] != 'nulo'){echo 'K.C.B. '.$padre[16]['Mascota']['kcb'].' ';}?>
                    <?php if(!empty($padre[16]['apto_reproduccion'])){echo ''.$padre[16]['apto_reproduccion']['Examenesmascota']['resultado'].' ('.$padre[16]['apto_reproduccion']['Examenesmascota']['observacion'].') ';}?>
                     <?php if(!empty($padre[16]['Mascota']['color'])){echo ' '.$padre[16]['Mascota']['color'].'';}?>
@@ -316,8 +316,8 @@ td{
                     <span style="color: red;">
                     <?php if(!empty($padre[8]['titulos'])){echo strtoupper($padre[8]['titulos']).'<br class="brtitulos"/>';}?>
                     </span>
-                    <?php echo $padre[8]['Mascota']['nombre_completo'];?> <br class="brnombre"/>
-                    <?php if(!empty($padre[8]['Mascota']['codigo'])){echo ''.$padre[8]['Mascota']['codigo'].'';}?>
+                    <?php echo $padre[8][0]['nombre_completo'];?> <br class="brnombre"/>
+                    <?php if(!empty($padre[8][0]['codigo'])){echo ''.$padre[8][0]['codigo'].'';}?>
                    <?php if(!empty($padre[8]['Mascota']['kcb']) && $padre[8]['Mascota']['kcb'] != 'nulo'){echo 'K.C.B. '.$padre[8]['Mascota']['kcb'].'<br />';}?>
                    <?php if(!empty($padre[8]['apto_reproduccion'])){echo 'Apto de Reproduccion '.$padre[8]['apto_reproduccion']['Examenesmascota']['resultado'].' ('.$padre[8]['apto_reproduccion']['Examenesmascota']['observacion'].') ';}?>
                     <?php if(!empty($padre[8]['Mascota']['color'])){echo ' '.$padre[8]['Mascota']['color'].'';}?>
@@ -332,8 +332,8 @@ td{
                     <span style="color: red;">
                     <?php if(!empty($padre[17]['titulos'])){echo strtoupper($padre[17]['titulos']).'<br class="brtitulos"/>';}?>
                     </span>
-                    <?php echo $padre[17]['Mascota']['nombre_completo'];?> 
-                    <?php if(!empty($padre[17]['Mascota']['codigo'])){echo ''.$padre[17]['Mascota']['codigo'].' ';}?>
+                    <?php echo $padre[17][0]['nombre_completo'];?> 
+                    <?php if(!empty($padre[17][0]['codigo'])){echo ''.$padre[17][0]['codigo'].' ';}?>
                    <?php if(!empty($padre[17]['Mascota']['kcb']) && $padre[17]['Mascota']['kcb'] != 'nulo'){echo 'K.C.B. '.$padre[17]['Mascota']['kcb'].' ';}?>
                    <?php if(!empty($padre[17]['apto_reproduccion'])){echo ''.$padre[17]['apto_reproduccion']['Examenesmascota']['resultado'].' ('.$padre[17]['apto_reproduccion']['Examenesmascota']['observacion'].') ';}?>
                     <?php if(!empty($padre[17]['Mascota']['color'])){echo ' '.$padre[17]['Mascota']['color'].'';}?>
@@ -350,8 +350,8 @@ td{
                     <span style="color: red;">
                     <?php if(!empty($padre[18]['titulos'])){echo strtoupper($padre[18]['titulos']).'<br class="brtitulos"/>';}?>
                     </span>
-                    <?php echo $padre[18]['Mascota']['nombre_completo'];?> 
-                    <?php if(!empty($padre[18]['Mascota']['codigo'])){echo ''.$padre[18]['Mascota']['codigo'].' ';}?>
+                    <?php echo $padre[18][0]['nombre_completo'];?> 
+                    <?php if(!empty($padre[18][0]['codigo'])){echo ''.$padre[18][0]['codigo'].' ';}?>
                    <?php if(!empty($padre[18]['Mascota']['kcb']) && $padre[18]['Mascota']['kcb'] != 'nulo'){echo 'K.C.B. '.$padre[18]['Mascota']['kcb'].' ';}?>
                    <?php if(!empty($padre[18]['apto_reproduccion'])){echo ''.$padre[18]['apto_reproduccion']['Examenesmascota']['resultado'].' ('.$padre[18]['apto_reproduccion']['Examenesmascota']['observacion'].') ';}?>
                     <?php if(!empty($padre[18]['Mascota']['color'])){echo ' '.$padre[18]['Mascota']['color'].'';}?>
@@ -368,8 +368,8 @@ td{
                     <span style="color: red;">
                     <?php if(!empty($padre[4]['titulos'])){echo strtoupper($padre[4]['titulos']).'<br/>';}?>
                     </span>
-                    <?php echo $padre[4]['Mascota']['nombre_completo'];?><br />
-                    <?php if(!empty($padre[4]['Mascota']['codigo'])){echo ''.$padre[4]['Mascota']['codigo'].'<br />';}?>
+                    <?php echo $padre[4][0]['nombre_completo'];?><br />
+                    <?php if(!empty($padre[4][0]['codigo'])){echo ''.$padre[4][0]['codigo'].'<br />';}?>
                    <?php if(!empty($padre[4]['Mascota']['kcb']) && $padre[4]['Mascota']['kcb'] != 'nulo'){echo 'K.C.B. '.$padre[4]['Mascota']['kcb'].'<br />';}?>
                    <?php //if(!empty($padre[4]['Mascota']['num_tatuaje'])){echo 'No. x Raza '.$padre[4]['Mascota']['num_tatuaje'].'<br />';}?>                   
                     <?php //if(!empty($padre[4]['Mascota']['chip'])){echo 'Chip '.$padre[4]['Mascota']['chip'].'<br />';}?>
@@ -387,8 +387,8 @@ td{
                     <span style="color: red;">
                     <?php if(!empty($padre[9]['titulos'])){echo strtoupper($padre[9]['titulos']).'<br class="brtitulos"/>';}?>
                     </span>
-                    <?php echo $padre[9]['Mascota']['nombre_completo'];?> <br class="brnombre"/>
-                    <?php if(!empty($padre[9]['Mascota']['codigo'])){echo ''.$padre[9]['Mascota']['codigo'].'';}?>
+                    <?php echo $padre[9][0]['nombre_completo'];?> <br class="brnombre"/>
+                    <?php if(!empty($padre[9][0]['codigo'])){echo ''.$padre[9][0]['codigo'].'';}?>
                    <?php if(!empty($padre[9]['Mascota']['kcb']) && $padre[9]['Mascota']['kcb'] != 'nulo'){echo 'K.C.B. '.$padre[9]['Mascota']['kcb'].'<br />';}?>
                    <?php if(!empty($padre[9]['apto_reproduccion'])){echo 'Apto de Reproduccion '.$padre[9]['apto_reproduccion']['Examenesmascota']['resultado'].' ('.$padre[9]['apto_reproduccion']['Examenesmascota']['observacion'].') ';}?>
                     <?php if(!empty($padre[9]['Mascota']['color'])){echo ' '.$padre[14]['Mascota']['color'].'';}?>
@@ -404,8 +404,8 @@ td{
                     <span style="color: red;">
                     <?php if(!empty($padre[19]['titulos'])){echo strtoupper($padre[19]['titulos']).'<br class="brtitulos"/>';}?>
                     </span>
-                    <?php echo $padre[19]['Mascota']['nombre_completo'];?> 
-                    <?php if(!empty($padre[19]['Mascota']['codigo'])){echo ''.$padre[19]['Mascota']['codigo'].' ';}?>
+                    <?php echo $padre[19][0]['nombre_completo'];?> 
+                    <?php if(!empty($padre[19][0]['codigo'])){echo ''.$padre[19][0]['codigo'].' ';}?>
                    <?php if(!empty($padre[19]['Mascota']['kcb']) && $padre[19]['Mascota']['kcb'] != 'nulo'){echo 'K.C.B. '.$padre[19]['Mascota']['kcb'].' ';}?>
                    <?php if(!empty($padre[19]['apto_reproduccion'])){echo ''.$padre[19]['apto_reproduccion']['Examenesmascota']['resultado'].' ('.$padre[19]['apto_reproduccion']['Examenesmascota']['observacion'].') ';}?>
                     <?php if(!empty($padre[19]['Mascota']['color'])){echo ' '.$padre[19]['Mascota']['color'].'';}?>
@@ -422,8 +422,8 @@ td{
                     <span style="color: red;">
                     <?php if(!empty($padre[20]['titulos'])){echo strtoupper($padre[20]['titulos']).'<br class="brtitulos"/>';}?>
                     </span>
-                    <?php echo $padre[20]['Mascota']['nombre_completo'];?> 
-                    <?php if(!empty($padre[20]['Mascota']['codigo'])){echo ''.$padre[20]['Mascota']['codigo'].' ';}?>
+                    <?php echo $padre[20][0]['nombre_completo'];?> 
+                    <?php if(!empty($padre[20][0]['codigo'])){echo ''.$padre[20][0]['codigo'].' ';}?>
                    <?php if(!empty($padre[20]['Mascota']['kcb']) && $padre[20]['Mascota']['kcb'] != 'nulo'){echo 'K.C.B. '.$padre[20]['Mascota']['kcb'].' ';}?>
                    <?php if(!empty($padre[20]['apto_reproduccion'])){echo ''.$padre[20]['apto_reproduccion']['Examenesmascota']['resultado'].' ('.$padre[20]['apto_reproduccion']['Examenesmascota']['observacion'].') ';}?>
                     <?php if(!empty($padre[20]['Mascota']['color'])){echo ' '.$padre[20]['Mascota']['color'].'';}?>
@@ -440,8 +440,8 @@ td{
                     <span style="color: red;">
                     <?php if(!empty($padre[10]['titulos'])){echo strtoupper($padre[10]['titulos']).'<br class="brtitulos"/>';}?>
                     </span>
-                    <?php echo $padre[10]['Mascota']['nombre_completo'];?> <br class="brnombre"/>
-                    <?php if(!empty($padre[10]['Mascota']['codigo'])){echo ''.$padre[10]['Mascota']['codigo'].'';}?>
+                    <?php echo $padre[10][0]['nombre_completo'];?> <br class="brnombre"/>
+                    <?php if(!empty($padre[10][0]['codigo'])){echo ''.$padre[10][0]['codigo'].'';}?>
                    <?php if(!empty($padre[10]['Mascota']['kcb']) && $padre[10]['Mascota']['kcb'] != 'nulo'){echo 'K.C.B. '.$padre[10]['Mascota']['kcb'].'<br />';}?>
                    <?php if(!empty($padre[10]['apto_reproduccion'])){echo 'Apto de Reproduccion '.$padre[10]['apto_reproduccion']['Examenesmascota']['resultado'].' ('.$padre[10]['apto_reproduccion']['Examenesmascota']['observacion'].') ';}?>
                     <?php if(!empty($padre[10]['Mascota']['color'])){echo ' '.$padre[10]['Mascota']['color'].'';}?>
@@ -457,8 +457,8 @@ td{
                     <span style="color: red;">
                     <?php if(!empty($padre[21]['titulos'])){echo strtoupper($padre[21]['titulos']).'<br class="brtitulos"/>';}?>
                     </span>
-                    <?php echo $padre[21]['Mascota']['nombre_completo'];?> 
-                    <?php if(!empty($padre[21]['Mascota']['codigo'])){echo ''.$padre[21]['Mascota']['codigo'].' ';}?>
+                    <?php echo $padre[21][0]['nombre_completo'];?> 
+                    <?php if(!empty($padre[21][0]['codigo'])){echo ''.$padre[21][0]['codigo'].' ';}?>
                    <?php if(!empty($padre[21]['Mascota']['kcb']) && $padre[21]['Mascota']['kcb'] != 'nulo'){echo 'K.C.B. '.$padre[21]['Mascota']['kcb'].' ';}?>
                    <?php if(!empty($padre[21]['apto_reproduccion'])){echo ''.$padre[21]['apto_reproduccion']['Examenesmascota']['resultado'].' ('.$padre[21]['apto_reproduccion']['Examenesmascota']['observacion'].') ';}?>
                     <?php if(!empty($padre[21]['Mascota']['color'])){echo ' '.$padre[21]['Mascota']['color'].'';}?>
@@ -475,8 +475,8 @@ td{
                     <span style="color: red;">
                     <?php if(!empty($padre[22]['titulos'])){echo strtoupper($padre[22]['titulos']).'<br class="brtitulos"/>';}?>
                     </span>
-                    <?php echo $padre[22]['Mascota']['nombre_completo'];?> 
-                    <?php if(!empty($padre[22]['Mascota']['codigo'])){echo ''.$padre[22]['Mascota']['codigo'].' ';}?>
+                    <?php echo $padre[22][0]['nombre_completo'];?> 
+                    <?php if(!empty($padre[22][0]['codigo'])){echo ''.$padre[22][0]['codigo'].' ';}?>
                    <?php if(!empty($padre[22]['Mascota']['kcb']) && $padre[22]['Mascota']['kcb'] != 'nulo'){echo 'K.C.B. '.$padre[22]['Mascota']['kcb'].' ';}?>
                    <?php if(!empty($padre[22]['apto_reproduccion'])){echo ''.$padre[22]['apto_reproduccion']['Examenesmascota']['resultado'].' ('.$padre[22]['apto_reproduccion']['Examenesmascota']['observacion'].') ';}?>
                     <?php if(!empty($padre[22]['Mascota']['color'])){echo ' '.$padre[22]['Mascota']['color'].'';}?>
@@ -497,8 +497,8 @@ td{
                     <span style="color: red;">
                     <?php if(!empty($padre[2]['titulos'])){echo strtoupper($padre[2]['titulos']).'<br/>';}?>
                     </span>
-                    <?php echo $padre[2]['Mascota']['nombre_completo'];?><br />
-                    <?php if(!empty($padre[2]['Mascota']['codigo'])){echo ''.$padre[2]['Mascota']['codigo'].'<br />';}?>
+                    <?php echo $padre[2][0]['nombre_completo'];?><br />
+                    <?php if(!empty($padre[2][0]['codigo'])){echo ''.$padre[2][0]['codigo'].'<br />';}?>
                    <?php if(!empty($padre[2]['Mascota']['kcb']) && $padre[2]['Mascota']['kcb'] != 'nulo'){echo 'K.C.B. '.$padre[2]['Mascota']['kcb'].'<br />';}?>
                    <?php if(!empty($padre[2]['Mascota']['num_tatuaje'])){echo 'No. x Raza '.$padre[2]['Mascota']['num_tatuaje'].'<br />';}?>                   
                     <?php if(!empty($padre[2]['Mascota']['chip'])){echo 'Chip '.$padre[2]['Mascota']['chip'].'<br />';}?>
@@ -516,8 +516,8 @@ td{
                     <span style="color: red;">
                     <?php if(!empty($padre[5]['titulos'])){echo strtoupper($padre[5]['titulos']).'<br/>';}?>
                     </span>
-                    <?php echo $padre[5]['Mascota']['nombre_completo'];?><br />
-                    <?php if(!empty($padre[5]['Mascota']['codigo'])){echo ''.$padre[5]['Mascota']['codigo'].'<br />';}?>
+                    <?php echo $padre[5][0]['nombre_completo'];?><br />
+                    <?php if(!empty($padre[5][0]['codigo'])){echo ''.$padre[5][0]['codigo'].'<br />';}?>
                    <?php if(!empty($padre[5]['Mascota']['kcb']) && $padre[5]['Mascota']['kcb'] != 'nulo'){echo 'K.C.B. '.$padre[5]['Mascota']['kcb'].'<br />';}?>
                    <?php //if(!empty($padre[5]['Mascota']['num_tatuaje'])){echo 'No. x Raza '.$padre[5]['Mascota']['num_tatuaje'].'<br />';}?>                   
                     <?php //if(!empty($padre[5]['Mascota']['chip'])){echo 'Chip '.$padre[5]['Mascota']['chip'].'<br />';}?>
@@ -535,8 +535,8 @@ td{
                     <span style="color: red;">
                     <?php if(!empty($padre[11]['titulos'])){echo strtoupper($padre[11]['titulos']).'<br class="brtitulos"/>';}?>
                     </span>
-                    <?php echo $padre[11]['Mascota']['nombre_completo'];?><br class="brnombre"/>
-                    <?php if(!empty($padre[11]['Mascota']['codigo'])){echo ''.$padre[11]['Mascota']['codigo'].'';}?>
+                    <?php echo $padre[11][0]['nombre_completo'];?><br class="brnombre"/>
+                    <?php if(!empty($padre[11][0]['codigo'])){echo ''.$padre[11][0]['codigo'].'';}?>
                    <?php if(!empty($padre[11]['Mascota']['kcb']) && $padre[11]['Mascota']['kcb'] != 'nulo'){echo 'K.C.B. '.$padre[11]['Mascota']['kcb'].'<br />';}?>
                    <?php if(!empty($padre[11]['apto_reproduccion'])){echo 'Apto de Reproduccion '.$padre[11]['apto_reproduccion']['Examenesmascota']['resultado'].' ('.$padre[11]['apto_reproduccion']['Examenesmascota']['observacion'].') ';}?>
                     <?php if(!empty($padre[11]['Mascota']['color'])){echo ' '.$padre[11]['Mascota']['color'].'';}?>
@@ -552,8 +552,8 @@ td{
                     <span style="color: red;">
                     <?php if(!empty($padre[23]['titulos'])){echo strtoupper($padre[23]['titulos']).'<br class="brtitulos"/>';}?>
                     </span>
-                    <?php echo $padre[23]['Mascota']['nombre_completo'];?> 
-                    <?php if(!empty($padre[23]['Mascota']['codigo'])){echo ''.$padre[23]['Mascota']['codigo'].' ';}?>
+                    <?php echo $padre[23][0]['nombre_completo'];?> 
+                    <?php if(!empty($padre[23][0]['codigo'])){echo ''.$padre[23][0]['codigo'].' ';}?>
                    <?php if(!empty($padre[23]['Mascota']['kcb']) && $padre[23]['Mascota']['kcb'] != 'nulo'){echo 'K.C.B. '.$padre[23]['Mascota']['kcb'].' ';}?>
                    <?php if(!empty($padre[23]['apto_reproduccion'])){echo ''.$padre[23]['apto_reproduccion']['Examenesmascota']['resultado'].' ('.$padre[23]['apto_reproduccion']['Examenesmascota']['observacion'].') ';}?>
                     <?php if(!empty($padre[23]['Mascota']['color'])){echo ' '.$padre[23]['Mascota']['color'].'';}?>
@@ -570,8 +570,8 @@ td{
                     <span style="color: red;">
                     <?php if(!empty($padre[24]['titulos'])){echo strtoupper($padre[24]['titulos']).'<br class="brtitulos"/>';}?>
                     </span>
-                    <?php echo $padre[24]['Mascota']['nombre_completo'];?> 
-                    <?php if(!empty($padre[24]['Mascota']['codigo'])){echo ''.$padre[24]['Mascota']['codigo'].' ';}?>
+                    <?php echo $padre[24][0]['nombre_completo'];?> 
+                    <?php if(!empty($padre[24][0]['codigo'])){echo ''.$padre[24][0]['codigo'].' ';}?>
                    <?php if(!empty($padre[24]['Mascota']['kcb']) && $padre[24]['Mascota']['kcb'] != 'nulo'){echo 'K.C.B. '.$padre[24]['Mascota']['kcb'].' ';}?>
                    <?php if(!empty($padre[24]['apto_reproduccion'])){echo ''.$padre[24]['apto_reproduccion']['Examenesmascota']['resultado'].' ('.$padre[24]['apto_reproduccion']['Examenesmascota']['observacion'].') ';}?>
                     <?php if(!empty($padre[24]['Mascota']['color'])){echo ' '.$padre[24]['Mascota']['color'].'';}?>
@@ -588,8 +588,8 @@ td{
                     <span style="color: red;">
                     <?php if(!empty($padre[12]['titulos'])){echo strtoupper($padre[12]['titulos']).'<br class="brtitulos"/>';}?>
                     </span>
-                    <?php echo $padre[12]['Mascota']['nombre_completo'];?> <br class="brnombre"/>
-                    <?php if(!empty($padre[12]['Mascota']['codigo'])){echo ''.$padre[12]['Mascota']['codigo'].'';}?>
+                    <?php echo $padre[12][0]['nombre_completo'];?> <br class="brnombre"/>
+                    <?php if(!empty($padre[12][0]['codigo'])){echo ''.$padre[12][0]['codigo'].'';}?>
                    <?php if(!empty($padre[12]['Mascota']['kcb']) && $padre[12]['Mascota']['kcb'] != 'nulo'){echo 'K.C.B. '.$padre[12]['Mascota']['kcb'].'<br />';}?>
                    <?php if(!empty($padre[12]['apto_reproduccion'])){echo 'Apto de Reproduccion '.$padre[12]['apto_reproduccion']['Examenesmascota']['resultado'].' ('.$padre[12]['apto_reproduccion']['Examenesmascota']['observacion'].') ';}?>
                     <?php if(!empty($padre[12]['Mascota']['color'])){echo ' '.$padre[12]['Mascota']['color'].'';}?>
@@ -605,8 +605,8 @@ td{
                     <span style="color: red;">
                     <?php if(!empty($padre[25]['titulos'])){echo strtoupper($padre[25]['titulos']).'<br class="brtitulos"/>';}?>
                     </span>
-                    <?php echo $padre[25]['Mascota']['nombre_completo'];?> 
-                    <?php if(!empty($padre[25]['Mascota']['codigo'])){echo ''.$padre[25]['Mascota']['codigo'].' ';}?>
+                    <?php echo $padre[25][0]['nombre_completo'];?> 
+                    <?php if(!empty($padre[25][0]['codigo'])){echo ''.$padre[25][0]['codigo'].' ';}?>
                    <?php if(!empty($padre[25]['Mascota']['kcb']) && $padre[25]['Mascota']['kcb'] != 'nulo'){echo 'K.C.B. '.$padre[25]['Mascota']['kcb'].' ';}?>
                    <?php if(!empty($padre[25]['apto_reproduccion'])){echo ''.$padre[25]['apto_reproduccion']['Examenesmascota']['resultado'].' ('.$padre[25]['apto_reproduccion']['Examenesmascota']['observacion'].') ';}?>
                     <?php if(!empty($padre[25]['Mascota']['color'])){echo ' '.$padre[25]['Mascota']['color'].'';}?>
@@ -623,8 +623,8 @@ td{
                     <span style="color: red;">
                     <?php if(!empty($padre[26]['titulos'])){echo strtoupper($padre[26]['titulos']).'<br class="brtitulos"/>';}?>
                     </span>
-                    <?php echo $padre[26]['Mascota']['nombre_completo'];?> 
-                    <?php if(!empty($padre[26]['Mascota']['codigo'])){echo ''.$padre[26]['Mascota']['codigo'].' ';}?>
+                    <?php echo $padre[26][0]['nombre_completo'];?> 
+                    <?php if(!empty($padre[26][0]['codigo'])){echo ''.$padre[26][0]['codigo'].' ';}?>
                    <?php if(!empty($padre[26]['Mascota']['kcb']) && $padre[26]['Mascota']['kcb'] != 'nulo'){echo 'K.C.B. '.$padre[26]['Mascota']['kcb'].' ';}?>
                    <?php if(!empty($padre[26]['apto_reproduccion'])){echo ''.$padre[26]['apto_reproduccion']['Examenesmascota']['resultado'].' ('.$padre[26]['apto_reproduccion']['Examenesmascota']['observacion'].') ';}?>
                     <?php if(!empty($padre[26]['Mascota']['color'])){echo ' '.$padre[26]['Mascota']['color'].'';}?>
@@ -641,8 +641,8 @@ td{
                     <span style="color: red;">
                     <?php if(!empty($padre[6]['titulos'])){echo strtoupper($padre[6]['titulos']).'<br/>';}?>
                     </span>
-                    <?php echo $padre[6]['Mascota']['nombre_completo'];?><br />
-                    <?php if(!empty($padre[6]['Mascota']['codigo'])){echo ''.$padre[6]['Mascota']['codigo'].'<br />';}?>
+                    <?php echo $padre[6][0]['nombre_completo'];?><br />
+                    <?php if(!empty($padre[6][0]['codigo'])){echo ''.$padre[6][0]['codigo'].'<br />';}?>
                    <?php if(!empty($padre[6]['Mascota']['kcb']) && $padre[6]['Mascota']['kcb'] != 'nulo'){echo 'K.C.B. '.$padre[6]['Mascota']['kcb'].'<br />';}?>
                    <?php //if(!empty($padre[6]['Mascota']['num_tatuaje'])){echo 'No. x Raza '.$padre[6]['Mascota']['num_tatuaje'].'<br />';}?>                   
                     <?php //if(!empty($padre[6]['Mascota']['chip'])){echo 'Chip '.$padre[6]['Mascota']['chip'].'<br />';}?>
@@ -660,8 +660,8 @@ td{
                     <span style="color: red;">
                     <?php if(!empty($padre[13]['titulos'])){echo strtoupper($padre[13]['titulos']).'<br class="brtitulos"/>';}?>
                     </span>
-                    <?php echo $padre[13]['Mascota']['nombre_completo'];?> <br class="brnombre"/>
-                    <?php if(!empty($padre[13]['Mascota']['codigo'])){echo ''.$padre[13]['Mascota']['codigo'].'';}?>
+                    <?php echo $padre[13][0]['nombre_completo'];?> <br class="brnombre"/>
+                    <?php if(!empty($padre[13][0]['codigo'])){echo ''.$padre[13][0]['codigo'].'';}?>
                    <?php if(!empty($padre[13]['Mascota']['kcb']) && $padre[13]['Mascota']['kcb'] != 'nulo'){echo 'K.C.B. '.$padre[13]['Mascota']['kcb'].'<br />';}?>
                    <?php //if(!empty($padre[14]['Mascota']['num_tatuaje'])){echo 'No. x Raza '.$padre[14]['Mascota']['num_tatuaje'].'<br />';}?>                   
                     <?php //if(!empty($padre[14]['Mascota']['chip'])){echo 'Chip '.$padre[14]['Mascota']['chip'].'<br />';}?>
@@ -679,8 +679,8 @@ td{
                     <span style="color: red;">
                     <?php if(!empty($padre[27]['titulos'])){echo strtoupper($padre[27]['titulos']).'<br class="brtitulos"/>';}?>
                     </span>
-                    <?php echo $padre[27]['Mascota']['nombre_completo'];?> 
-                    <?php if(!empty($padre[27]['Mascota']['codigo'])){echo ''.$padre[27]['Mascota']['codigo'].' ';}?>
+                    <?php echo $padre[27][0]['nombre_completo'];?> 
+                    <?php if(!empty($padre[27][0]['codigo'])){echo ''.$padre[27][0]['codigo'].' ';}?>
                    <?php if(!empty($padre[27]['Mascota']['kcb']) && $padre[27]['Mascota']['kcb'] != 'nulo'){echo 'K.C.B. '.$padre[27]['Mascota']['kcb'].' ';}?>
                    <?php if(!empty($padre[27]['apto_reproduccion'])){echo ''.$padre[27]['apto_reproduccion']['Examenesmascota']['resultado'].' ('.$padre[27]['apto_reproduccion']['Examenesmascota']['observacion'].') ';}?>
                     <?php if(!empty($padre[27]['Mascota']['color'])){echo ' '.$padre[27]['Mascota']['color'].'';}?>
@@ -697,8 +697,8 @@ td{
                     <span style="color: red;">
                     <?php if(!empty($padre[28]['titulos'])){echo strtoupper($padre[28]['titulos']).'<br class="brtitulos"/>';}?>
                     </span>
-                    <?php echo $padre[28]['Mascota']['nombre_completo'];?> 
-                    <?php if(!empty($padre[28]['Mascota']['codigo'])){echo ''.$padre[28]['Mascota']['codigo'].' ';}?>
+                    <?php echo $padre[28][0]['nombre_completo'];?> 
+                    <?php if(!empty($padre[28][0]['codigo'])){echo ''.$padre[28][0]['codigo'].' ';}?>
                    <?php if(!empty($padre[28]['Mascota']['kcb']) && $padre[28]['Mascota']['kcb'] != 'nulo'){echo 'K.C.B. '.$padre[28]['Mascota']['kcb'].' ';}?>
                    <?php if(!empty($padre[28]['apto_reproduccion'])){echo ''.$padre[28]['apto_reproduccion']['Examenesmascota']['resultado'].' ('.$padre[28]['apto_reproduccion']['Examenesmascota']['observacion'].') ';}?>
                     <?php if(!empty($padre[28]['Mascota']['color'])){echo ' '.$padre[28]['Mascota']['color'].'';}?>
@@ -715,8 +715,8 @@ td{
                     <span style="color: red;">
                     <?php if(!empty($padre[14]['titulos'])){echo strtoupper($padre[14]['titulos']).'<br class="brtitulos"/>';}?>
                     </span>
-                    <?php echo $padre[14]['Mascota']['nombre_completo'];?> <br class="brnombre"/>
-                    <?php if(!empty($padre[14]['Mascota']['codigo'])){echo ''.$padre[14]['Mascota']['codigo'].'';}?>
+                    <?php echo $padre[14][0]['nombre_completo'];?> <br class="brnombre"/>
+                    <?php if(!empty($padre[14][0]['codigo'])){echo ''.$padre[14][0]['codigo'].'';}?>
                    <?php if(!empty($padre[14]['Mascota']['kcb']) && $padre[14]['Mascota']['kcb'] != 'nulo'){echo 'K.C.B. '.$padre[14]['Mascota']['kcb'].'<br />';}?>
                    <?php //if(!empty($padre[14]['Mascota']['num_tatuaje'])){echo 'No. x Raza '.$padre[14]['Mascota']['num_tatuaje'].'<br />';}?>                   
                     <?php //if(!empty($padre[14]['Mascota']['chip'])){echo 'Chip '.$padre[14]['Mascota']['chip'].'<br />';}?>
@@ -734,8 +734,8 @@ td{
                     <span style="color: red;">
                     <?php if(!empty($padre[29]['titulos'])){echo strtoupper($padre[29]['titulos']).'<br class="brtitulos"/>';}?>
                     </span>
-                    <?php echo $padre[29]['Mascota']['nombre_completo'];?> 
-                    <?php if(!empty($padre[29]['Mascota']['codigo'])){echo ''.$padre[29]['Mascota']['codigo'].' ';}?>
+                    <?php echo $padre[29][0]['nombre_completo'];?> 
+                    <?php if(!empty($padre[29][0]['codigo'])){echo ''.$padre[29][0]['codigo'].' ';}?>
                    <?php if(!empty($padre[29]['Mascota']['kcb']) && $padre[29]['Mascota']['kcb'] != 'nulo'){echo 'K.C.B. '.$padre[29]['Mascota']['kcb'].' ';}?>
                    <?php if(!empty($padre[29]['apto_reproduccion'])){echo ''.$padre[29]['apto_reproduccion']['Examenesmascota']['resultado'].' ('.$padre[29]['apto_reproduccion']['Examenesmascota']['observacion'].') ';}?>
                     <?php if(!empty($padre[29]['Mascota']['color'])){echo ' '.$padre[29]['Mascota']['color'].'';}?>
@@ -752,8 +752,8 @@ td{
                     <span style="color: red;">
                     <?php if(!empty($padre[30]['titulos'])){echo strtoupper($padre[30]['titulos']).'<br class="brtitulos"/>';}?>
                     </span>
-                    <?php echo $padre[30]['Mascota']['nombre_completo'];?> <br />
-                    <?php if(!empty($padre[30]['Mascota']['codigo'])){echo ''.$padre[30]['Mascota']['codigo'].' ';}?>
+                    <?php echo $padre[30][0]['nombre_completo'];?> <br />
+                    <?php if(!empty($padre[30][0]['codigo'])){echo ''.$padre[30][0]['codigo'].' ';}?>
                    <?php if(!empty($padre[30]['Mascota']['kcb']) && $padre[30]['Mascota']['kcb'] != 'nulo'){echo 'K.C.B. '.$padre[30]['Mascota']['kcb'].' ';}?>
                    <?php if(!empty($padre[30]['apto_reproduccion'])){echo ''.$padre[30]['apto_reproduccion']['Examenesmascota']['resultado'].' ('.$padre[30]['apto_reproduccion']['Examenesmascota']['observacion'].') ';}?>
                     <?php if(!empty($padre[30]['Mascota']['color'])){echo ' '.$padre[30]['Mascota']['color'].'';}?>
@@ -768,7 +768,11 @@ td{
         <?php echo $mascota['Mascota']['lechigada'];?>
         </div>
         <div style="margin-left: 190px;width: 250px; height: 20px; margin-top: 3px; font-size: 13px;">
-        <?php echo $this->requestAction(array('action' => 'get_departamento',$this->Session->read('Auth.User.Sucursale.departamento_id'))).' '.date('d/M/Y');?>
+        <?php 
+        $fechahoy = $this->requestAction(array('action' => 'SpanishDate'));
+        ?>
+        <?php echo $this->requestAction(array('action' => 'get_departamento',$this->Session->read('Auth.User.Sucursale.departamento_id'))).' '.$fechahoy;?>
+        
         </div>
         </div>
         
