@@ -83,7 +83,7 @@ td{
             <table style="color: #124996; font-weight: bold;margin-left: 5px; width: 240px; height: 11px; margin-top: 142px; font-size: 9px; border-spacing: 0px;" >
                 <tr>
                 <td style="width: 50px;"></td>
-                <td style="width: 190px; height: 11px;"><div id="divtransferido1" style="width: 183px; height: 10px;"><span id="spantransferido1"><?php if(!empty($transferencias[0]['Propietario']['nombre'])){echo strtoupper($transferencias[0]['Propietario']['nombre']);}?></span></div></td>
+                <td style="width: 190px; height: 11px;"><div id="divtransferido1" style="width: 183px; height: 10px;"><span id="spantransferido1"><?php if(!empty($transferencias[0]['Propietario']['nombre'])){echo mb_strtoupper($transferencias[0]['Propietario']['nombre'], 'UTF-8');}?></span></div></td>
                 </tr>
             </table>
             <table style="color: #124996; font-weight: bold; margin-left: 5px; width: 240px; height: 11px; margin-top: 2px; font-size: 8px; border-spacing: 0px; " >
