@@ -313,13 +313,16 @@
 
                                     <?php
                                     if (!empty($padre[1]['Mascota']['color'])) {
-                                        echo 'Color: ' . $padre[1]['Mascota']['color'] . '';
+                                        echo 'Color: ' . $padre[1]['Mascota']['color'] . ' <br />';
+                                    }
+                                    if (!empty($padre[1]['Mascota']['senas'])) {
+                                        echo 'Se&ntilde;as: ' . $padre[1]['Mascota']['senas'] . '';
                                     }
                                     ?>
                                 <?php endif; ?>
                             </span>
                         </div>
-
+                        
                     </td>
                     <td rowspan="4" style="width: 224px; height: 108px;">
                         <div id="divtres" style="width: 190px; height: 85px; margin-left: 20px;">
@@ -921,6 +924,9 @@
                                     <?php
                                     if (!empty($padre[2]['Mascota']['color'])) {
                                         echo 'Color: ' . $padre[2]['Mascota']['color'] . '';
+                                    }
+                                    if (!empty($padre[2]['Mascota']['senas'])) {
+                                        echo 'Se&ntilde;as: ' . $padre[2]['Mascota']['senas'] . '';
                                     }
                                     ?>
 
