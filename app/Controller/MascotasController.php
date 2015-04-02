@@ -841,6 +841,12 @@ class MascotasController extends AppController {
     //debug("$dia/" . $mesesN[$mes] . "/$ano");exit;
     return "$dia/" . $mesesN[$mes] . "/$ano";
   }
+  
+  public function camada(){
+    $razas = $this->Raza->find('list', array('fields' => 'Raza.nombre_completo', 'order' => 'Raza.nombre ASC'));
+    $departamentos = $this->Departamento->find('list', array('fields' => array('Departamento.id', 'Departamento.nombre'), 'order' => 'Departamento.nombre ASC'));
+    $this->set(compact('razas','departamentos'));
+  }
 
 }
 

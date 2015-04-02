@@ -79,6 +79,7 @@
 					<ul class="dropdown-menu pull-left">
 						<li><a href="<?php echo $this->Html->url(array('controller' => 'Mascotas','action' => 'index'));?>" class="glyphicons calendar"><i></i>Listado de Ejemplares</a></li>
 						<li><a href="#myModal" data-toggle="modal" class="glyphicons credit_card" onclick="$('#imgcargando').toggle();$('#mimodal').toggle();$('#mimodal').load('<?php echo $this->Html->url(array('controller' => 'Mascotas','action' => 'ajaxmascota'));?>',function(){$('#imgcargando').toggle(100);$('#mimodal').toggle();});"><i></i>Nuevo Ejemplar</a></li>
+            <li><a href="<?php echo $this->Html->url(array('controller' => 'Mascotas','action' => 'camada'));?>" class="glyphicons calendar"><i></i>Nueva Camada</a></li>
 					</ul>
 				</li>
                 <li class="dropdown dd-1">
