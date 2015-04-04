@@ -841,13 +841,93 @@ class MascotasController extends AppController {
     //debug("$dia/" . $mesesN[$mes] . "/$ano");exit;
     return "$dia/" . $mesesN[$mes] . "/$ano";
   }
-  
-  public function camada(){
+
+  public function camada() {
     $razas = $this->Raza->find('list', array('fields' => 'Raza.nombre_completo', 'order' => 'Raza.nombre ASC'));
     $departamentos = $this->Departamento->find('list', array('fields' => array('Departamento.id', 'Departamento.nombre'), 'order' => 'Departamento.nombre ASC'));
-    $this->set(compact('razas','departamentos'));
+    if($this->Session->check('camada')){
+      $this->request->data = $this->Session->read('camada');
+    }
+    $this->set(compact('razas', 'departamentos'));
   }
 
+  public function registrar_camada() {
+    if (!empty($this->request->data['Ejemplar'])) {
+      $this->Session->write('camada',  $this->request->data);
+      foreach ($this->request->data['Ejemplar']['mascotas'] as $key => $ma) {
+        $this->request->data['Mascota']['kcb'] = $ma['kcb'];
+        $this->request->data['Mascota']['nombre'] = $ma['nombre'];
+        $this->request->data['Mascota']['nombre_completo'] = $this->genera_nombre($ma['nombre']);
+        $this->request->data['Mascota']['num_tatuaje'] = $ma['num_tatuaje'];
+        $this->request->data['Mascota']['chip'] = $ma['chip'];
+        $this->request->data['Mascota']['color'] = $ma['color'];
+        $this->request->data['Mascota']['senas'] = $ma['senas'];
+        $this->request->data['Mascota']['sexo'] = $ma['sexo'];
+        $validar = $this->validar('Mascota');
+        if(!empty($validar)){
+          $this->Session->setFlash($key.' '.$validar);
+          $this->redirect(array('action' => 'camada'));
+        }
+      }
+      foreach ($this->request->data['Ejemplar']['mascotas'] as $key => $ma) {
+        $this->Mascota->create();
+        $this->request->data['Mascota']['kcb'] = $ma['kcb'];
+        $this->request->data['Mascota']['nombre'] = $ma['nombre'];
+        $this->request->data['Mascota']['nombre_completo'] = $this->genera_nombre($ma['nombre']);
+        $this->request->data['Mascota']['num_tatuaje'] = $ma['num_tatuaje'];
+        $this->request->data['Mascota']['chip'] = $ma['chip'];
+        $this->request->data['Mascota']['color'] = $ma['color'];
+        $this->request->data['Mascota']['senas'] = $ma['senas'];
+        $this->request->data['Mascota']['sexo'] = $ma['sexo'];
+        $this->Mascota->save($this->request->data['Mascota']);
+      }
+      $this->Session->delete('camada');
+      $this->Session->setFlash('Se registro correctamente!!!','msgbueno');
+      $this->redirect(array('action' => 'index'));
+    }
+  }
+
+  public function genera_nombre($nombre = NULL) {
+    if ($this->request->data['Mascota']['orden'] == 0) {
+      $cadena_nombre = $nombre;
+      if ($this->request->data['Mascota']['prefijo'] != null) {
+        $cadena_nombre .= " ";
+        $cadena_nombre .= $this->request->data['Mascota']['prefijo'];
+      }
+      //debug('entro');exit;
+      if (!empty($this->request->data['Mascota']['criadero_id'])) {
+        $criadero = $this->Criadero->find('first', array(
+          'conditions' => array('Criadero.id' => $this->request->data['Mascota']['criadero_id']),
+          'recursive' => -1
+        ));
+        if (!empty($criadero)) {
+
+          $nombre_criadero = $criadero['Criadero']['nombre'];
+          $cadena_nombre .= " " . $nombre_criadero;
+        }
+      }
+    } elseif ($this->request->data['Mascota']['orden'] == 1) {
+
+      if ($this->request->data['Mascota']['criadero_id'] != '') {
+        $criadero = $this->Criadero->find('first', array(
+          'conditions' => array('Criadero.id' => $this->request->data['Mascota']['criadero_id']),
+          'recursive' => -1
+        ));
+        //debug($criadero);
+        if (!empty($criadero)) {
+          $nombre_criadero = $criadero['Criadero']['nombre'];
+          $cadena_nombre .= $nombre_criadero;
+        }
+      }
+      if ($this->request->data['Mascota']['prefijo'] != null) {
+        $cadena_nombre .= " ";
+        $cadena_nombre .= $this->request->data['Mascota']['prefijo'];
+      }
+      $cadena_nombre .= " " . $nombre;
+    }
+    $cadena_nombre = strtoupper($cadena_nombre);
+    return $cadena_nombre;
+  }
 }
 
 ?>

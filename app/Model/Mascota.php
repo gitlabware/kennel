@@ -62,10 +62,9 @@ class Mascota extends AppModel {
         // $limit will have value: 25
         if(!empty($check['kcb']) && $check['kcb'] != 'nulo')
         {
-            $idmas = $this->data['Mascota']['id'];
-            if(!empty($idmas))
+            if(!empty($this->data['Mascota']['id']))
             {
-                $check['Mascota.id !='] = $idmas;
+                $check['Mascota.id !='] = $this->data['Mascota']['id'];
             }
             $existingPromoCount = $this->find('count', array(
                 'conditions' => $check,
@@ -87,8 +86,7 @@ class Mascota extends AppModel {
             
             if(!empty($this->data['Mascota']['id']))
             {
-                $idmas = $this->data['Mascota']['id'];
-                $check['Mascota.id !='] = $idmas;
+                $check['Mascota.id !='] = $this->data['Mascota']['id'];
             }
             $existingPromoCount = $this->find('count', array(
                 'conditions' => $check,

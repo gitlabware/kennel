@@ -2,7 +2,7 @@
 <div class="innerLR">
     <div class="widget widget-heading-simple widget-body-gray">
         <div class="widget-body">
-            <?php echo $this->Form->create('Mascota'); ?>
+            <?php echo $this->Form->create('Mascota', array('action' => 'registrar_camada')); ?>
             <div class="row-fluid">
                 <div class="span12">
                     <div class="span6">
@@ -46,11 +46,11 @@
                 <div class="span12">
                     <div class="span6">
                         <h5>Prefijo nombre (Sea el caso)</h5>
-                        <?php echo $this->Form->text('prefijo', array('placeholder' => 'Prefijo Nombre', 'class' => 'span12')); ?>
+                        <?php echo $this->Form->text('Mascota.prefijo', array('placeholder' => 'Prefijo Nombre', 'class' => 'span12')); ?>
                     </div>
                     <div class="span6">
                         <h5>Primero en mostrar</h5>
-                        <?php echo $this->Form->select('orden', array('0' => 'nombre', '1' => 'afijo'), array('class' => 'span12')); ?>
+                        <?php echo $this->Form->select('Mascota.orden', array('0' => 'nombre', '1' => 'afijo'), array('class' => 'span12')); ?>
                     </div>
                 </div>
             </div>
@@ -58,11 +58,11 @@
                 <div class="span12">
                     <div class="span6">
                         <h5>Raza</h5>
-                        <?php echo $this->Form->select('raza_id', $razas, array('required', 'id' => 'selecraza2', 'class' => 'span12')); ?>
+                        <?php echo $this->Form->select('Mascota.raza_id', $razas, array('required', 'id' => 'selecraza2', 'class' => 'span12')); ?>
                     </div>
                     <div class="span6">
                         <h5>Fecha Nacimiento</h5>
-                        <?php echo $this->Form->date('fecha_nacimiento', array('placeholder' => 'Click para Insertar Fecha', 'id' => 'date2', 'required', 'class' => 'span12')); ?>
+                        <?php echo $this->Form->date('Mascota.fecha_nacimiento', array('placeholder' => 'Click para Insertar Fecha', 'id' => 'date2', 'required', 'class' => 'span12')); ?>
                     </div>
                 </div>
             </div>
@@ -70,11 +70,11 @@
                 <div class="span12">
                     <div class="span6">
                         <h5>Lechigada</h5>
-                        <?php echo $this->Form->text('lechigada', array('class' => 'span12')); ?>
+                        <?php echo $this->Form->text('Mascota.lechigada', array('class' => 'span12')); ?>
                     </div>
                     <div class="span6">
                         <h5>Fecha de Emision</h5>
-                        <?php echo $this->Form->date('fecha_emision', array('class' => 'span12', 'placeholder' => 'Click para Insertar Fecha', 'id' => 'fechae2')); ?>
+                        <?php echo $this->Form->date('Mascota.fecha_emision', array('class' => 'span12', 'placeholder' => 'Click para Insertar Fecha', 'id' => 'fechae2')); ?>
                     </div>
                 </div>
             </div>
@@ -82,7 +82,7 @@
                 <div class="span12">
                     <div class="span6">
                         <h5>Lugar</h5>
-                        <?php echo $this->Form->select('departamento_id', $departamentos, array('class' => 'span12')); ?>
+                        <?php echo $this->Form->select('Mascota.departamento_id', $departamentos, array('class' => 'span12')); ?>
                     </div>
                     <div class="span3">
                         <h5>&nbsp;</h5>
@@ -94,8 +94,11 @@
                     </div>
                 </div>
             </div>
-
-
+            <div class="row-fluid">
+                <div class="span12">
+                    <button class="btn btn-block btn-primary" type="submit">REGISTRAR</button>
+                </div>
+            </div>
             <?php echo $this->Form->end(); ?>
         </div>
     </div>
@@ -113,11 +116,11 @@
               + ' <div class="span12">'
               + '   <div class="span6">'
               + '     <h5>Nombre</h5>'
-              + '     <input type="text" name="data[Mascota][][nombre]" class="span12" required>'
+              + '     <input type="text" name="data[Ejemplar][mascotas][' + numero_mascotas + '][nombre]" class="span12" required>'
               + '   </div>'
               + '   <div class="span6">'
               + '     <h5>KCB</h5>'
-              + '     <input type="text" name="data[Mascota][][kcb]" class="span12" required>'
+              + '     <input type="text" name="data[Ejemplar][mascotas][' + numero_mascotas + '][kcb]" class="span12" required>'
               + '   </div>'
               + ' </div>'
               + '</div>'
@@ -125,11 +128,11 @@
               + ' <div class="span12">'
               + '   <div class="span6">'
               + '     <h5>Nro de tatuaje</h5>'
-              + '     <input type="text" name="data[Mascota][][num_tatuaje]" class="span12" >'
+              + '     <input type="text" name="data[Ejemplar][mascotas][' + numero_mascotas + '][num_tatuaje]" class="span12" >'
               + '   </div>'
               + '   <div class="span6">'
               + '     <h5>Nro Chip</h5>'
-              + '     <input type="text" name="data[Mascota][][chip]" class="span12" >'
+              + '     <input type="text" name="data[Ejemplar][mascotas][' + numero_mascotas + '][chip]" class="span12" >'
               + '   </div>'
               + ' </div>'
               + '</div>'
@@ -137,11 +140,11 @@
               + ' <div class="span12">'
               + '   <div class="span6">'
               + '     <h5>Color</h5>'
-              + '     <input type="text" name="data[Mascota][][color]" class="span12" required>'
+              + '     <input type="text" name="data[Ejemplar][mascotas][' + numero_mascotas + '][color]" class="span12" required>'
               + '   </div>'
               + '   <div class="span6">'
               + '     <h5>e&ntilde;as</h5>'
-              + '     <input type="text" name="data[Mascota][][senas]" class="span12" >'
+              + '     <input type="text" name="data[Ejemplar][mascotas][' + numero_mascotas + '][senas]" class="span12" >'
               + '   </div>'
               + ' </div>'
               + '</div>'
@@ -149,7 +152,7 @@
               + ' <div class="span12">'
               + '   <div class="span6">'
               + '     <h5>Sexo</h5>'
-              + '     <select class="span12" required>'
+              + '     <select class="span12" name="data[Ejemplar][mascotas][' + numero_mascotas + '][sexo]" required>'
               + '       <option value=""></option>'
               + '       <option value="macho">Macho</option>'
               + '       <option value="hembra">Hembra</option>'
@@ -162,7 +165,7 @@
       $('#divrefmascota-' + cantidad).after(sector_mascota);
   }
   function quita_mascota() {
-      if (numero_mascotas != 0) {
+      if (numero_mascotas != 1) {
           jQuery('#divrefmascota-' + numero_mascotas).remove();
           numero_mascotas--;
       }
