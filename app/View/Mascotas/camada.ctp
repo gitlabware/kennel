@@ -143,7 +143,7 @@
               + '     <input type="text" name="data[Ejemplar][mascotas][' + numero_mascotas + '][color]" class="span12" required>'
               + '   </div>'
               + '   <div class="span6">'
-              + '     <h5>e&ntilde;as</h5>'
+              + '     <h5>Se&ntilde;as</h5>'
               + '     <input type="text" name="data[Ejemplar][mascotas][' + numero_mascotas + '][senas]" class="span12" >'
               + '   </div>'
               + ' </div>'

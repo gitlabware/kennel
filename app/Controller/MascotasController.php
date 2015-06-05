@@ -30,12 +30,12 @@ class MascotasController extends AppController {
         //,'prop' => 'SELECT titulo_id FROM mascotas_titulos WHERE mascota_id = Mascota.id'
       );
       $this->paginate = array(
-        'fields' => array('Mascota.kcb', 'Mascota.nombre_completo', 'Mascota.num_tatuaje', 'Raza.nombre', 'Propietarioactual.nombre', 'Mascota.together'),
+        'fields' => array('Mascota.kcb', 'Mascota.nombre_completo', 'Mascota.num_tatuaje', 'Raza.nombre', 'Propietarioactual.nombre', 'Mascota.together', 'Mascota.verificado'),
         //'joins' => array( array('table' => 'mascotas_propietarios', 'alias' => 'Mascotaspropieatario', 'type' => 'LEFT', 'conditions' => array( 'Mascota.id = Mascotaspropieatario.mascota_id' ) ) ),
         'conditions' => array('Mascota.kcb !=' => array('null', 'nulo'), 'Mascota.solicitud !=' => 1), 'recursive' => 0,
         'order' => 'Mascota.kcb ASC'
       );
-      $this->DataTable->fields = array('Mascota.kcb', 'Mascota.nombre_completo', 'Mascota.num_tatuaje', 'Raza.nombre', 'Propietarioactual.nombre', 'Mascota.together');
+      $this->DataTable->fields = array('Mascota.kcb', 'Mascota.nombre_completo', 'Mascota.num_tatuaje', 'Raza.nombre', 'Propietarioactual.nombre', 'Mascota.together', 'Mascota.verificado');
       $this->DataTable->emptyEleget_usuarios_adminments = 1;
       $this->set('mascotas', $this->DataTable->getResponse());
       $this->set('_serialize', 'mascotas');
@@ -845,7 +845,7 @@ class MascotasController extends AppController {
   public function camada() {
     $razas = $this->Raza->find('list', array('fields' => 'Raza.nombre_completo', 'order' => 'Raza.nombre ASC'));
     $departamentos = $this->Departamento->find('list', array('fields' => array('Departamento.id', 'Departamento.nombre'), 'order' => 'Departamento.nombre ASC'));
-    if($this->Session->check('camada')){
+    if ($this->Session->check('camada')) {
       $this->request->data = $this->Session->read('camada');
     }
     $this->set(compact('razas', 'departamentos'));
@@ -853,8 +853,10 @@ class MascotasController extends AppController {
 
   public function registrar_camada() {
     if (!empty($this->request->data['Ejemplar'])) {
-      $this->Session->write('camada',  $this->request->data);
+      $this->Session->write('camada', $this->request->data);
+      $aux_hermanos = array();
       foreach ($this->request->data['Ejemplar']['mascotas'] as $key => $ma) {
+        $aux_hermanos[$key]['nombre'] = $ma['nombre'];
         $this->request->data['Mascota']['kcb'] = $ma['kcb'];
         $this->request->data['Mascota']['nombre'] = $ma['nombre'];
         $this->request->data['Mascota']['nombre_completo'] = $this->genera_nombre($ma['nombre']);
@@ -864,8 +866,8 @@ class MascotasController extends AppController {
         $this->request->data['Mascota']['senas'] = $ma['senas'];
         $this->request->data['Mascota']['sexo'] = $ma['sexo'];
         $validar = $this->validar('Mascota');
-        if(!empty($validar)){
-          $this->Session->setFlash($key.' '.$validar);
+        if (!empty($validar)) {
+          $this->Session->setFlash($key . ' ' . $validar);
           $this->redirect(array('action' => 'camada'));
         }
       }
@@ -879,12 +881,29 @@ class MascotasController extends AppController {
         $this->request->data['Mascota']['color'] = $ma['color'];
         $this->request->data['Mascota']['senas'] = $ma['senas'];
         $this->request->data['Mascota']['sexo'] = $ma['sexo'];
+        $this->request->data['Mascota']['hermano'] = $this->genera_hermanos($aux_hermanos, $key);
         $this->Mascota->save($this->request->data['Mascota']);
       }
       $this->Session->delete('camada');
-      $this->Session->setFlash('Se registro correctamente!!!','msgbueno');
+      $this->Session->setFlash('Se registro correctamente!!!', 'msgbueno');
       $this->redirect(array('action' => 'index'));
     }
+  }
+
+  public function genera_hermanos($v_hermanos = NULL, $key_no = NULL) {
+    $hermano = "";
+    $i = 0;
+    foreach ($v_hermanos as $key => $her) {
+      if ($key != $key_no) {
+        if ($i == 0) {
+          $hermano = $hermano . "" . $her['nombre'];
+        } else {
+          $hermano = $hermano . ", " . $her['nombre'];
+        }
+        $i++;
+      }
+    }
+    return $hermano;
   }
 
   public function genera_nombre($nombre = NULL) {
@@ -928,6 +947,7 @@ class MascotasController extends AppController {
     $cadena_nombre = strtoupper($cadena_nombre);
     return $cadena_nombre;
   }
+
 }
 
 ?>
