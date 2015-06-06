@@ -26,7 +26,7 @@ class MascotasController extends AppController {
     //debug($this->RequestHandler->responseType());exit;
     if ($this->RequestHandler->responseType() == 'json') {
       $this->Mascota->virtualFields = array(
-        'together' => "CONCAT('" . '<a href="#myModal" data-toggle="modal" class="label label-info edita" id="' . "',Mascota.id,'" . '"' . ' onclick="cargadatos(' . "', " . '' . "Mascota.id" . '' . " ,'" . ')">Editar</a> <a class="label label-warning" href="javascript:" onclick="generaciones(' . "', " . '' . "Mascota.id" . '' . " ,'" . ')">Generaciones</a> <a class="label label-warning" href="javascript:"  onclick="ver(' . "', " . '' . "Mascota.id" . '' . " ,'" . ')">Ver</a> <a class="label label-important" href="javascript:"' . ' onclick="elimina(' . "', " . '' . "Mascota.id" . '' . " ,'" . ')">Eliminar</a>' . "')"
+        'together' => "CONCAT('" . '<a href="#myModal" data-toggle="modal" class="label label-info edita" id="' . "',Mascota.id,'" . '"' . ' onclick="cargadatos(' . "', " . '' . "Mascota.id" . '' . " ,'" . ')">Editar</a> <a class="label label-warning generaciones_m" href="javascript:" onclick="generaciones(' . "', " . '' . "Mascota.id" . '' . " ,'" . ')">Generaciones</a> <a class="label label-warning" href="javascript:"  onclick="ver(' . "', " . '' . "Mascota.id" . '' . " ,'" . ')">Ver</a> <a class="label label-important elimina_m" href="javascript:"' . ' onclick="elimina(' . "', " . '' . "Mascota.id" . '' . " ,'" . ')">Eliminar</a>' . "')"
         //,'prop' => 'SELECT titulo_id FROM mascotas_titulos WHERE mascota_id = Mascota.id'
       );
       $this->paginate = array(

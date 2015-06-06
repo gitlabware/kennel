@@ -82,6 +82,11 @@
                   for (var i = 0; i < 7; i++) {
                       $('td:eq(' + i + ')', nRow).css("backgroundColor", "#d9edf7");
                   }
+<?php if ($this->Session->read('Auth.User.role') == 'regional'): ?>
+                    $('td:eq(' + 5 + ') > a.edita', nRow).remove();
+                    $('td:eq(' + 5 + ') > a.generaciones_m', nRow).remove();
+                    $('td:eq(' + 5 + ') > a.elimina_m', nRow).remove();
+<?php endif; ?>
               }
           }
       });
@@ -89,11 +94,11 @@
   function cargadatos(aux)
   {
       $('#imgcargando').toggle();
-    $('#mimodal').toggle();
-    $('#mimodal').load('<?php echo $this->Html->url(array('controller' => 'Mascotas', 'action' => 'ajaxmascota')); ?>/' + aux, function () {
-      $('#imgcargando').toggle(100);
       $('#mimodal').toggle();
-    });
+      $('#mimodal').load('<?php echo $this->Html->url(array('controller' => 'Mascotas', 'action' => 'ajaxmascota')); ?>/' + aux, function () {
+          $('#imgcargando').toggle(100);
+          $('#mimodal').toggle();
+      });
   }
   function elimina(aux)
   {
