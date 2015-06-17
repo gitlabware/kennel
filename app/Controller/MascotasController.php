@@ -871,6 +871,9 @@ class MascotasController extends AppController {
           $this->redirect(array('action' => 'camada'));
         }
       }
+      if (!empty($this->request->data['Mascota']['propietarioactual_id'])) {
+        $this->request->data['Mascota']['propietario_id'] = $this->request->data['Mascota']['propietarioactual_id'];
+      }
       foreach ($this->request->data['Ejemplar']['mascotas'] as $key => $ma) {
         $this->Mascota->create();
         $this->request->data['Mascota']['kcb'] = $ma['kcb'];
