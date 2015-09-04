@@ -514,6 +514,7 @@ $mpista = new Pista();
 <?php
 if ($this->Session->read('Auth.User.role') == 'administrador') {
     echo $this->Html->link('CERTIFICADO', array('action' => 'certificado', $mascota['Mascota']['id']), array('class' => 'btn btn-block btn-inverse'));
+    echo $this->Html->link('CERTIFICADO EXPORTACION', array('action' => 'c_exportacion', $mascota['Mascota']['id']), array('class' => 'btn btn-block btn-inverse'));
 }
 ?>
                 </div>

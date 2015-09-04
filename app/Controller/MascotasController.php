@@ -651,6 +651,19 @@ class MascotasController extends AppController {
     $this->redirect($this->referer());
   }
 
+  public function c_exportacion($idMascota = null){
+    $this->layout = 'c_exportacion';
+    $generaciones = $this->get_generaciones2($idMascota);
+    $ejemplar = $this->Mascota->find('first',array(
+      'recursive' => 0,
+      'conditions' => array('Mascota.id' => $idMascota),
+      'fields' => array('Raza.*','Mascota.*','Propietario.*','Propietarioactual.*')
+    ));
+    //debug($ejemplar);exit;
+    $this->set(compact('generaciones','ejemplar'));
+  }
+
+
   public function certificado($idMascota = null) {
     $this->layout = 'certificado';
 
@@ -793,6 +806,119 @@ class MascotasController extends AppController {
           $padre[$i]['titulos'] = $var_titulos;
         }
       }
+    }
+    return $padre;
+  }
+  
+  public function get_generaciones2($idMascota = null) {
+    $padre[0] = $this->Mascota->find('first', array(
+      'recursive' => -1
+      , 'conditions' => array('Mascota.id' => $idMascota)
+      , 'fields' => array('Mascota.id', 'Mascota.reproductor_id', 'Mascota.reproductora_id', 'Mascota.nombre_completo')
+    ));
+    
+    $j = 0;
+    for ($i = 1; $i <= 30; $i++) {
+
+      if (($i % 2) == 0) {
+        if (!empty($padre[$j]['Mascota']['reproductora_id'])) {
+          $padre[$i] = $this->Mascota->find('first', array(
+            'recursive' => -1
+            , 'conditions' => array('Mascota.id' => $padre[$j]['Mascota']['reproductora_id'])
+            , 'fields' => array('Mascota.id', 'UPPER(Mascota.nombre_completo) as nombre_completo', 'Mascota.reproductor_id', 'Mascota.reproductora_id', 'Mascota.kcb', 'Mascota.num_tatuaje', 'Mascota.chip', 'Mascota.color', 'UPPER(Mascota.codigo) as codigo', 'Mascota.titulos_ex', 'Mascota.senas')
+          ));
+          $apto_de_reproduccion = $this->Examenesmascota->find('first', array(
+            'conditions' => array('Examenesmascota.mascota_id' => $padre[$j]['Mascota']['reproductora_id'], 'Examenesmascota.examene_id' => 3)
+            , 'fields' => array('Examene.descripcion', 'Examenesmascota.observacion', 'Examenesmascota.resultado')
+          ));
+          if (!empty($apto_de_reproduccion)) {
+            $padre[$i]['apto_reproduccion'] = $apto_de_reproduccion;
+          }
+          //Aumentando campo de apto de cria
+          $apto_de_cria = $this->Examenesmascota->find('first', array(
+            'conditions' => array('Examenesmascota.mascota_id' => $padre[$j]['Mascota']['reproductora_id'], 'Examenesmascota.examene_id' => 2)
+            , 'fields' => array('Examene.descripcion', 'Examenesmascota.observacion', 'Examenesmascota.resultado')
+          ));
+          if (!empty($apto_de_cria)) {
+            $padre[$i]['apto_cria'] = $apto_de_cria;
+          }
+          //----------------------------------
+          //Aumentando campo de displacia
+          $displacia = $this->Examenesmascota->find('first', array(
+            'conditions' => array('Examenesmascota.mascota_id' => $padre[$j]['Mascota']['reproductora_id'], 'Examenesmascota.examene_id' => 1)
+            , 'fields' => array('Examenesmascota.dcf')
+          ));
+          if (!empty($displacia)) {
+            $padre[$i]['displacia'] = $displacia;
+          }
+          //----------------------------------
+          $titulos = $this->Mascotastitulo->find('all', array('recursive' => 0, 'conditions' => array('Mascotastitulo.mascota_id' => $padre[$j]['Mascota']['reproductora_id'])
+            , 'fields' => array('Titulo.nombre')
+          ));
+          $var_titulos = '';
+
+          if (!empty($padre[$i]['Mascota']['titulos_ex'])) {
+            $var_titulos = strtoupper($padre[$i]['Mascota']['titulos_ex']);
+          }
+          if (!empty($titulos)) {
+            foreach ($titulos as $ti) {
+              $var_titulos = $var_titulos . ' ' . strtoupper($ti['Titulo']['nombre']);
+            }
+          }
+          $padre[$i]['titulos'] = $var_titulos;
+        }
+        $j++;
+      } else {
+        if (!empty($padre[$j]['Mascota']['reproductor_id'])) {
+          //$padre[$i] = $this->Mascota->findByid($padre[$j]['Mascota']['reproductor_id'],null,null,-1);
+          $padre[$i] = $this->Mascota->find('first', array(
+            'recursive' => -1
+            , 'conditions' => array('Mascota.id' => $padre[$j]['Mascota']['reproductor_id'])
+            , 'fields' => array('Mascota.id', 'UPPER(Mascota.nombre_completo) as nombre_completo', 'Mascota.reproductor_id', 'Mascota.reproductora_id', 'Mascota.kcb', 'Mascota.num_tatuaje', 'Mascota.chip', 'Mascota.color', 'UPPER(Mascota.codigo) as codigo', 'Mascota.titulos_ex', 'Mascota.senas')
+          ));
+
+          $apto_de_reproduccion = $this->Examenesmascota->find('first', array(
+            'conditions' => array('Examenesmascota.mascota_id' => $padre[$j]['Mascota']['reproductor_id'], 'Examenesmascota.examene_id' => 3)
+            , 'fields' => array('Examene.descripcion', 'Examenesmascota.observacion', 'Examenesmascota.resultado')
+          ));
+          if (!empty($apto_de_reproduccion)) {
+            $padre[$i]['apto_reproduccion'] = $apto_de_reproduccion;
+          }
+
+          //Aumentando campo de apto de cria
+          $apto_de_cria = $this->Examenesmascota->find('first', array(
+            'conditions' => array('Examenesmascota.mascota_id' => $padre[$j]['Mascota']['reproductor_id'], 'Examenesmascota.examene_id' => 2)
+            , 'fields' => array('Examene.descripcion', 'Examenesmascota.observacion', 'Examenesmascota.resultado')
+          ));
+          if (!empty($apto_de_cria)) {
+            $padre[$i]['apto_cria'] = $apto_de_cria;
+          }
+          //----------------------------------
+          //Aumentando campo de displacia
+          $displacia = $this->Examenesmascota->find('first', array(
+            'conditions' => array('Examenesmascota.mascota_id' => $padre[$j]['Mascota']['reproductor_id'], 'Examenesmascota.examene_id' => 1)
+            , 'fields' => array('Examenesmascota.dcf')
+          ));
+          if (!empty($displacia)) {
+            $padre[$i]['displacia'] = $displacia;
+          }
+          //----------------------------------
+          $titulos = $this->Mascotastitulo->find('all', array('recursive' => 0, 'conditions' => array('Mascotastitulo.mascota_id' => $padre[$j]['Mascota']['reproductor_id'])
+            , 'fields' => array('Titulo.nombre')
+          ));
+          $var_titulos = '';
+          if (!empty($padre[$i]['Mascota']['titulos_ex'])) {
+            $var_titulos = strtoupper($padre[$i]['Mascota']['titulos_ex']);
+          }
+          if (!empty($titulos)) {
+            foreach ($titulos as $ti) {
+              $var_titulos = $var_titulos . ' ' . strtoupper($ti['Titulo']['nombre']);
+            }
+          }
+          $padre[$i]['titulos'] = $var_titulos;
+        }
+      }
+      
     }
     return $padre;
   }
