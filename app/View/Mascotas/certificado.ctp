@@ -1,3 +1,8 @@
+
+Actualmente editando:  
+/home1/cherrera/public_html/kennel/app/View/Mascotas/certificado.ctp
+ Codificación:    Volver a abrir  Cambiar a Editor de código     Cerrar  Salvar
+
 <style>
 
     table{
@@ -25,7 +30,7 @@
                                 <td style="width: 80px;"></td>
                                 <td style="width: 535px;">
                                     <div id="divnombre" style="width: 535px; height: 21px;">
-                                        <span id="spannombre"><?php echo strtoupper($mascota['Mascota']['nombre_completo']); ?></span>
+                                        <span id="spannombre"><?php echo mb_strtoupper($mascota['Mascota']['nombre_completo'], 'UTF-8'); ?></span>
                                     </div>
                                 </td>
                                 <td style="width: 65px; "></td>
@@ -1654,3 +1659,4 @@
         , 'codigoQRini.js'
             ), array('block' => 'scriptQR'));
     ?>
+

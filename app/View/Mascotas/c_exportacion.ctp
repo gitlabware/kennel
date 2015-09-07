@@ -1,8 +1,8 @@
 <style>
     .contenedor{
-        background-color: #CDEB8B;
         width: 21cm;
         height: 32.3cm;
+        color: #124996;
     }
     .f-once{
         font-size: 11px;
@@ -11,7 +11,7 @@
     .raza{
         position: absolute;
         left: 3cm;
-        top: 3.6cm;
+        top: 3.8cm;
         width: 7cm;
         height: 0.5cm;
         background-color: #CE9E23;
@@ -20,7 +20,7 @@
     .nombre{
         position: absolute;
         left: 12.5cm;
-        top: 3.6cm;
+        top: 3.8cm;
         width: 7.5cm;
         height: 0.5cm;
         background-color: #CE9E23;
@@ -28,7 +28,7 @@
     .variedad{
         position: absolute;
         left: 3.8cm;
-        top: 4.4cm;
+        top: 4.5cm;
         width: 6.5cm;
         height: 0.5cm;
         background-color: #CE9E23;
@@ -36,7 +36,7 @@
     .color{
         position: absolute;
         left: 12.5cm;
-        top: 4.4cm;
+        top: 4.5cm;
         width: 3.2cm;
         height: 0.5cm;
         background-color: #CE9E23;
@@ -44,7 +44,7 @@
     .sexo{
         position: absolute;
         left: 17cm;
-        top: 4.4cm;
+        top: 4.5cm;
         width: 3.2cm;
         height: 0.5cm;
         background-color: #CE9E23;
@@ -52,7 +52,7 @@
     .fecha-nacimiento{
         position: absolute;
         left: 4.3cm;
-        top: 5cm;
+        top: 5.3cm;
         width: 5.5cm;
         height: 0.5cm;
         background-color: #CE9E23;
@@ -60,7 +60,7 @@
     .registro{
         position: absolute;
         left: 11.5cm;
-        top: 5cm;
+        top: 5.3cm;
         width: 2.6cm;
         height: 0.5cm;
         background-color: #CE9E23;
@@ -68,7 +68,7 @@
     .microchip{
         position: absolute;
         left: 17cm;
-        top: 5cm;
+        top: 5.3cm;
         width: 3.2cm;
         height: 0.5cm;
         background-color: #CE9E23;
@@ -76,7 +76,7 @@
     .criador{
         position: absolute;
         left: 3.8cm;
-        top: 5.8cm;
+        top: 6cm;
         width: 6.5cm;
         height: 0.5cm;
         background-color: #CE9E23;
@@ -84,262 +84,271 @@
     .propietario{
         position: absolute;
         left: 13.4cm;
-        top: 5.8cm;
+        top: 6cm;
         width: 6.5cm;
         height: 0.5cm;
         background-color: #CE9E23;
     }
     .padre-0{
         position: absolute;
-        left: 1.5cm;
-        top: 18.2cm;
+        left: 1.6cm;
+        top: 18.7cm;
         width: 6.3cm;
         height: 0.8cm;
         background-color: #CE9E23;
     }
     .padre-1{
         position: absolute;
-        left: 3.7cm;
-        top: 12.2cm;
+        left: 3.8cm;
+        top: 12.3cm;
         width: 6.3cm;
         height: 0.8cm;
         background-color: #CE9E23;
     }
     .padre-2{
         position: absolute;
-        left: 3.7cm;
-        top: 23.8cm;
+        left: 3.8cm;
+        top: 24.7cm;
         width: 6.3cm;
         height: 0.8cm;
         background-color: #CE9E23;
     }
     .padre-3{
         position: absolute;
-        left: 6.3cm;
-        top: 9.1cm;
+        left: 6.4cm;
+        top: 9.25cm;
         width: 6.3cm;
         height: 0.8cm;
         background-color: #CE9E23;
     }
     .padre-4{
         position: absolute;
-        left: 6.3cm;
-        top: 15.3cm;
+        left: 6.4cm;
+        top: 15.5cm;
         width: 6.3cm;
         height: 0.8cm;
         background-color: #CE9E23;
     }
     .padre-5{
         position: absolute;
-        left: 6.3cm;
-        top: 20.8cm;
+        left: 6.4cm;
+        top: 21.6cm;
         width: 6.3cm;
         height: 0.8cm;
         background-color: #CE9E23;
     }
     .padre-6{
         position: absolute;
-        left: 6.3cm;
-        top: 26.9cm;
+        left: 6.4cm;
+        top: 27.8cm;
         width: 6.3cm;
         height: 0.8cm;
         background-color: #CE9E23;
     }
     .padre-7{
         position: absolute;
-        left: 8.4cm;
-        top: 7.6cm;
+        left: 8.5cm;
+        top: 7.7cm;
         width: 6.3cm;
         height: 0.8cm;
         background-color: #CE9E23;
     }
     .padre-8{
         position: absolute;
-        left: 8.4cm;
-        top: 10.6cm;
+        left: 8.5cm;
+        top: 10.75cm;
         width: 6.3cm;
         height: 0.8cm;
         background-color: #CE9E23;
     }
     .padre-9{
         position: absolute;
-        left: 8.4cm;
-        top: 13.8cm;
+        left: 8.5cm;
+        top: 14cm;
         width: 6.3cm;
         height: 0.8cm;
         background-color: #CE9E23;
     }
     .padre-10{
         position: absolute;
-        left: 8.4cm;
-        top: 16.8cm;
+        left: 8.5cm;
+        top: 16.95cm;
         width: 6.3cm;
         height: 0.8cm;
         background-color: #CE9E23;
     }
     .padre-11{
         position: absolute;
-        left: 8.4cm;
-        top: 19.7cm;
+        left: 8.5cm;
+        top: 20.1cm;
         width: 6.3cm;
         height: 0.8cm;
         background-color: #CE9E23;
     }
     .padre-12{
         position: absolute;
-        left: 8.4cm;
-        top: 22.2cm;
+        left: 8.5cm;
+        top: 23cm;
         width: 6.3cm;
         height: 0.8cm;
         background-color: #CE9E23;
     }
     .padre-13{
         position: absolute;
-        left: 8.4cm;
-        top: 25.5cm;
+        left: 8.5cm;
+        top: 26.3cm;
         width: 6.3cm;
         height: 0.8cm;
         background-color: #CE9E23;
     }
     .padre-14{
         position: absolute;
-        left: 8.4cm;
-        top: 28.4cm;
+        left: 8.5cm;
+        top: 29.3cm;
         width: 6.3cm;
         height: 0.8cm;
         background-color: #CE9E23;
     }
     .padre-15{
         position: absolute;
-        left: 13.2cm;
-        top: 6.7cm;
+        left: 13.3cm;
+        top: 6.75cm;
         width: 6.3cm;
         height: 0.8cm;
         background-color: #CE9E23;
     }
     .padre-16{
         position: absolute;
-        left: 13.2cm;
-        top: 8.5cm;
+        left: 13.3cm;
+        top: 8.65cm;
         width: 6.3cm;
         height: 0.8cm;
         background-color: #CE9E23;
     }
     .padre-17{
         position: absolute;
-        left: 13.2cm;
-        top: 9.6cm;
+        left: 13.3cm;
+        top: 9.75cm;
         width: 6.3cm;
         height: 0.8cm;
         background-color: #CE9E23;
     }
     .padre-18{
         position: absolute;
-        left: 13.2cm;
-        top: 11.5cm;
+        left: 13.3cm;
+        top: 11.65cm;
         width: 6.3cm;
         height: 0.8cm;
         background-color: #CE9E23;
     }
     .padre-19{
         position: absolute;
-        left: 13.2cm;
-        top: 12.8cm;
+        left: 13.3cm;
+        top: 13.1cm;
         width: 6.3cm;
         height: 0.8cm;
         background-color: #CE9E23;
     }
     .padre-20{
         position: absolute;
-        left: 13.2cm;
-        top: 14.7cm;
+        left: 13.3cm;
+        top: 14.9cm;
         width: 6.3cm;
         height: 0.8cm;
         background-color: #CE9E23;
     }
     .padre-21{
         position: absolute;
-        left: 13.2cm;
-        top: 15.8cm;
+        left: 13.3cm;
+        top: 16cm;
         width: 6.3cm;
         height: 0.8cm;
         background-color: #CE9E23;
     }
     .padre-22{
         position: absolute;
-        left: 13.2cm;
-        top: 17.1cm;
+        left: 13.3cm;
+        top: 17.8cm;
         width: 6.3cm;
         height: 0.8cm;
         background-color: #CE9E23;
     }
     .padre-23{
         position: absolute;
-        left: 13.2cm;
-        top: 18.8cm;
+        left: 13.3cm;
+        top: 19.1cm;
         width: 6.3cm;
         height: 0.8cm;
         background-color: #CE9E23;
     }
     .padre-24{
         position: absolute;
-        left: 13.2cm;
-        top: 20.1cm;
+        left: 13.3cm;
+        top: 21cm;
         width: 6.3cm;
         height: 0.8cm;
         background-color: #CE9E23;
     }
     .padre-25{
         position: absolute;
-        left: 13.2cm;
-        top: 21.3cm;
+        left: 13.3cm;
+        top: 22.1cm;
         width: 6.3cm;
         height: 0.8cm;
         background-color: #CE9E23;
     }
     .padre-26{
         position: absolute;
-        left: 13.2cm;
-        top: 23.1cm;
+        left: 13.3cm;
+        top: 24cm;
         width: 6.3cm;
         height: 0.8cm;
         background-color: #CE9E23;
     }
     .padre-27{
         position: absolute;
-        left: 13.2cm;
-        top: 24.3cm;
+        left: 13.3cm;
+        top: 25.4cm;
         width: 6.3cm;
         height: 0.8cm;
         background-color: #CE9E23;
     }
     .padre-28{
         position: absolute;
-        left: 13.2cm;
-        top: 26.3cm;
+        left: 13.3cm;
+        top: 27.2cm;
         width: 6.3cm;
         height: 0.8cm;
         background-color: #CE9E23;
     }
     .padre-29{
         position: absolute;
-        left: 13.2cm;
-        top: 27.4cm;
+        left: 13.3cm;
+        top: 28.4cm;
         width: 6.3cm;
         height: 0.8cm;
         background-color: #CE9E23;
     }
     .padre-30{
         position: absolute;
-        left: 13.2cm;
-        top: 29.3cm;
+        left: 13.3cm;
+        top: 30.2cm;
         width: 6.3cm;
         height: 0.8cm;
+        background-color: #CE9E23;
+    }
+    .codigoqr{
+        position: absolute;
+        left: 1.8cm;
+        top: 6.8cm;
+        width: 3cm;
+        height: 3.4cm;
         background-color: #CE9E23;
     }
 
 </style>
 <div class="contenedor">
+    <div  class="codigoqr"></div>
     <div class="raza" id="raza">
         <span id="s-raza">
             <?php echo mb_strtoupper($ejemplar['Raza']['nombre'], 'UTF-8');?>
