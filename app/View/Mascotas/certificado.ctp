@@ -1,7 +1,4 @@
 
-Actualmente editando:  
-/home1/cherrera/public_html/kennel/app/View/Mascotas/certificado.ctp
- Codificación:    Volver a abrir  Cambiar a Editor de código     Cerrar  Salvar
 
 <style>
 

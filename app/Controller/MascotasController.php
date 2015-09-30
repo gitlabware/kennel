@@ -659,7 +659,7 @@ class MascotasController extends AppController {
       'conditions' => array('Mascota.id' => $idMascota),
       'fields' => array('Raza.*','Mascota.*','Propietario.*','Propietarioactual.*')
     ));
-    //debug($ejemplar);exit;
+    //debug($generaciones);exit;
     $this->set(compact('generaciones','ejemplar'));
   }
 

@@ -2,7 +2,7 @@
     .contenedor{
         width: 21cm;
         height: 32.3cm;
-        color: #124996;
+        color: black;
     }
     .f-once{
         font-size: 11px;
@@ -14,7 +14,7 @@
         top: 3.8cm;
         width: 7cm;
         height: 0.5cm;
-        background-color: #CE9E23;
+
     }
 
     .nombre{
@@ -23,7 +23,7 @@
         top: 3.8cm;
         width: 7.5cm;
         height: 0.5cm;
-        background-color: #CE9E23;
+
     }
     .variedad{
         position: absolute;
@@ -31,7 +31,7 @@
         top: 4.5cm;
         width: 6.5cm;
         height: 0.5cm;
-        background-color: #CE9E23;
+
     }
     .color{
         position: absolute;
@@ -39,7 +39,7 @@
         top: 4.5cm;
         width: 3.2cm;
         height: 0.5cm;
-        background-color: #CE9E23;
+
     }
     .sexo{
         position: absolute;
@@ -47,7 +47,7 @@
         top: 4.5cm;
         width: 3.2cm;
         height: 0.5cm;
-        background-color: #CE9E23;
+
     }
     .fecha-nacimiento{
         position: absolute;
@@ -55,7 +55,7 @@
         top: 5.3cm;
         width: 5.5cm;
         height: 0.5cm;
-        background-color: #CE9E23;
+
     }
     .registro{
         position: absolute;
@@ -63,7 +63,7 @@
         top: 5.3cm;
         width: 2.6cm;
         height: 0.5cm;
-        background-color: #CE9E23;
+
     }
     .microchip{
         position: absolute;
@@ -71,7 +71,7 @@
         top: 5.3cm;
         width: 3.2cm;
         height: 0.5cm;
-        background-color: #CE9E23;
+
     }
     .criador{
         position: absolute;
@@ -79,7 +79,7 @@
         top: 6cm;
         width: 6.5cm;
         height: 0.5cm;
-        background-color: #CE9E23;
+
     }
     .propietario{
         position: absolute;
@@ -87,7 +87,7 @@
         top: 6cm;
         width: 6.5cm;
         height: 0.5cm;
-        background-color: #CE9E23;
+
     }
     .padre-0{
         position: absolute;
@@ -95,7 +95,7 @@
         top: 18.7cm;
         width: 6.3cm;
         height: 0.8cm;
-        background-color: #CE9E23;
+
     }
     .padre-1{
         position: absolute;
@@ -103,7 +103,7 @@
         top: 12.3cm;
         width: 6.3cm;
         height: 0.8cm;
-        background-color: #CE9E23;
+
     }
     .padre-2{
         position: absolute;
@@ -111,7 +111,7 @@
         top: 24.7cm;
         width: 6.3cm;
         height: 0.8cm;
-        background-color: #CE9E23;
+
     }
     .padre-3{
         position: absolute;
@@ -119,7 +119,7 @@
         top: 9.25cm;
         width: 6.3cm;
         height: 0.8cm;
-        background-color: #CE9E23;
+
     }
     .padre-4{
         position: absolute;
@@ -127,7 +127,7 @@
         top: 15.5cm;
         width: 6.3cm;
         height: 0.8cm;
-        background-color: #CE9E23;
+
     }
     .padre-5{
         position: absolute;
@@ -135,7 +135,7 @@
         top: 21.6cm;
         width: 6.3cm;
         height: 0.8cm;
-        background-color: #CE9E23;
+
     }
     .padre-6{
         position: absolute;
@@ -143,7 +143,7 @@
         top: 27.8cm;
         width: 6.3cm;
         height: 0.8cm;
-        background-color: #CE9E23;
+
     }
     .padre-7{
         position: absolute;
@@ -151,7 +151,7 @@
         top: 7.7cm;
         width: 6.3cm;
         height: 0.8cm;
-        background-color: #CE9E23;
+
     }
     .padre-8{
         position: absolute;
@@ -159,7 +159,7 @@
         top: 10.75cm;
         width: 6.3cm;
         height: 0.8cm;
-        background-color: #CE9E23;
+
     }
     .padre-9{
         position: absolute;
@@ -167,7 +167,7 @@
         top: 14cm;
         width: 6.3cm;
         height: 0.8cm;
-        background-color: #CE9E23;
+
     }
     .padre-10{
         position: absolute;
@@ -175,7 +175,7 @@
         top: 16.95cm;
         width: 6.3cm;
         height: 0.8cm;
-        background-color: #CE9E23;
+
     }
     .padre-11{
         position: absolute;
@@ -183,7 +183,7 @@
         top: 20.1cm;
         width: 6.3cm;
         height: 0.8cm;
-        background-color: #CE9E23;
+
     }
     .padre-12{
         position: absolute;
@@ -191,7 +191,7 @@
         top: 23cm;
         width: 6.3cm;
         height: 0.8cm;
-        background-color: #CE9E23;
+
     }
     .padre-13{
         position: absolute;
@@ -199,7 +199,7 @@
         top: 26.3cm;
         width: 6.3cm;
         height: 0.8cm;
-        background-color: #CE9E23;
+
     }
     .padre-14{
         position: absolute;
@@ -207,7 +207,7 @@
         top: 29.3cm;
         width: 6.3cm;
         height: 0.8cm;
-        background-color: #CE9E23;
+
     }
     .padre-15{
         position: absolute;
@@ -215,7 +215,7 @@
         top: 6.75cm;
         width: 6.3cm;
         height: 0.8cm;
-        background-color: #CE9E23;
+
     }
     .padre-16{
         position: absolute;
@@ -223,7 +223,7 @@
         top: 8.65cm;
         width: 6.3cm;
         height: 0.8cm;
-        background-color: #CE9E23;
+
     }
     .padre-17{
         position: absolute;
@@ -231,7 +231,7 @@
         top: 9.75cm;
         width: 6.3cm;
         height: 0.8cm;
-        background-color: #CE9E23;
+
     }
     .padre-18{
         position: absolute;
@@ -239,7 +239,7 @@
         top: 11.65cm;
         width: 6.3cm;
         height: 0.8cm;
-        background-color: #CE9E23;
+
     }
     .padre-19{
         position: absolute;
@@ -247,7 +247,7 @@
         top: 13.1cm;
         width: 6.3cm;
         height: 0.8cm;
-        background-color: #CE9E23;
+
     }
     .padre-20{
         position: absolute;
@@ -255,7 +255,7 @@
         top: 14.9cm;
         width: 6.3cm;
         height: 0.8cm;
-        background-color: #CE9E23;
+
     }
     .padre-21{
         position: absolute;
@@ -263,7 +263,7 @@
         top: 16cm;
         width: 6.3cm;
         height: 0.8cm;
-        background-color: #CE9E23;
+
     }
     .padre-22{
         position: absolute;
@@ -271,7 +271,7 @@
         top: 17.8cm;
         width: 6.3cm;
         height: 0.8cm;
-        background-color: #CE9E23;
+
     }
     .padre-23{
         position: absolute;
@@ -279,7 +279,7 @@
         top: 19.1cm;
         width: 6.3cm;
         height: 0.8cm;
-        background-color: #CE9E23;
+
     }
     .padre-24{
         position: absolute;
@@ -287,7 +287,7 @@
         top: 21cm;
         width: 6.3cm;
         height: 0.8cm;
-        background-color: #CE9E23;
+
     }
     .padre-25{
         position: absolute;
@@ -295,7 +295,7 @@
         top: 22.1cm;
         width: 6.3cm;
         height: 0.8cm;
-        background-color: #CE9E23;
+
     }
     .padre-26{
         position: absolute;
@@ -303,7 +303,7 @@
         top: 24cm;
         width: 6.3cm;
         height: 0.8cm;
-        background-color: #CE9E23;
+
     }
     .padre-27{
         position: absolute;
@@ -311,7 +311,7 @@
         top: 25.4cm;
         width: 6.3cm;
         height: 0.8cm;
-        background-color: #CE9E23;
+
     }
     .padre-28{
         position: absolute;
@@ -319,7 +319,7 @@
         top: 27.2cm;
         width: 6.3cm;
         height: 0.8cm;
-        background-color: #CE9E23;
+
     }
     .padre-29{
         position: absolute;
@@ -327,7 +327,7 @@
         top: 28.4cm;
         width: 6.3cm;
         height: 0.8cm;
-        background-color: #CE9E23;
+
     }
     .padre-30{
         position: absolute;
@@ -335,7 +335,7 @@
         top: 30.2cm;
         width: 6.3cm;
         height: 0.8cm;
-        background-color: #CE9E23;
+
     }
     .codigoqr{
         position: absolute;
@@ -343,78 +343,101 @@
         top: 6.8cm;
         width: 3cm;
         height: 3.4cm;
-        background-color: #CE9E23;
+        padding-top: 14px;
     }
 
 </style>
 <div class="contenedor">
-    <div  class="codigoqr"></div>
+    <div  class="codigoqr" align="center"></div>
     <div class="raza" id="raza">
         <span id="s-raza">
-            <?php echo mb_strtoupper($ejemplar['Raza']['nombre'], 'UTF-8');?>
+            <?php echo mb_strtoupper($ejemplar['Raza']['nombre'], 'UTF-8'); ?>
         </span>
     </div>
     <div class="nombre" id="nombre">
         <span id="s-nombre">
-            <?php echo mb_strtoupper($ejemplar['Mascota']['nombre_completo'], 'UTF-8');?>
+            <?php echo mb_strtoupper($ejemplar['Mascota']['nombre_completo'], 'UTF-8'); ?>
         </span>
     </div>
     <div class="variedad" id="variedad">
         <span id="s-variedad">
-            <?php echo mb_strtoupper($ejemplar['Raza']['descripcion'], 'UTF-8');?>
+            <?php echo mb_strtoupper($ejemplar['Raza']['descripcion'], 'UTF-8'); ?>
         </span>
     </div>
     <div class="color" id="color">
         <span id="s-color" style="vertical-align:middle;">
-            <?php echo mb_strtoupper($ejemplar['Mascota']['color'], 'UTF-8');?>
+            <?php echo mb_strtoupper($ejemplar['Mascota']['color'], 'UTF-8'); ?>
         </span>
     </div>
     <div class="sexo" id="sexo">
         <span id="s-sexo">
-            <?php echo mb_strtoupper($ejemplar['Mascota']['sexo'], 'UTF-8');?>
+            <?php echo mb_strtoupper($ejemplar['Mascota']['sexo'], 'UTF-8'); ?>
         </span>
     </div>
     <div class="fecha-nacimiento" id="fecha-nacimiento">
         <span id="s-fecha-nacimiento">
-            <?php echo mb_strtoupper($ejemplar['Mascota']['fecha_nacimiento'], 'UTF-8');?>
+            <?php echo mb_strtoupper($ejemplar['Mascota']['fecha_nacimiento'], 'UTF-8'); ?>
         </span>
     </div>
     <div class="registro" id="registro">
         <span id="s-registro">
-            <?php echo mb_strtoupper($ejemplar['Mascota']['codigo'], 'UTF-8');?>
+            <?php echo mb_strtoupper($ejemplar['Mascota']['codigo'], 'UTF-8'); ?>
         </span>
     </div>
     <div class="microchip" id="microchip">
         <span id="s-microchip">
-            <?php echo mb_strtoupper($ejemplar['Mascota']['chip'], 'UTF-8');?>
+            <?php echo mb_strtoupper($ejemplar['Mascota']['chip'], 'UTF-8'); ?>
         </span>
     </div>
     <div class="criador" id="criador">
         <span id="s-criador">
-            <?php echo mb_strtoupper($ejemplar['Propietario']['nombre'], 'UTF-8');?>
+            <?php echo mb_strtoupper($ejemplar['Propietario']['nombre'], 'UTF-8'); ?>
         </span>
     </div>
     <div class="propietario" id="propietario">
         <span id="s-propietario">
-            <?php echo mb_strtoupper($ejemplar['Propietarioactual']['nombre'], 'UTF-8');?>
+            <?php echo mb_strtoupper($ejemplar['Propietarioactual']['nombre'], 'UTF-8'); ?>
         </span>
     </div>
     <div class="padre-0 f-once" id="padre-0">
         <span id="s-padre-0">
-            <?php echo mb_strtoupper($ejemplar['Mascota']['nombre'], 'UTF-8');?> <br>
-            <?php echo mb_strtoupper($ejemplar['Mascota']['codigo'].' '.$ejemplar['Mascota']['color'], 'UTF-8');?>
+            <?php echo mb_strtoupper($ejemplar['Mascota']['nombre'], 'UTF-8'); ?> <br>
+            <?php echo mb_strtoupper($ejemplar['Mascota']['codigo'] . ' ' . $ejemplar['Mascota']['color'], 'UTF-8'); ?>
         </span>
     </div>
     <?php for ($i = 1; $i <= 30; $i++): ?>
       <div class="padre-<?= $i ?> f-once" id="padre-<?= $i ?>">
           <span id="s-padre-<?= $i ?>">
               <?php if (!empty($generaciones[$i])): ?>
-              <?php if(!empty($generaciones[$i][0]['nombre_completo'])):?>
-              <?= mb_strtoupper($generaciones[$i][0]['nombre_completo'], 'UTF-8') ?>
-              <?php endif;?>
-                 
-              - ARGENTINA <br>
-                FCA /17473 (BLANCO Y MARRON)
+
+                <span style="color: red;">
+                    <?php
+                    if (!empty($generaciones[$i]['titulos'])) {
+                      echo strtoupper($generaciones[$i]['titulos']) . '<br class="brtitulos"/>';
+                    }
+                    ?>
+                </span>
+                <?php echo $generaciones[$i][0]['nombre_completo']; ?> 
+                <?php
+                if (!empty($generaciones[$i][0]['codigo'])) {
+                  echo '' . $generaciones[$i][0]['codigo'] . ' ';
+                }
+                ?>
+                <?php
+                if (!empty($generaciones[$i]['Mascota']['kcb']) && $generaciones[$i]['Mascota']['kcb'] != 'nulo') {
+                  echo 'K.C.B. ' . $generaciones[$i]['Mascota']['kcb'] . ' ';
+                }
+                ?>
+                <?php
+                if (!empty($generaciones[$i]['apto_reproduccion'])) {
+                  echo '' . $generaciones[$i]['apto_reproduccion']['Examenesmascota']['resultado'] . '  ';
+                }
+                ?>
+                <?php
+                if (!empty($generaciones[$i]['Mascota']['color'])) {
+                  echo ' ' . $generaciones[$i]['Mascota']['color'] . '';
+                }
+                ?>
               <?php endif; ?>
           </span>
       </div>
@@ -508,3 +531,21 @@
   }
   //$('#grape1,#grape12').find('br').remove();
 </script>
+
+<script>
+  var textoqr = "<?php echo 'KCB: ' . trim($ejemplar['Mascota']['kcb']) . '\nNombre: ' . trim($ejemplar['Mascota']['nombre_completo']) . '\nRaza: ' . trim($ejemplar['Raza']['nombre']) . '\nN. Tatuaje: ' . trim($ejemplar['Mascota']['num_tatuaje']) . '\nChip: ' . trim($ejemplar['Mascota']['chip']) . '\nSexo: ' . trim($ejemplar['Mascota']['sexo']) . '\nF.nacimiento: ' . $ejemplar['Mascota']['fecha_nacimiento']; ?>";
+
+  var opcionesQRejmeplar = {
+      render: 'image'
+      , size: 111
+      , background: '#fdfdfd'
+      , text: textoqr
+  };
+  var divSelector = '.codigoqr';
+</script>
+<?php
+$this->Html->script(array(
+  'jquery.qrcode-0.10.0.js'
+  , 'codigoQRini.js'
+  ), array('block' => 'scriptQR'));
+?>

@@ -55,13 +55,9 @@ $generacion = new Generacione();
     <?php echo $this->Html->link('Generaciones', array('action' => 'generaciones', $m['Mascota']['id']), array('class' => 'label label-warning')); ?>
     <?php echo $this->Html->link('Eliminar', array('action' => 'elimina', $m['Mascota']['id']), array('escape' => false, 'confirm' => 'Si tiene registros con esta mascota podria causar errores!!! Esta seguro de eliminar', 'class' => 'label label-important')); ?>
   <?php endif; ?>
-
                               <a href="<?php echo $this->Html->url(array('action' => 'ver', $m['Mascota']['id'])); ?>" class="label label-warning">Ver</a> 
-
-
                           </td>
                       </tr>
-
 <?php endforeach; ?>
                 </tbody>  
             </table>
