@@ -2,7 +2,7 @@
     .contenedor{
         width: 21cm;
         height: 32.3cm;
-        color: black;
+        color: #124996;
     }
     .f-once{
         font-size: 11px;
@@ -361,7 +361,7 @@
     </div>
     <div class="variedad" id="variedad">
         <span id="s-variedad">
-            <?php echo mb_strtoupper($ejemplar['Raza']['descripcion'], 'UTF-8'); ?>
+            <?php //echo mb_strtoupper($ejemplar['Raza']['descripcion'], 'UTF-8'); ?>
         </span>
     </div>
     <div class="color" id="color">
@@ -381,7 +381,11 @@
     </div>
     <div class="registro" id="registro">
         <span id="s-registro">
-            <?php echo mb_strtoupper($ejemplar['Mascota']['codigo'], 'UTF-8'); ?>
+            <?php
+            if (!empty($ejemplar['Mascota']['kcb'])) {
+              echo mb_strtoupper("KCB-" . $ejemplar['Mascota']['kcb'], 'UTF-8');
+            }
+            ?>
         </span>
     </div>
     <div class="microchip" id="microchip">
@@ -401,8 +405,39 @@
     </div>
     <div class="padre-0 f-once" id="padre-0">
         <span id="s-padre-0">
-            <?php echo mb_strtoupper($ejemplar['Mascota']['nombre'], 'UTF-8'); ?> <br>
-            <?php echo mb_strtoupper($ejemplar['Mascota']['codigo'] . ' ' . $ejemplar['Mascota']['color'], 'UTF-8'); ?>
+            <?php //echo mb_strtoupper($ejemplar['Mascota']['nombre'], 'UTF-8'); ?>
+            <?php //echo mb_strtoupper($ejemplar['Mascota']['codigo'] . ' ' . $ejemplar['Mascota']['color'], 'UTF-8'); ?>
+            <span style="color: red;">
+                <?php
+                if (!empty($generaciones[0]['titulos'])) {
+                  echo strtoupper($generaciones[0]['titulos']) . '<br class="brtitulos"/>';
+                }
+                ?>
+            </span>
+            <?php echo $generaciones[0][0]['nombre_completo']; ?> 
+            <?php
+            if (!empty($generaciones[0][0]['codigo'])) {
+              echo '' . $generaciones[0][0]['codigo'] . ' ';
+            }
+            ?>
+            <?php
+            if (!empty($generaciones[0]['Mascota']['kcb']) && $generaciones[0]['Mascota']['kcb'] != 'nulo') {
+              if (empty($generaciones[0]['titulos'])) {
+                echo '<br class="brtitulos"/>';
+              }
+              echo 'K.C.B. ' . $generaciones[0]['Mascota']['kcb'] . ' ';
+            }
+            ?>
+            <?php
+            if (!empty($generaciones[0]['apto_reproduccion'])) {
+              echo '' . $generaciones[0]['apto_reproduccion']['Examenesmascota']['resultado'] . '  ';
+            }
+            ?>
+            <?php
+            if (!empty($generaciones[0]['Mascota']['color'])) {
+              echo ' ' . $generaciones[0]['Mascota']['color'] . '';
+            }
+            ?>
         </span>
     </div>
     <?php for ($i = 1; $i <= 30; $i++): ?>
@@ -425,7 +460,10 @@
                 ?>
                 <?php
                 if (!empty($generaciones[$i]['Mascota']['kcb']) && $generaciones[$i]['Mascota']['kcb'] != 'nulo') {
-                  echo 'K.C.B. ' . $generaciones[$i]['Mascota']['kcb'] . ' ';
+                  if (empty($generaciones[$i]['titulos'])) {
+                    echo '<br class="brtitulos"/>';
+                  }
+                  echo '<br>K.C.B. ' . $generaciones[$i]['Mascota']['kcb'] . ' ';
                 }
                 ?>
                 <?php
@@ -455,9 +493,9 @@
   autosize("s-microchip", "microchip");
   autosize("s-criador", "criador");
   autosize("s-propietario", "propietario");
-  autosize("s-padre-0", "padre-0");
+  autosize("s-padre-0", "padre-0", 10, 1);
 <?php for ($i = 1; $i <= 30; $i++): ?>
-    autosize("s-padre-<?= $i ?>", "padre-<?= $i ?>");
+    autosize("s-padre-<?= $i ?>", "padre-<?= $i ?>", 10, 1);
 <?php endfor; ?>
   function autosize(dynamicSpan, dynamicDiv, size, sw)
   {

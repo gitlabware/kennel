@@ -651,18 +651,18 @@ class MascotasController extends AppController {
     $this->redirect($this->referer());
   }
 
-  public function c_exportacion($idMascota = null){
+  public function c_exportacion($idMascota = null) {
     $this->layout = 'c_exportacion';
     $generaciones = $this->get_generaciones2($idMascota);
-    $ejemplar = $this->Mascota->find('first',array(
+    $ejemplar = $this->Mascota->find('first', array(
       'recursive' => 0,
       'conditions' => array('Mascota.id' => $idMascota),
-      'fields' => array('Raza.*','Mascota.*','Propietario.*','Propietarioactual.*')
+      'fields' => array('Raza.*', 'Mascota.*', 'Propietario.*', 'Propietarioactual.*')
     ));
-    //debug($generaciones);exit;
-    $this->set(compact('generaciones','ejemplar'));
+    /* debug($generaciones);
+      exit; */
+    $this->set(compact('generaciones', 'ejemplar'));
   }
-
 
   public function certificado($idMascota = null) {
     $this->layout = 'certificado';
@@ -809,14 +809,53 @@ class MascotasController extends AppController {
     }
     return $padre;
   }
-  
+
   public function get_generaciones2($idMascota = null) {
     $padre[0] = $this->Mascota->find('first', array(
       'recursive' => -1
       , 'conditions' => array('Mascota.id' => $idMascota)
-      , 'fields' => array('Mascota.id', 'Mascota.reproductor_id', 'Mascota.reproductora_id', 'Mascota.nombre_completo')
+      , 'fields' => array('Mascota.id', 'UPPER(Mascota.nombre_completo) as nombre_completo', 'Mascota.reproductor_id', 'Mascota.reproductora_id', 'Mascota.kcb', 'Mascota.num_tatuaje', 'Mascota.chip', 'Mascota.color', 'UPPER(Mascota.codigo) as codigo', 'Mascota.titulos_ex', 'Mascota.senas')
     ));
-    
+    $apto_de_reproduccion = $this->Examenesmascota->find('first', array(
+      'conditions' => array('Examenesmascota.mascota_id' => $idMascota, 'Examenesmascota.examene_id' => 3)
+      , 'fields' => array('Examene.descripcion', 'Examenesmascota.observacion', 'Examenesmascota.resultado')
+    ));
+    if (!empty($apto_de_reproduccion)) {
+      $padre[0]['apto_reproduccion'] = $apto_de_reproduccion;
+    }
+    //Aumentando campo de apto de cria
+    $apto_de_cria = $this->Examenesmascota->find('first', array(
+      'conditions' => array('Examenesmascota.mascota_id' => $idMascota, 'Examenesmascota.examene_id' => 2)
+      , 'fields' => array('Examene.descripcion', 'Examenesmascota.observacion', 'Examenesmascota.resultado')
+    ));
+    if (!empty($apto_de_cria)) {
+      $padre[0]['apto_cria'] = $apto_de_cria;
+    }
+    //----------------------------------
+    //Aumentando campo de displacia
+    $displacia = $this->Examenesmascota->find('first', array(
+      'conditions' => array('Examenesmascota.mascota_id' => $idMascota, 'Examenesmascota.examene_id' => 1)
+      , 'fields' => array('Examenesmascota.dcf')
+    ));
+    if (!empty($displacia)) {
+      $padre[0]['displacia'] = $displacia;
+    }
+    //----------------------------------
+    $titulos = $this->Mascotastitulo->find('all', array('recursive' => 0, 'conditions' => array('Mascotastitulo.mascota_id' => $idMascota)
+      , 'fields' => array('Titulo.nombre')
+    ));
+    $var_titulos = '';
+
+    if (!empty($padre[0]['Mascota']['titulos_ex'])) {
+      $var_titulos = strtoupper($padre[0]['Mascota']['titulos_ex']);
+    }
+    if (!empty($titulos)) {
+      foreach ($titulos as $ti) {
+        $var_titulos = $var_titulos . ' ' . strtoupper($ti['Titulo']['nombre']);
+      }
+    }
+    $padre[0]['titulos'] = $var_titulos;
+
     $j = 0;
     for ($i = 1; $i <= 30; $i++) {
 
@@ -918,7 +957,6 @@ class MascotasController extends AppController {
           $padre[$i]['titulos'] = $var_titulos;
         }
       }
-      
     }
     return $padre;
   }
@@ -981,22 +1019,29 @@ class MascotasController extends AppController {
     if (!empty($this->request->data['Ejemplar'])) {
       $this->Session->write('camada', $this->request->data);
       $aux_hermanos = array();
-      foreach ($this->request->data['Ejemplar']['mascotas'] as $key => $ma) {
-        $aux_hermanos[$key]['nombre'] = $ma['nombre'];
-        $this->request->data['Mascota']['kcb'] = $ma['kcb'];
-        $this->request->data['Mascota']['nombre'] = $ma['nombre'];
-        $this->request->data['Mascota']['nombre_completo'] = $this->genera_nombre($ma['nombre']);
-        $this->request->data['Mascota']['num_tatuaje'] = $ma['num_tatuaje'];
-        $this->request->data['Mascota']['chip'] = $ma['chip'];
-        $this->request->data['Mascota']['color'] = $ma['color'];
-        $this->request->data['Mascota']['senas'] = $ma['senas'];
-        $this->request->data['Mascota']['sexo'] = $ma['sexo'];
-        $validar = $this->validar('Mascota');
-        if (!empty($validar)) {
-          $this->Session->setFlash($key . ' ' . $validar);
-          $this->redirect(array('action' => 'camada'));
+      $ver_madre = $this->get_cam_mad_ges($this->request->data['Mascota']['reproductora_id']);
+      if (count($ver_madre) < 2) {
+        foreach ($this->request->data['Ejemplar']['mascotas'] as $key => $ma) {
+          $aux_hermanos[$key]['nombre'] = $ma['nombre'];
+          $this->request->data['Mascota']['kcb'] = $ma['kcb'];
+          $this->request->data['Mascota']['nombre'] = $ma['nombre'];
+          $this->request->data['Mascota']['nombre_completo'] = $this->genera_nombre($ma['nombre']);
+          $this->request->data['Mascota']['num_tatuaje'] = $ma['num_tatuaje'];
+          $this->request->data['Mascota']['chip'] = $ma['chip'];
+          $this->request->data['Mascota']['color'] = $ma['color'];
+          $this->request->data['Mascota']['senas'] = $ma['senas'];
+          $this->request->data['Mascota']['sexo'] = $ma['sexo'];
+          $validar = $this->validar('Mascota');
+          if (!empty($validar)) {
+            $this->Session->setFlash($key . ' ' . $validar, 'msgerror');
+            $this->redirect(array('action' => 'camada'));
+          }
         }
+      } else {
+        $this->Session->setFlash('La madre tiene 2 o mas camadas!!!', 'msgerror');
+        $this->redirect(array('action' => 'camada'));
       }
+
       if (!empty($this->request->data['Mascota']['propietarioactual_id'])) {
         $this->request->data['Mascota']['propietario_id'] = $this->request->data['Mascota']['propietarioactual_id'];
       }
@@ -1075,6 +1120,52 @@ class MascotasController extends AppController {
     }
     $cadena_nombre = strtoupper($cadena_nombre);
     return $cadena_nombre;
+  }
+
+  public function get_cam_pad($idPadre = null) {
+    $var = $this->Mascota->find('all', array(
+      'recurisve' => -1,
+      'conditions' => array(
+        'Mascota.reproductor_id' => $idPadre
+      ),
+      'group' => array('Mascota.fecha_nacimiento', 'Mascota.reproductora_id'),
+      'order' => array('Mascota.fecha_nacimiento DESC'),
+      'fields' => array('Mascota.fecha_nacimiento', 'count(Mascota.fecha_nacimiento) AS num_hermanos', 'Reproductora.nombre_completo')
+    ));
+    /* debug($var);
+      exit; */
+    return $var;
+  }
+
+  public function get_cam_mad($idMadre = null) {
+    $var = $this->Mascota->find('all', array(
+      'recurisve' => -1,
+      'conditions' => array(
+        'Mascota.reproductora_id' => $idMadre
+      ),
+      'group' => array('Mascota.fecha_nacimiento', 'Mascota.reproductor_id'),
+      'order' => array('Mascota.fecha_nacimiento DESC'),
+      'fields' => array('Mascota.fecha_nacimiento', 'count(Mascota.fecha_nacimiento) AS num_hermanos', 'Reproductor.nombre_completo')
+    ));
+    /* debug($var);
+      exit; */
+    return $var;
+  }
+
+  public function get_cam_mad_ges($idMadre = null) {
+    $var = $this->Mascota->find('all', array(
+      'recurisve' => -1,
+      'conditions' => array(
+        'Mascota.reproductora_id' => $idMadre,
+        'YEAR(Mascota.fecha_nacimiento)' => date('Y')
+      ),
+      'group' => array('Mascota.fecha_nacimiento', 'Mascota.reproductor_id'),
+      'order' => array('Mascota.fecha_nacimiento DESC'),
+      'fields' => array('Mascota.fecha_nacimiento', 'count(Mascota.fecha_nacimiento) AS num_hermanos', 'Reproductor.nombre_completo')
+    ));
+    /* debug($var);
+      exit; */
+    return $var;
   }
 
 }

@@ -13,11 +13,11 @@ $mpista = new Pista();
 <link rel="stylesheet" href="<?php echo $this->webroot; ?>css/jquery.jOrgChart.css"/>
 
 <script>
-    jQuery(document).ready(function () {
-        $("#org").jOrgChart({
-            chartElement: '#chart'
-        });
-    });
+  jQuery(document).ready(function () {
+      $("#org").jOrgChart({
+          chartElement: '#chart'
+      });
+  });
 </script>    
 
 
@@ -26,53 +26,55 @@ $mpista = new Pista();
     <div class="widget widget-heading-simple widget-body-gray">
         <div class="widget-body">
             <h3 class="center">Informacion de <?php echo $mascota['Mascota']['nombre_completo'] ?>
-                
+
             </h3>
-            <div class="row-fluid">
-                <div class="span12">
-                    <div class="span12 center blanco">
-                        <table class="table table-bordered table-white">
-                            <!-- Table heading -->
-                            <thead>
-                                <tr>
-                                    <th>Estado</th>
-                                    <th>Fecha</th>
-                                    <th>Observacion</th>
-                                </tr>
-                            </thead>
-                            <!-- // Table heading END -->
-                            <!-- Table body -->
-                            <tbody>
-                                <?php foreach ($observaciones as $obs): ?>
+            <?php if (!empty($observaciones)): ?>
+              <div class="row-fluid">
+                  <div class="span12">
+                      <div class="span12 center blanco">
+                          <table class="table table-bordered table-white">
+                              <!-- Table heading -->
+                              <thead>
+                                  <tr>
+                                      <th>Estado</th>
+                                      <th>Fecha</th>
+                                      <th>Observacion</th>
+                                  </tr>
+                              </thead>
+                              <!-- // Table heading END -->
+                              <!-- Table body -->
+                              <tbody>
+                                  <?php foreach ($observaciones as $obs): ?>
                                     <tr>
                                         <td>
-                                            <?php if($obs['EstadosMascota']['estado_id']  == 1):?>
-                                            <span class="label label-success">Exportacion</span>
-                                            <?php endif;?>
-                                            <?php if($obs['EstadosMascota']['estado_id']  == 2):?>
-                                            <span class="label label-info">Duplicado</span>
-                                            <?php endif;?>
-                                            <?php if($obs['EstadosMascota']['estado_id']  == 3):?>
-                                            <span class="label label-important">Fallecido</span>
-                                            <?php endif;?>
-                                            <?php if($obs['EstadosMascota']['estado_id']  == 4):?>
-                                            <span class="label label-important">Robado</span>
-                                            <?php endif;?>
-                                            <?php if($obs['EstadosMascota']['estado_id']  == 5):?>
-                                            <span class="label label-important">Extraviado</span>
-                                            <?php endif;?>
+                                            <?php if ($obs['EstadosMascota']['estado_id'] == 1): ?>
+                                              <span class="label label-success">Exportacion</span>
+                                            <?php endif; ?>
+                                            <?php if ($obs['EstadosMascota']['estado_id'] == 2): ?>
+                                              <span class="label label-info">Duplicado</span>
+                                            <?php endif; ?>
+                                            <?php if ($obs['EstadosMascota']['estado_id'] == 3): ?>
+                                              <span class="label label-important">Fallecido</span>
+                                            <?php endif; ?>
+                                            <?php if ($obs['EstadosMascota']['estado_id'] == 4): ?>
+                                              <span class="label label-important">Robado</span>
+                                            <?php endif; ?>
+                                            <?php if ($obs['EstadosMascota']['estado_id'] == 5): ?>
+                                              <span class="label label-important">Extraviado</span>
+                                            <?php endif; ?>
                                         </td>
                                         <td><?php echo $obs['EstadosMascota']['fecha'] ?></td>
                                         <td><?php echo $obs['EstadosMascota']['observacion'] ?></td>
                                     </tr>
-                                <?php endforeach; ?>
-                            </tbody>
-                            <!-- // Table body END -->
+                                  <?php endforeach; ?>
+                              </tbody>
+                              <!-- // Table body END -->
 
-                        </table>
-                    </div>
-                </div>
-            </div>
+                          </table>
+                      </div>
+                  </div>
+              </div>
+            <?php endif; ?>
             <br>
             <div class="row-fluid">
                 <div class="span12">
@@ -202,107 +204,113 @@ $mpista = new Pista();
                     </div>
                 </div>
             </div>
-            <h3 align="center">Examenes</h3>
-            <!-- Table -->
-            <table class="table table-bordered table-white">
-                <!-- Table heading -->
-                <thead>
-                    <tr>
-                        <th>Fecha</th>
-                        <th>Examen</th>
-                    </tr>
-                </thead>
-                <!-- // Table heading END -->
-                <!-- Table body -->
-                <tbody>
-                    <?php foreach ($examenes as $ex): ?>
+            <?php if (!empty($examenes)): ?>
+              <h3 align="center">Examenes</h3>
+              <!-- Table -->
+              <table class="table table-bordered table-white">
+                  <!-- Table heading -->
+                  <thead>
+                      <tr>
+                          <th>Fecha</th>
+                          <th>Examen</th>
+                      </tr>
+                  </thead>
+                  <!-- // Table heading END -->
+                  <!-- Table body -->
+                  <tbody>
+                      <?php foreach ($examenes as $ex): ?>
                         <tr>
                             <td><?php echo $ex['Examenesmascota']['fecha_examen'] ?></td>
                             <td><?php echo $ex['Examene']['descripcion'] ?></td>
 
                         </tr>
-                    <?php endforeach; ?>
+                      <?php endforeach; ?>
 
-                </tbody>
-                <!-- // Table body END -->
+                  </tbody>
+                  <!-- // Table body END -->
 
-            </table>
-            <h3 align="center">Transferencias</h3>
-            <!-- Table -->
-            <table class="table table-bordered table-white">
+              </table>
+            <?php endif; ?>
+            <?php if (!empty($transferencias)): ?>
+              <h3 align="center">Transferencias</h3>
+              <!-- Table -->
+              <table class="table table-bordered table-white">
 
-                <!-- Table heading -->
-                <thead>
-                    <tr>
-                        <th>Fecha</th>
-                        <th>Propietario</th>
-                    </tr>
-                </thead>
-                <!-- // Table heading END -->
+                  <!-- Table heading -->
+                  <thead>
+                      <tr>
+                          <th>Fecha</th>
+                          <th>Propietario</th>
+                      </tr>
+                  </thead>
+                  <!-- // Table heading END -->
 
-                <!-- Table body -->
-                <tbody>
-                    <?php foreach ($transferencias as $pro): ?>
+                  <!-- Table body -->
+                  <tbody>
+                      <?php foreach ($transferencias as $pro): ?>
                         <tr>
                             <td><?php echo $pro['Mascotaspropietario']['fecha_transfer'] ?></td>
                             <td><?php echo $pro['Propietario']['nombre'] ?></td>
 
                         </tr>
-                    <?php endforeach; ?>
+                      <?php endforeach; ?>
 
-                </tbody>
-                <!-- // Table body END -->
-            </table>
+                  </tbody>
+                  <!-- // Table body END -->
+              </table>
+            <?php endif; ?>
             <!-- // Table END -->
-            <h3 align="center">Titulos</h3>
-            <!-- Table -->
-            <table class="table table-bordered table-white">
+            <?php if (!empty($titulos)): ?>
+              <h3 align="center">Titulos</h3>
+              <!-- Table -->
+              <table class="table table-bordered table-white">
 
-                <!-- Table heading -->
-                <thead>
-                    <tr>
-                        <th>Fecha</th>
-                        <th>Titulo</th>
-                    </tr>
-                </thead>
-                <!-- // Table heading END -->
+                  <!-- Table heading -->
+                  <thead>
+                      <tr>
+                          <th>Fecha</th>
+                          <th>Titulo</th>
+                      </tr>
+                  </thead>
+                  <!-- // Table heading END -->
 
-                <!-- Table body -->
-                <tbody>
-                    <?php foreach ($titulos as $ti): ?>
+                  <!-- Table body -->
+                  <tbody>
+                      <?php foreach ($titulos as $ti): ?>
                         <tr>
                             <td><?php echo $ti['Mascotastitulo']['fecha_obtencion'] ?></td>
                             <td><?php echo $ti['Titulo']['nombre'] ?></td>
 
                         </tr>
-                    <?php endforeach; ?>
+                      <?php endforeach; ?>
 
-                </tbody>
-                <!-- // Table body END -->
+                  </tbody>
+                  <!-- // Table body END -->
 
-            </table>
+              </table>
+            <?php endif; ?>
             <!-- // Table END -->
             <!-- // Table END -->
+            <?php if (!empty($eventos)): ?>
+              <div class="row-fluid">
+                  <div class="span12">
+                      <h3 class="center">Eventos</h3>
+                      <!-- Table -->
+                      <table class="table table-bordered table-white">
 
-            <div class="row-fluid">
-                <div class="span12">
-                    <h3 class="center">Eventos</h3>
-                    <!-- Table -->
-                    <table class="table table-bordered table-white">
-
-                        <!-- Table heading -->
-                        <thead>
-                            <tr>
-                                <th>Fecha</th>
-                                <th>Evento</th>
-                                <th>Pista</th>
-                                <th>Categoria</th>
-                                <th>Catalogo</th>
-                                <th>Puntos</th>
-                                <th>Pts. Adult.</th>
-                            </tr>
-                        </thead>
-                        <?php foreach ($eventos as $eve): ?>
+                          <!-- Table heading -->
+                          <thead>
+                              <tr>
+                                  <th>Fecha</th>
+                                  <th>Evento</th>
+                                  <th>Pista</th>
+                                  <th>Categoria</th>
+                                  <th>Catalogo</th>
+                                  <th>Puntos</th>
+                                  <th>Pts. Adult.</th>
+                              </tr>
+                          </thead>
+                          <?php foreach ($eventos as $eve): ?>
                             <tr>
                                 <td><?php echo $eve['EventosMascotasPuntaje']['created']; ?></td>
                                 <td><?php echo $eve['Evento']['nombre']; ?></td>
@@ -314,16 +322,69 @@ $mpista = new Pista();
                                 <td><?php echo $eve['EventosMascotasPuntaje']['puntos']; ?></td>
                                 <td><?php echo $eve['EventosMascotasPuntaje']['puntos_adultos']; ?></td>
                             </tr>
-                        <?php endforeach; ?>
+                          <?php endforeach; ?>
+                          <tbody>
+
+                          </tbody>
+                          <!-- // Table body END -->
+
+                      </table>
+                      <!-- // Table END -->
+                  </div>
+              </div>
+            <?php endif; ?>
+
+            <div class="row-fluid">
+                <div class="span6 blanco">
+                    <h3 class="center">Camadas Padre</h3>
+                    <table class="table table-bordered table-white">
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Reproductor</th>
+                                <th># Cachorros</th>
+                            </tr>
+                        </thead>
                         <tbody>
-
+                            <?php
+                            $cam_pad = $this->requestAction(array('action' => 'get_cam_pad', $mascota['Mascota']['reproductor_id']))
+                            ?>
+                            <?php foreach ($cam_pad as $ca): ?>
+                              <tr>
+                                  <td><?php echo $ca['Mascota']['fecha_nacimiento']?></td>
+                                  <td><?php echo $ca['Reproductora']['nombre_completo']?></td>
+                                  <td><?php echo $ca[0]['num_hermanos']?></td>
+                              </tr>
+                            <?php endforeach; ?>
                         </tbody>
-                        <!-- // Table body END -->
-
                     </table>
-                    <!-- // Table END -->
+                </div>
+                <div class="span6 blanco">
+                    <h3 class="center">Camadas Madre</h3>
+                    <table class="table table-bordered table-white">
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Reproductor</th>
+                                <th># Cachorros</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $cam_mad = $this->requestAction(array('action' => 'get_cam_mad', $mascota['Mascota']['reproductora_id']))
+                            ?>
+                            <?php foreach ($cam_mad as $ca): ?>
+                              <tr>
+                                  <td><?php echo $ca['Mascota']['fecha_nacimiento']?></td>
+                                  <td><?php echo $ca['Reproductor']['nombre_completo']?></td>
+                                  <td><?php echo $ca[0]['num_hermanos']?></td>
+                              </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
+
 
             <div class="row-fluid hidden-phone hidden-tablet">
                 <div class="span12 center">
@@ -337,82 +398,82 @@ $mpista = new Pista();
                             <ul>
                                 <li>
                                     <?php if (!empty($padre[1])): ?>
-                                        <?php
-                                        $imagen = 'perro.jpg';
-                                        if (!empty($padre[1]['Mascota']['imagen'])) {
-                                            $imagen = 'fotos/' . $mascota[1]['Mascota']['imagen'];
-                                        }
-                                        ?>
-                                        <a title="<?php echo $padre[1]['Mascota']['nombre_completo']; ?>" href="<?php echo $this->Html->url(array('action' => 'ver', $padre[1]['Mascota']['id'])); ?>"><?php echo $this->Html->image('' . $imagen, array('style' => 'width: 120px; height: 120px;')); ?></a>
+                                      <?php
+                                      $imagen = 'perro.jpg';
+                                      if (!empty($padre[1]['Mascota']['imagen'])) {
+                                        $imagen = 'fotos/' . $mascota[1]['Mascota']['imagen'];
+                                      }
+                                      ?>
+                                      <a title="<?php echo $padre[1]['Mascota']['nombre_completo']; ?>" href="<?php echo $this->Html->url(array('action' => 'ver', $padre[1]['Mascota']['id'])); ?>"><?php echo $this->Html->image('' . $imagen, array('style' => 'width: 120px; height: 120px;')); ?></a>
 
                                     <?php endif; ?>
                                     <ul>
                                         <li>
                                             <?php if (!empty($padre[3])): ?>
-                                                <?php
-                                                $imagen = 'perro.jpg';
-                                                if (!empty($padre[3]['Mascota']['imagen'])) {
-                                                    $imagen = 'fotos/' . $mascota[3]['Mascota']['imagen'];
-                                                }
-                                                ?>
-                                                <a title="<?php echo $padre[3]['Mascota']['nombre_completo']; ?>" href="<?php echo $this->Html->url(array('action' => 'ver', $padre[3]['Mascota']['id'])); ?>"><?php echo $this->Html->image('' . $imagen, array('style' => 'width: 120px; height: 120px;')); ?></a>
+                                              <?php
+                                              $imagen = 'perro.jpg';
+                                              if (!empty($padre[3]['Mascota']['imagen'])) {
+                                                $imagen = 'fotos/' . $mascota[3]['Mascota']['imagen'];
+                                              }
+                                              ?>
+                                              <a title="<?php echo $padre[3]['Mascota']['nombre_completo']; ?>" href="<?php echo $this->Html->url(array('action' => 'ver', $padre[3]['Mascota']['id'])); ?>"><?php echo $this->Html->image('' . $imagen, array('style' => 'width: 120px; height: 120px;')); ?></a>
                                             <?php endif; ?>
                                             <ul>
                                                 <li>
-<?php if (!empty($padre[7])): ?>
-                                                        <?php
-                                                        $imagen = 'perro.jpg';
-                                                        if (!empty($padre[7]['Mascota']['imagen'])) {
-                                                            $imagen = 'fotos/' . $mascota[7]['Mascota']['imagen'];
-                                                        }
-                                                        ?>
-                                                        <a title="<?php echo $padre[7]['Mascota']['nombre_completo']; ?>" href="<?php echo $this->Html->url(array('action' => 'ver', $padre[7]['Mascota']['id'])); ?>"><?php echo $this->Html->image('' . $imagen, array('style' => 'width: 120px; height: 120px;')); ?></a>
+                                                    <?php if (!empty($padre[7])): ?>
+                                                      <?php
+                                                      $imagen = 'perro.jpg';
+                                                      if (!empty($padre[7]['Mascota']['imagen'])) {
+                                                        $imagen = 'fotos/' . $mascota[7]['Mascota']['imagen'];
+                                                      }
+                                                      ?>
+                                                      <a title="<?php echo $padre[7]['Mascota']['nombre_completo']; ?>" href="<?php echo $this->Html->url(array('action' => 'ver', $padre[7]['Mascota']['id'])); ?>"><?php echo $this->Html->image('' . $imagen, array('style' => 'width: 120px; height: 120px;')); ?></a>
                                                     <?php endif; ?>
                                                 </li>
                                                 <li>
                                                     <?php if (!empty($padre[8])): ?>
-    <?php
-    $imagen = 'perro.jpg';
-    if (!empty($padre[8]['Mascota']['imagen'])) {
-        $imagen = 'fotos/' . $mascota[8]['Mascota']['imagen'];
-    }
-    ?>
-                                                        <a title="<?php echo $padre[8]['Mascota']['nombre_completo']; ?>" href="<?php echo $this->Html->url(array('action' => 'ver', $padre[8]['Mascota']['id'])); ?>"><?php echo $this->Html->image('' . $imagen, array('style' => 'width: 120px; height: 120px;')); ?></a>
+                                                      <?php
+                                                      $imagen = 'perro.jpg';
+                                                      if (!empty($padre[8]['Mascota']['imagen'])) {
+                                                        $imagen = 'fotos/' . $mascota[8]['Mascota']['imagen'];
+                                                      }
+                                                      ?>
+                                                      <a title="<?php echo $padre[8]['Mascota']['nombre_completo']; ?>" href="<?php echo $this->Html->url(array('action' => 'ver', $padre[8]['Mascota']['id'])); ?>"><?php echo $this->Html->image('' . $imagen, array('style' => 'width: 120px; height: 120px;')); ?></a>
                                                     <?php endif; ?>
                                                 </li>
                                             </ul>
                                         </li>
                                         <li>
-<?php if (!empty($padre[4])): ?>
-    <?php
-    $imagen = 'perro.jpg';
-    if (!empty($padre[4]['Mascota']['imagen'])) {
-        $imagen = 'fotos/' . $mascota[4]['Mascota']['imagen'];
-    }
-    ?>
-                                                <a title="<?php echo $padre[4]['Mascota']['nombre_completo']; ?>" href="<?php echo $this->Html->url(array('action' => 'ver', $padre[4]['Mascota']['id'])); ?>"><?php echo $this->Html->image('' . $imagen, array('style' => 'width: 120px; height: 120px;')); ?></a>
+                                            <?php if (!empty($padre[4])): ?>
+                                              <?php
+                                              $imagen = 'perro.jpg';
+                                              if (!empty($padre[4]['Mascota']['imagen'])) {
+                                                $imagen = 'fotos/' . $mascota[4]['Mascota']['imagen'];
+                                              }
+                                              ?>
+                                              <a title="<?php echo $padre[4]['Mascota']['nombre_completo']; ?>" href="<?php echo $this->Html->url(array('action' => 'ver', $padre[4]['Mascota']['id'])); ?>"><?php echo $this->Html->image('' . $imagen, array('style' => 'width: 120px; height: 120px;')); ?></a>
                                             <?php endif; ?>
                                             <ul>
                                                 <li>
-                                            <?php if (!empty($padre[9])): ?>
-                                                <?php
-                                                $imagen = 'perro.jpg';
-                                                if (!empty($padre[9]['Mascota']['imagen'])) {
-                                                    $imagen = 'fotos/' . $mascota[9]['Mascota']['imagen'];
-                                                }
-                                                ?>
-                                                        <a title="<?php echo $padre[9]['Mascota']['nombre_completo']; ?>" href="<?php echo $this->Html->url(array('action' => 'ver', $padre[9]['Mascota']['id'])); ?>"><?php echo $this->Html->image('' . $imagen, array('style' => 'width: 120px; height: 120px;')); ?></a>
+                                                    <?php if (!empty($padre[9])): ?>
+                                                      <?php
+                                                      $imagen = 'perro.jpg';
+                                                      if (!empty($padre[9]['Mascota']['imagen'])) {
+                                                        $imagen = 'fotos/' . $mascota[9]['Mascota']['imagen'];
+                                                      }
+                                                      ?>
+                                                      <a title="<?php echo $padre[9]['Mascota']['nombre_completo']; ?>" href="<?php echo $this->Html->url(array('action' => 'ver', $padre[9]['Mascota']['id'])); ?>"><?php echo $this->Html->image('' . $imagen, array('style' => 'width: 120px; height: 120px;')); ?></a>
                                                     <?php endif; ?>
                                                 </li>
                                                 <li>
                                                     <?php if (!empty($padre[10])): ?>
-                                                        <?php
-                                                        $imagen = 'perro.jpg';
-                                                        if (!empty($padre[10]['Mascota']['imagen'])) {
-                                                            $imagen = 'fotos/' . $mascota[10]['Mascota']['imagen'];
-                                                        }
-                                                        ?>
-                                                        <a title="<?php echo $padre[10]['Mascota']['nombre_completo']; ?>" href="<?php echo $this->Html->url(array('action' => 'ver', $padre[10]['Mascota']['id'])); ?>"><?php echo $this->Html->image('' . $imagen, array('style' => 'width: 120px; height: 120px;')); ?></a>
+                                                      <?php
+                                                      $imagen = 'perro.jpg';
+                                                      if (!empty($padre[10]['Mascota']['imagen'])) {
+                                                        $imagen = 'fotos/' . $mascota[10]['Mascota']['imagen'];
+                                                      }
+                                                      ?>
+                                                      <a title="<?php echo $padre[10]['Mascota']['nombre_completo']; ?>" href="<?php echo $this->Html->url(array('action' => 'ver', $padre[10]['Mascota']['id'])); ?>"><?php echo $this->Html->image('' . $imagen, array('style' => 'width: 120px; height: 120px;')); ?></a>
                                                     <?php endif; ?>
                                                 </li>
                                             </ul>
@@ -420,82 +481,82 @@ $mpista = new Pista();
                                     </ul>
                                 </li>
                                 <li>
-                                                    <?php if (!empty($padre[2])): ?>
-    <?php
-    $imagen = 'perro.jpg';
-    if (!empty($padre[2]['Mascota']['imagen'])) {
-        $imagen = 'fotos/' . $mascota[2]['Mascota']['imagen'];
-    }
-    ?>
-                                        <a title="<?php echo $padre[2]['Mascota']['nombre_completo']; ?>" href="<?php echo $this->Html->url(array('action' => 'ver', $padre[2]['Mascota']['id'])); ?>"><?php echo $this->Html->image('' . $imagen, array('style' => 'width: 120px; height: 120px;')); ?></a>
+                                    <?php if (!empty($padre[2])): ?>
+                                      <?php
+                                      $imagen = 'perro.jpg';
+                                      if (!empty($padre[2]['Mascota']['imagen'])) {
+                                        $imagen = 'fotos/' . $mascota[2]['Mascota']['imagen'];
+                                      }
+                                      ?>
+                                      <a title="<?php echo $padre[2]['Mascota']['nombre_completo']; ?>" href="<?php echo $this->Html->url(array('action' => 'ver', $padre[2]['Mascota']['id'])); ?>"><?php echo $this->Html->image('' . $imagen, array('style' => 'width: 120px; height: 120px;')); ?></a>
                                     <?php endif; ?>
                                     <ul>
                                         <li>
-                                    <?php if (!empty($padre[5])): ?>
-                                        <?php
-                                        $imagen = 'perro.jpg';
-                                        if (!empty($padre[5]['Mascota']['imagen'])) {
-                                            $imagen = 'fotos/' . $mascota[5]['Mascota']['imagen'];
-                                        }
-                                        ?>
-                                                <a title="<?php echo $padre[5]['Mascota']['nombre_completo']; ?>" href="<?php echo $this->Html->url(array('action' => 'ver', $padre[5]['Mascota']['id'])); ?>"><?php echo $this->Html->image('' . $imagen, array('style' => 'width: 120px; height: 120px;')); ?></a>
+                                            <?php if (!empty($padre[5])): ?>
+                                              <?php
+                                              $imagen = 'perro.jpg';
+                                              if (!empty($padre[5]['Mascota']['imagen'])) {
+                                                $imagen = 'fotos/' . $mascota[5]['Mascota']['imagen'];
+                                              }
+                                              ?>
+                                              <a title="<?php echo $padre[5]['Mascota']['nombre_completo']; ?>" href="<?php echo $this->Html->url(array('action' => 'ver', $padre[5]['Mascota']['id'])); ?>"><?php echo $this->Html->image('' . $imagen, array('style' => 'width: 120px; height: 120px;')); ?></a>
                                             <?php endif; ?>
                                             <ul>
                                                 <li>
-                                            <?php if (!empty($padre[11])): ?>
-                                                <?php
-                                                $imagen = 'perro.jpg';
-                                                if (!empty($padre[11]['Mascota']['imagen'])) {
-                                                    $imagen = 'fotos/' . $mascota[11]['Mascota']['imagen'];
-                                                }
-                                                ?>
-                                                        <a title="<?php echo $padre[11]['Mascota']['nombre_completo']; ?>" href="<?php echo $this->Html->url(array('action' => 'ver', $padre[11]['Mascota']['id'])); ?>"><?php echo $this->Html->image('' . $imagen, array('style' => 'width: 120px; height: 120px;')); ?></a>
+                                                    <?php if (!empty($padre[11])): ?>
+                                                      <?php
+                                                      $imagen = 'perro.jpg';
+                                                      if (!empty($padre[11]['Mascota']['imagen'])) {
+                                                        $imagen = 'fotos/' . $mascota[11]['Mascota']['imagen'];
+                                                      }
+                                                      ?>
+                                                      <a title="<?php echo $padre[11]['Mascota']['nombre_completo']; ?>" href="<?php echo $this->Html->url(array('action' => 'ver', $padre[11]['Mascota']['id'])); ?>"><?php echo $this->Html->image('' . $imagen, array('style' => 'width: 120px; height: 120px;')); ?></a>
                                                     <?php endif; ?>
                                                 </li>
                                                 <li>
                                                     <?php if (!empty($padre[12])): ?>
-                                                        <?php
-                                                        $imagen = 'perro.jpg';
-                                                        if (!empty($padre[12]['Mascota']['imagen'])) {
-                                                            $imagen = 'fotos/' . $mascota[12]['Mascota']['imagen'];
-                                                        }
-                                                        ?>
-                                                        <a title="<?php echo $padre[12]['Mascota']['nombre_completo']; ?>" href="<?php echo $this->Html->url(array('action' => 'ver', $padre[12]['Mascota']['id'])); ?>"><?php echo $this->Html->image('' . $imagen, array('style' => 'width: 120px; height: 120px;')); ?></a>
-<?php endif; ?>
+                                                      <?php
+                                                      $imagen = 'perro.jpg';
+                                                      if (!empty($padre[12]['Mascota']['imagen'])) {
+                                                        $imagen = 'fotos/' . $mascota[12]['Mascota']['imagen'];
+                                                      }
+                                                      ?>
+                                                      <a title="<?php echo $padre[12]['Mascota']['nombre_completo']; ?>" href="<?php echo $this->Html->url(array('action' => 'ver', $padre[12]['Mascota']['id'])); ?>"><?php echo $this->Html->image('' . $imagen, array('style' => 'width: 120px; height: 120px;')); ?></a>
+                                                    <?php endif; ?>
                                                 </li>
                                             </ul>
                                         </li>
                                         <li>
-                                                    <?php if (!empty($padre[6])): ?>
-                                                        <?php
-                                                        $imagen = 'perro.jpg';
-                                                        if (!empty($padre[6]['Mascota']['imagen'])) {
-                                                            $imagen = 'fotos/' . $mascota[6]['Mascota']['imagen'];
-                                                        }
-                                                        ?>
-                                                <a title="<?php echo $padre[6]['Mascota']['nombre_completo']; ?>" href="<?php echo $this->Html->url(array('action' => 'ver', $padre[6]['Mascota']['id'])); ?>"><?php echo $this->Html->image('' . $imagen, array('style' => 'width: 120px; height: 120px;')); ?></a>
-<?php endif; ?>
+                                            <?php if (!empty($padre[6])): ?>
+                                              <?php
+                                              $imagen = 'perro.jpg';
+                                              if (!empty($padre[6]['Mascota']['imagen'])) {
+                                                $imagen = 'fotos/' . $mascota[6]['Mascota']['imagen'];
+                                              }
+                                              ?>
+                                              <a title="<?php echo $padre[6]['Mascota']['nombre_completo']; ?>" href="<?php echo $this->Html->url(array('action' => 'ver', $padre[6]['Mascota']['id'])); ?>"><?php echo $this->Html->image('' . $imagen, array('style' => 'width: 120px; height: 120px;')); ?></a>
+                                            <?php endif; ?>
                                             <ul>
                                                 <li>
-                                            <?php if (!empty($padre[13])): ?>
-                                                <?php
-                                                $imagen = 'perro.jpg';
-                                                if (!empty($padre[13]['Mascota']['imagen'])) {
-                                                    $imagen = 'fotos/' . $mascota[13]['Mascota']['imagen'];
-                                                }
-                                                ?>
-                                                        <a title="<?php echo $padre[13]['Mascota']['nombre_completo']; ?>" href="<?php echo $this->Html->url(array('action' => 'ver', $padre[13]['Mascota']['id'])); ?>"><?php echo $this->Html->image('' . $imagen, array('style' => 'width: 120px; height: 120px;')); ?></a>
-                                            <?php endif; ?>
+                                                    <?php if (!empty($padre[13])): ?>
+                                                      <?php
+                                                      $imagen = 'perro.jpg';
+                                                      if (!empty($padre[13]['Mascota']['imagen'])) {
+                                                        $imagen = 'fotos/' . $mascota[13]['Mascota']['imagen'];
+                                                      }
+                                                      ?>
+                                                      <a title="<?php echo $padre[13]['Mascota']['nombre_completo']; ?>" href="<?php echo $this->Html->url(array('action' => 'ver', $padre[13]['Mascota']['id'])); ?>"><?php echo $this->Html->image('' . $imagen, array('style' => 'width: 120px; height: 120px;')); ?></a>
+                                                    <?php endif; ?>
                                                 </li>
                                                 <li>
                                                     <?php if (!empty($padre[14])): ?>
-                                                        <?php
-                                                        $imagen = 'perro.jpg';
-                                                        if (!empty($padre[14]['Mascota']['imagen'])) {
-                                                            $imagen = 'fotos/' . $mascota[14]['Mascota']['imagen'];
-                                                        }
-                                                        ?>
-                                                        <a title="<?php echo $padre[14]['Mascota']['nombre_completo']; ?>" href="<?php echo $this->Html->url(array('action' => 'ver', $padre[14]['Mascota']['id'])); ?>"><?php echo $this->Html->image('' . $imagen, array('style' => 'width: 120px; height: 120px;')); ?></a>
+                                                      <?php
+                                                      $imagen = 'perro.jpg';
+                                                      if (!empty($padre[14]['Mascota']['imagen'])) {
+                                                        $imagen = 'fotos/' . $mascota[14]['Mascota']['imagen'];
+                                                      }
+                                                      ?>
+                                                      <a title="<?php echo $padre[14]['Mascota']['nombre_completo']; ?>" href="<?php echo $this->Html->url(array('action' => 'ver', $padre[14]['Mascota']['id'])); ?>"><?php echo $this->Html->image('' . $imagen, array('style' => 'width: 120px; height: 120px;')); ?></a>
                                                     <?php endif; ?>
                                                 </li>
                                             </ul>
@@ -511,12 +572,12 @@ $mpista = new Pista();
             </div>
             <div class="row-fluid hidden-phone hidden-tablet">
                 <div class="span12 center">
-<?php
-if ($this->Session->read('Auth.User.role') == 'administrador') {
-    echo $this->Html->link('CERTIFICADO', array('action' => 'certificado', $mascota['Mascota']['id']), array('class' => 'btn btn-block btn-inverse'));
-    echo $this->Html->link('CERTIFICADO EXPORTACION', array('action' => 'c_exportacion', $mascota['Mascota']['id']), array('class' => 'btn btn-block btn-inverse'));
-}
-?>
+                    <?php
+                    if ($this->Session->read('Auth.User.role') == 'administrador') {
+                      echo $this->Html->link('CERTIFICADO', array('action' => 'certificado', $mascota['Mascota']['id']), array('class' => 'btn btn-block btn-inverse'));
+                      echo $this->Html->link('CERTIFICADO EXPORTACION', array('action' => 'c_exportacion', $mascota['Mascota']['id']), array('class' => 'btn btn-block btn-inverse'));
+                    }
+                    ?>
                 </div>
             </div>
         </div>
@@ -524,20 +585,20 @@ if ($this->Session->read('Auth.User.role') == 'administrador') {
 </div>
 <script>
 
-    var textoqr = "<?php echo 'KCB: ' . trim($mascota['Mascota']['kcb']) . '\nNombre: ' . trim($mascota['Mascota']['nombre_completo']) . '\nRaza: ' . trim($mascota['Raza']['nombre']) . '\nN. Tatuaje: ' . trim($mascota['Mascota']['num_tatuaje']) . '\nChip: ' . trim($mascota['Mascota']['chip']) . '\nSexo: ' . trim($mascota['Mascota']['sexo']) . '\nF.nacimiento: ' . $mascota['Mascota']['fecha_nacimiento']; ?>";
+  var textoqr = "<?php echo 'KCB: ' . trim($mascota['Mascota']['kcb']) . '\nNombre: ' . trim($mascota['Mascota']['nombre_completo']) . '\nRaza: ' . trim($mascota['Raza']['nombre']) . '\nN. Tatuaje: ' . trim($mascota['Mascota']['num_tatuaje']) . '\nChip: ' . trim($mascota['Mascota']['chip']) . '\nSexo: ' . trim($mascota['Mascota']['sexo']) . '\nF.nacimiento: ' . $mascota['Mascota']['fecha_nacimiento']; ?>";
 
-    var opcionesQRejmeplar = {
-        render: 'image'
-        , size: 176
-        , background: '#fdfdfd'
-        , text: textoqr
-    };
-    var divSelector = '#codigoQRejemplar';
+  var opcionesQRejmeplar = {
+      render: 'image'
+      , size: 176
+      , background: '#fdfdfd'
+      , text: textoqr
+  };
+  var divSelector = '#codigoQRejemplar';
 </script>
 <?php
 $this->Html->script(array(
-    'jquery.qrcode-0.10.0.js'
-    , 'codigoQRini.js'
-        ), array('block' => 'scriptQR'));
+  'jquery.qrcode-0.10.0.js'
+  , 'codigoQRini.js'
+  ), array('block' => 'scriptQR'));
 ?>
     
